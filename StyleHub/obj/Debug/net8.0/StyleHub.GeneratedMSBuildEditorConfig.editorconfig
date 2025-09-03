@@ -68,6 +68,42 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Moustafa/Desktop/ITI-PROJECT/StyleHub/Views/Account/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Moustafa/Desktop/ITI-PROJECT/StyleHub/Views/Category/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Moustafa/Desktop/ITI-PROJECT/StyleHub/Views/Category/Product_details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcUHJvZHVjdF9kZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Moustafa/Desktop/ITI-PROJECT/StyleHub/Views/Checkout/Cart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hlY2tvdXRcQ2FydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Moustafa/Desktop/ITI-PROJECT/StyleHub/Views/Checkout/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hlY2tvdXRcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Moustafa/Desktop/ITI-PROJECT/StyleHub/Views/Help/Return_policy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGVscFxSZXR1cm5fcG9saWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Moustafa/Desktop/ITI-PROJECT/StyleHub/Views/Help/Shiping_info.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGVscFxTaGlwaW5nX2luZm8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Moustafa/Desktop/ITI-PROJECT/StyleHub/Views/Help/Support.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGVscFxTdXBwb3J0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Moustafa/Desktop/ITI-PROJECT/StyleHub/Views/Help/Tos.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGVscFxUb3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Moustafa/Desktop/ITI-PROJECT/StyleHub/Views/Home/About.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBYm91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -84,12 +120,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Moustafa/Desktop/ITI-PROJECT/StyleHub/Views/Shared/_AccountTabItem.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9BY2NvdW50VGFiSXRlbS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Moustafa/Desktop/ITI-PROJECT/StyleHub/Views/Shared/_Layout_Style_hub.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRfU3R5bGVfaHViLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Moustafa/Desktop/ITI-PROJECT/StyleHub/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Moustafa/Desktop/ITI-PROJECT/StyleHub/Views/Shared/_Pagebrand.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9QYWdlYnJhbmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Moustafa/Desktop/ITI-PROJECT/StyleHub/Views/Shared/_PageCategories.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9QYWdlQ2F0ZWdvcmllcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Moustafa/Desktop/ITI-PROJECT/StyleHub/Views/Shared/_ValidationScriptsPartial.cshtml]
