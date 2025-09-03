@@ -8,23 +8,23 @@
     "net8.0": []
   },
   "packageFolders": {
-    "C:\\Users\\nouri\\.nuget\\packages\\": {},
+    "C:\\Users\\mahmo\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\nouri\\OneDrive\\Desktop\\StyleHub\\StyleHub\\StyleHub.csproj",
+      "projectUniqueName": "C:\\Users\\mahmo\\AppData\\Local\\Temp\\Rar$DRa16788.5452.rartemp\\ITI-PROJECT-main\\StyleHub\\StyleHub.csproj",
       "projectName": "StyleHub",
-      "projectPath": "C:\\Users\\nouri\\OneDrive\\Desktop\\StyleHub\\StyleHub\\StyleHub.csproj",
-      "packagesPath": "C:\\Users\\nouri\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\nouri\\OneDrive\\Desktop\\StyleHub\\StyleHub\\obj\\",
+      "projectPath": "C:\\Users\\mahmo\\AppData\\Local\\Temp\\Rar$DRa16788.5452.rartemp\\ITI-PROJECT-main\\StyleHub\\StyleHub.csproj",
+      "packagesPath": "C:\\Users\\mahmo\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\mahmo\\AppData\\Local\\Temp\\Rar$DRa16788.5452.rartemp\\ITI-PROJECT-main\\StyleHub\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\nouri\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\mahmo\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -33,6 +33,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -75,7 +76,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
