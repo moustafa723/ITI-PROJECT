@@ -1,0 +1,12 @@
+﻿@model dynamic
+
+<li class="nav-item">
+    <a class="nav-link @(Model.IsActive ? "active" : "")" data-bs-toggle="tab" href="#@Model.Href">
+        <i class="bi @Model.Icon"></i>
+        <span>@Model.Title</span>
+        @if (Model.Count != null)
+        {
+            <span class="badge">@Model.Count</span>
+        }
+    </a>
+</li>
