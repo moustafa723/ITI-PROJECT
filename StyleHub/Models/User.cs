@@ -1,4 +1,4 @@
-﻿namespace ITI_FinalProject.Models
+﻿namespace StyleHub.Models
 {
     public class User
     {

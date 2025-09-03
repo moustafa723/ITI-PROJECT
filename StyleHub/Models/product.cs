@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace ITI_FinalProject.Models
+namespace StyleHub.Models
 {
     public class product
     {

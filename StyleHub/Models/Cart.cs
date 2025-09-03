@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ITI_FinalProject.Models
+namespace StyleHub.Models
 {
     public class Cart
     {

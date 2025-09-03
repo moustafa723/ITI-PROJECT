@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using StyleHub.Data;
 var builder = WebApplication.CreateBuilder(args);
 
-// ‰—»ÿ «·‹ DbContext »«·‹ SQL Server
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
