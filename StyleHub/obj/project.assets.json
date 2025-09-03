@@ -6933,26 +6933,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Moustafa\\.nuget\\packages\\": {},
-    "C:\\Program Files\\DevExpress 25.1\\Components\\Offline Packages": {},
+    "C:\\Users\\nouri\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Moustafa\\Desktop\\ITI-PROJECT-main\\StyleHub\\StyleHub.csproj",
+      "projectUniqueName": "C:\\Users\\nouri\\OneDrive\\Desktop\\ITI-PROJECT\\StyleHub\\StyleHub.csproj",
       "projectName": "StyleHub",
-      "projectPath": "C:\\Users\\Moustafa\\Desktop\\ITI-PROJECT-main\\StyleHub\\StyleHub.csproj",
-      "packagesPath": "C:\\Users\\Moustafa\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Moustafa\\Desktop\\ITI-PROJECT-main\\StyleHub\\obj\\",
+      "projectPath": "C:\\Users\\nouri\\OneDrive\\Desktop\\ITI-PROJECT\\StyleHub\\StyleHub.csproj",
+      "packagesPath": "C:\\Users\\nouri\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\nouri\\OneDrive\\Desktop\\ITI-PROJECT\\StyleHub\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files\\DevExpress 25.1\\Components\\Offline Packages",
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Moustafa\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 25.1.config",
+        "C:\\Users\\nouri\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -6961,7 +6958,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\DevExpress 25.1\\Components\\System\\Components\\Packages": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
