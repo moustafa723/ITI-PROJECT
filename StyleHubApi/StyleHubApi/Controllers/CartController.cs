@@ -6,9 +6,9 @@ using System.Security.Claims;
 
 namespace StyleHubApi.Controllers
 {
-    [ApiController] // هذه السمة ضرورية
+    [ApiController] //
     [Route("api/[controller]")]
-    public class CartController : ControllerBase // ليس Controller
+    public class CartController : ControllerBase 
     {
         private readonly AppDbContext _context;
 
@@ -50,7 +50,7 @@ namespace StyleHubApi.Controllers
             var userId = GetUserId();
             var cart = await GetOrCreateCart(userId);
 
-            // المعالجة وإضافة العنصر إلى السلة
+            //handling and adding to cart
             var existingItem = cart.CartItems.FirstOrDefault(ci => ci.ProductId == cartItem.ProductId);
 
             if (existingItem != null)
@@ -122,7 +122,7 @@ namespace StyleHubApi.Controllers
 
         private string GetUserId()
         {
-            // منطق获取用户ID
+            // 
             if (User.Identity.IsAuthenticated)
             {
                 return User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
