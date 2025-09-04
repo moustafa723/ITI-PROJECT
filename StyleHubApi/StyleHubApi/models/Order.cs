@@ -18,6 +18,7 @@ namespace StyleHubApi.Models
         public string Phone { get; set; }
         public bool Payment { get; set; }
 
-        public ICollection<OrderItem> OrderItems { get; set; }
+        public ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
     }
+
 }
