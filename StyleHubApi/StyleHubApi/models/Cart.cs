@@ -5,8 +5,9 @@ namespace StyleHubApi.Models
     public class Cart
     {
         public int Id { get; set; }
-        public int UserId { get; set; }
+        public string? UserId { get; set; }
         public ICollection<User> Users { get; set; }
+        public ICollection<CartItem> CartItems { get; set; }
 
     }
 }

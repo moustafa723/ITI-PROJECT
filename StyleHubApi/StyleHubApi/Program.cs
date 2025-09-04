@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System;
+using System.Text;
 //
 namespace StyleHubApi
 {
@@ -10,6 +10,8 @@ namespace StyleHubApi
         {
             var builder = WebApplication.CreateBuilder(args);
 
+
+           
 
             // Configure SQLite
             builder.Services.AddDbContext<DbContext>(options =>
