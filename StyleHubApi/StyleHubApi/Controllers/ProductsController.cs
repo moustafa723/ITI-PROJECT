@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StyleHubApi.Data;
 using StyleHubApi.Models;
@@ -8,17 +7,11 @@ namespace StyleHubApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductController : ControllerBase
+    public class ProductsController : ControllerBase
     {
-
-
-
-
-
-
         private readonly AppDbContext _context;
 
-        public ProductController(AppDbContext context)
+        public ProductsController(AppDbContext context)
         {
             _context = context;
         }
@@ -28,7 +21,7 @@ namespace StyleHubApi.Controllers
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
             return await _context.Products
-                .Include(p => p.Category) // عشان يجيب الكاتيجري كمان
+                .Include(p => p.Category)
                 .ToListAsync();
         }
 
@@ -93,14 +86,5 @@ namespace StyleHubApi.Controllers
 
             return NoContent();
         }
-
-
-
-
-
-
-
-
-
     }
 }
