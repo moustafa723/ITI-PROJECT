@@ -1,67 +1,105 @@
 ﻿@page
 @model RegisterModel
 @{
-    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout_Style_hub.cshtml";
 }
 
-<h1>@ViewData["Title"]</h1>
+<section id="register" class="register section">
 
-<div class="row">
-    <div class="col-md-4">
-        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h2>Create a new account.</h2>
-            <hr />
-            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
-            <div class="form-floating mb-3">
-                <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
-                <label asp-for="Input.Email">Email</label>
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
-            </div>
-            <div class="form-floating mb-3">
-                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
-                <label asp-for="Input.Password">Password</label>
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
-            </div>
-            <div class="form-floating mb-3">
-                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
-                <label asp-for="Input.ConfirmPassword">Confirm Password</label>
-                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-            </div>
-            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
-        </form>
-    </div>
-    <div class="col-md-6 col-md-offset-2">
-        <section>
-            <h3>Use another service to register.</h3>
-            <hr />
-            @{
-                if ((Model.ExternalLogins?.Count ?? 0) == 0)
-                {
-                    <div>
-                        <p>
-                            There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
-                            about setting up this ASP.NET application to support logging in via external services</a>.
-                        </p>
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="registration-form-wrapper">
+                    <div class="form-header text-center">
+                        <h2>Create Your Account</h2>
+                        <p>Create your account and start shopping with us</p>
                     </div>
-                }
-                else
-                {
-                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                        <div>
-                            <p>
-                                @foreach (var provider in Model.ExternalLogins!)
-                                {
-                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                                }
-                            </p>
-                        </div>
-                    </form>
-                }
-            }
-        </section>
-    </div>
-</div>
 
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto">
+                            <form class="custom-form" role="form" method="post">
+                                <div class="form-floating mb-3">
+                                    <input asp-for="Input.Email" id="email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                                    <label for="email">Email Address</label>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input asp-for="Input.Password" id="password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                                            <label for="password">Password</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input asp-for="Input.ConfirmPassword" id="confirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+
+                                            <label for="confirmPassword">Confirm Password</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-check mb-4">
+                                    <input class="form-check-input" type="checkbox" id="termsCheck" name="termsCheck" required="">
+                                    <label class="form-check-label" for="termsCheck">
+                                        I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                                    </label>
+                                </div>
+
+                                <div class="form-check mb-4">
+                                    <input class="form-check-input" type="checkbox" id="marketingCheck" name="marketingCheck">
+                                    <label class="form-check-label" for="marketingCheck">
+                                        I would like to receive marketing communications about products, services, and promotions
+                                    </label>
+                                </div>
+
+                                <div class="d-grid mb-4">
+                                    <button id="registerSubmit" type="submit" class="btn btn-register">Create Account</button>
+                                </div>
+
+                                <div class="login-link text-center">
+                                    <p>Already have an account?<a class="ms-2" id="login" asp-area="Identity" asp-page="/Account/Login">Sign in</a></p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="social-login">
+                        <div class="row">
+                            <div class="col-lg-8 mx-auto">
+                                <div class="divider">
+                                    <span>or sign up with</span>
+                                </div>
+                                <div class="social-buttons">
+                                    <a href="#" class="btn btn-social">
+                                        <i class="bi bi-google"></i>
+                                        <span>Google</span>
+                                    </a>
+                                    <a href="#" class="btn btn-social">
+                                        <i class="bi bi-facebook"></i>
+                                        <span>Facebook</span>
+                                    </a>
+                                    <a href="#" class="btn btn-social">
+                                        <i class="bi bi-apple"></i>
+                                        <span>Apple</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="decorative-elements">
+                        <div class="circle circle-1"></div>
+                        <div class="circle circle-2"></div>
+                        <div class="circle circle-3"></div>
+                        <div class="square square-1"></div>
+                        <div class="square square-2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
