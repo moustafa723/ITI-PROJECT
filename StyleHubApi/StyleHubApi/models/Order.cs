@@ -7,8 +7,6 @@ namespace StyleHubApi.Models
         public int Id { get; set; }
         public DateTime Date { get; set; }
 
-        public string? UserId { get; set; }
-        public User? User { get; set; }
 
         [Precision(18, 2)]
         public decimal TotalAmount { get; set; }

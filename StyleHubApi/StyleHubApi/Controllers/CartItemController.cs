@@ -22,7 +22,7 @@ namespace StyleHubApi.Controllers
         {
             return await _context.CartItems
                 .Include(ci => ci.Cart)
-                .Include(ci => ci.Products) // ✅ fixed relation
+                .Include(ci => ci.Product) // ✅ fixed relation
                 .ToListAsync();
         }
 
@@ -32,7 +32,7 @@ namespace StyleHubApi.Controllers
         {
             var cartItem = await _context.CartItems
                 .Include(ci => ci.Cart)
-                .Include(ci => ci.Products)
+                .Include(ci => ci.Product)
                 .FirstOrDefaultAsync(ci => ci.Id == id);
 
             if (cartItem == null)

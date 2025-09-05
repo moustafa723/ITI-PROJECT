@@ -5,7 +5,6 @@ namespace StyleHubApi.models.Vm
     public class ProductVm
     {
        
-            public int Id { get; set; }
 
             public string Name { get; set; } = string.Empty;
 

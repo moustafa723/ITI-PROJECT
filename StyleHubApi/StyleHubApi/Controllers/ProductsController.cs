@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using StyleHubApi.Data;
 using StyleHubApi.Models;
+using StyleHubApi.models.Vm;
 
 namespace StyleHubApi.Controllers
 {
@@ -33,16 +34,55 @@ namespace StyleHubApi.Controllers
                 .Include(p => p.Category)
                 .FirstOrDefaultAsync(p => p.Id == id);
 
-            if (product == null)
-                return NotFound();
+            if (product == null) return NotFound();
 
             return product;
         }
 
         // POST: api/products
         [HttpPost]
-        public async Task<ActionResult<Product>> CreateProduct(Product product)
+        public async Task<ActionResult<Product>> CreateProduct([FromForm] ProductVm productVm)
         {
+            // رفع الصور
+            var imagePaths = new List<string>();
+            if (productVm.Images != null && productVm.Images.Any())
+            {
+                var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
+                if (!Directory.Exists(uploadsFolder))
+                {
+                    Directory.CreateDirectory(uploadsFolder);
+                }
+
+                foreach (var image in productVm.Images)
+                {
+                    var fileName = Guid.NewGuid().ToString() + Path.GetExtension(image.FileName);
+                    var filePath = Path.Combine(uploadsFolder, fileName);
+
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await image.CopyToAsync(stream);
+                    }
+
+                    imagePaths.Add($"/uploads/{fileName}");
+                }
+            }
+
+            var product = new Product
+            {
+                Name = productVm.Name,
+                Price = (decimal)productVm.Price,
+                Size = productVm.Size,
+                Review = productVm.Review,
+                In_stock = productVm.InStock,
+                Badge = productVm.Badge,
+                OldPrice = (decimal?)productVm.OldPrice,
+                Rating = productVm.Rating,
+                Color = productVm.Color,
+                Images = imagePaths,
+                Alts = productVm.Alts,
+                CategoryId = productVm.CategoryId
+            };
+
             _context.Products.Add(product);
             await _context.SaveChangesAsync();
 
@@ -51,24 +91,51 @@ namespace StyleHubApi.Controllers
 
         // PUT: api/products/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateProduct(int id, Product product)
+        public async Task<IActionResult> UpdateProduct(int id, [FromForm] ProductVm productVm)
         {
-            if (id != product.Id)
-                return BadRequest();
+            var product = await _context.Products.FindAsync(id);
+            if (product == null) return NotFound();
+
+            product.Name = productVm.Name;
+            product.Price = (decimal)productVm.Price;
+            product.Size = productVm.Size;
+            product.Review = productVm.Review;
+            product.In_stock = productVm.InStock;
+            product.Badge = productVm.Badge;
+            product.OldPrice = (decimal?)productVm.OldPrice;
+            product.Rating = productVm.Rating;
+            product.Color = productVm.Color;
+            product.Alts = productVm.Alts;
+            product.CategoryId = productVm.CategoryId;
+
+            // تحديث الصور لو فيه صور جديدة
+            if (productVm.Images != null && productVm.Images.Any())
+            {
+                var imagePaths = new List<string>();
+                var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
+                if (!Directory.Exists(uploadsFolder))
+                {
+                    Directory.CreateDirectory(uploadsFolder);
+                }
+
+                foreach (var image in productVm.Images)
+                {
+                    var fileName = Guid.NewGuid().ToString() + Path.GetExtension(image.FileName);
+                    var filePath = Path.Combine(uploadsFolder, fileName);
+
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await image.CopyToAsync(stream);
+                    }
+
+                    imagePaths.Add($"/uploads/{fileName}");
+                }
+
+                product.Images = imagePaths;
+            }
 
             _context.Entry(product).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!_context.Products.Any(e => e.Id == id))
-                    return NotFound();
-                else
-                    throw;
-            }
+            await _context.SaveChangesAsync();
 
             return NoContent();
         }
@@ -78,8 +145,7 @@ namespace StyleHubApi.Controllers
         public async Task<IActionResult> DeleteProduct(int id)
         {
             var product = await _context.Products.FindAsync(id);
-            if (product == null)
-                return NotFound();
+            if (product == null) return NotFound();
 
             _context.Products.Remove(product);
             await _context.SaveChangesAsync();
