@@ -17,141 +17,141 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = StyleHub
 build_property.RootNamespace = StyleHub
-build_property.ProjectDir = C:\Users\Fekra\iti-final-project\StyleHub\
+build_property.ProjectDir = C:\Users\Moustafa\Desktop\iti\ITI-PROJECT\StyleHub\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Fekra\iti-final-project\StyleHub
+build_property.MSBuildProjectDirectory = C:\Users\Moustafa\Desktop\iti\ITI-PROJECT\StyleHub
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/Fekra/iti-final-project/StyleHub/Areas/Identity/Pages/Account/Login.cshtml]
+[C:/Users/Moustafa/Desktop/iti/ITI-PROJECT/StyleHub/Areas/Identity/Pages/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Fekra/iti-final-project/StyleHub/Areas/Identity/Pages/Account/Logout.cshtml]
+[C:/Users/Moustafa/Desktop/iti/ITI-PROJECT/StyleHub/Areas/Identity/Pages/Account/Logout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Fekra/iti-final-project/StyleHub/Areas/Identity/Pages/Account/Manage/ChangePassword.cshtml]
+[C:/Users/Moustafa/Desktop/iti/ITI-PROJECT/StyleHub/Areas/Identity/Pages/Account/Manage/ChangePassword.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcQ2hhbmdlUGFzc3dvcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Fekra/iti-final-project/StyleHub/Areas/Identity/Pages/Account/Manage/_ManageNav.cshtml]
+[C:/Users/Moustafa/Desktop/iti/ITI-PROJECT/StyleHub/Areas/Identity/Pages/Account/Manage/_ManageNav.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcX01hbmFnZU5hdi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Fekra/iti-final-project/StyleHub/Areas/Identity/Pages/Account/Manage/_ViewImports.cshtml]
+[C:/Users/Moustafa/Desktop/iti/ITI-PROJECT/StyleHub/Areas/Identity/Pages/Account/Manage/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Fekra/iti-final-project/StyleHub/Areas/Identity/Pages/Account/Register.cshtml]
+[C:/Users/Moustafa/Desktop/iti/ITI-PROJECT/StyleHub/Areas/Identity/Pages/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Fekra/iti-final-project/StyleHub/Areas/Identity/Pages/Account/_ViewImports.cshtml]
+[C:/Users/Moustafa/Desktop/iti/ITI-PROJECT/StyleHub/Areas/Identity/Pages/Account/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxfVmlld0ltcG9ydHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Fekra/iti-final-project/StyleHub/Areas/Identity/Pages/_ValidationScriptsPartial.cshtml]
+[C:/Users/Moustafa/Desktop/iti/ITI-PROJECT/StyleHub/Areas/Identity/Pages/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZhbGlkYXRpb25TY3JpcHRzUGFydGlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Fekra/iti-final-project/StyleHub/Areas/Identity/Pages/_ViewImports.cshtml]
+[C:/Users/Moustafa/Desktop/iti/ITI-PROJECT/StyleHub/Areas/Identity/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Fekra/iti-final-project/StyleHub/Areas/Identity/Pages/_ViewStart.cshtml]
+[C:/Users/Moustafa/Desktop/iti/ITI-PROJECT/StyleHub/Areas/Identity/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Fekra/iti-final-project/StyleHub/Views/Account/Index.cshtml]
+[C:/Users/Moustafa/Desktop/iti/ITI-PROJECT/StyleHub/Views/Account/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Fekra/iti-final-project/StyleHub/Views/Category/Index.cshtml]
+[C:/Users/Moustafa/Desktop/iti/ITI-PROJECT/StyleHub/Views/Category/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Fekra/iti-final-project/StyleHub/Views/Category/Product_details.cshtml]
+[C:/Users/Moustafa/Desktop/iti/ITI-PROJECT/StyleHub/Views/Category/Product_details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcUHJvZHVjdF9kZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Fekra/iti-final-project/StyleHub/Views/Checkout/Cart.cshtml]
+[C:/Users/Moustafa/Desktop/iti/ITI-PROJECT/StyleHub/Views/Checkout/Cart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hlY2tvdXRcQ2FydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Fekra/iti-final-project/StyleHub/Views/Checkout/Index.cshtml]
+[C:/Users/Moustafa/Desktop/iti/ITI-PROJECT/StyleHub/Views/Checkout/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hlY2tvdXRcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Fekra/iti-final-project/StyleHub/Views/Help/Return_policy.cshtml]
+[C:/Users/Moustafa/Desktop/iti/ITI-PROJECT/StyleHub/Views/Help/Return_policy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGVscFxSZXR1cm5fcG9saWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Fekra/iti-final-project/StyleHub/Views/Help/Shiping_info.cshtml]
+[C:/Users/Moustafa/Desktop/iti/ITI-PROJECT/StyleHub/Views/Help/Shiping_info.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGVscFxTaGlwaW5nX2luZm8uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Fekra/iti-final-project/StyleHub/Views/Help/Support.cshtml]
+[C:/Users/Moustafa/Desktop/iti/ITI-PROJECT/StyleHub/Views/Help/Support.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGVscFxTdXBwb3J0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Fekra/iti-final-project/StyleHub/Views/Help/Tos.cshtml]
+[C:/Users/Moustafa/Desktop/iti/ITI-PROJECT/StyleHub/Views/Help/Tos.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSGVscFxUb3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Fekra/iti-final-project/StyleHub/Views/Home/About.cshtml]
+[C:/Users/Moustafa/Desktop/iti/ITI-PROJECT/StyleHub/Views/Home/About.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBYm91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Fekra/iti-final-project/StyleHub/Views/Home/Contact.cshtml]
+[C:/Users/Moustafa/Desktop/iti/ITI-PROJECT/StyleHub/Views/Home/Contact.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDb250YWN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Fekra/iti-final-project/StyleHub/Views/Home/Index.cshtml]
+[C:/Users/Moustafa/Desktop/iti/ITI-PROJECT/StyleHub/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Fekra/iti-final-project/StyleHub/Views/Home/Privacy.cshtml]
+[C:/Users/Moustafa/Desktop/iti/ITI-PROJECT/StyleHub/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Fekra/iti-final-project/StyleHub/Views/Shared/_AccountTabItem.cshtml]
+[C:/Users/Moustafa/Desktop/iti/ITI-PROJECT/StyleHub/Views/Shared/_AccountTabItem.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9BY2NvdW50VGFiSXRlbS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Fekra/iti-final-project/StyleHub/Views/Shared/_Layout_Style_hub.cshtml]
+[C:/Users/Moustafa/Desktop/iti/ITI-PROJECT/StyleHub/Views/Shared/_Layout_Style_hub.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRfU3R5bGVfaHViLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Fekra/iti-final-project/StyleHub/Views/Shared/_LoginPartial.cshtml]
+[C:/Users/Moustafa/Desktop/iti/ITI-PROJECT/StyleHub/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Fekra/iti-final-project/StyleHub/Views/Shared/_Pagebrand.cshtml]
+[C:/Users/Moustafa/Desktop/iti/ITI-PROJECT/StyleHub/Views/Shared/_Pagebrand.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9QYWdlYnJhbmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Fekra/iti-final-project/StyleHub/Views/Shared/_PageCategories.cshtml]
+[C:/Users/Moustafa/Desktop/iti/ITI-PROJECT/StyleHub/Views/Shared/_PageCategories.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9QYWdlQ2F0ZWdvcmllcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Fekra/iti-final-project/StyleHub/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/Moustafa/Desktop/iti/ITI-PROJECT/StyleHub/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Fekra/iti-final-project/StyleHub/Views/_ViewImports.cshtml]
+[C:/Users/Moustafa/Desktop/iti/ITI-PROJECT/StyleHub/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Fekra/iti-final-project/StyleHub/Views/_ViewStart.cshtml]
+[C:/Users/Moustafa/Desktop/iti/ITI-PROJECT/StyleHub/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Fekra/iti-final-project/StyleHub/Views/Shared/_Layout.cshtml]
+[C:/Users/Moustafa/Desktop/iti/ITI-PROJECT/StyleHub/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-37ly977ems

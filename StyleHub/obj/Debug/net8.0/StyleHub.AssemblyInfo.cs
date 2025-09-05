@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("StyleHub")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+315dfc4fba27a85164d661e41e0782c29b9f05a0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e3395b0dcba8d2ff5c6c6a487e5b690e9b39c612")]
 [assembly: System.Reflection.AssemblyProductAttribute("StyleHub")]
 [assembly: System.Reflection.AssemblyTitleAttribute("StyleHub")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

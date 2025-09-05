@@ -6,7 +6,6 @@ namespace StyleHub.Models
     {
         public int Id { get; set; }
         public int UserId { get; set; }
-        public ICollection<User> Users { get; set; }
 
     }
 }

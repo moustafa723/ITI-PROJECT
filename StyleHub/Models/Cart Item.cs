@@ -6,7 +6,7 @@
         public int Quantity { get; set; }
         public double Price { get; set; }
         public Cart carts { get; set; }
-        public ICollection<product> products { get; set; }
+        public ICollection<Product> products { get; set; }
 
     }
 }

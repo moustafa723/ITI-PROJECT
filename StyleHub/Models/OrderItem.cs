@@ -6,7 +6,7 @@
         public int Quentity { get; set; }
         public double unitPrice { get; set; }
         public ICollection<Order> Orders { get; set; }
-        public ICollection<product> products { get; set; }
+        public ICollection<Product> products { get; set; }
 
     }
 }

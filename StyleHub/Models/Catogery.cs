@@ -1,14 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
+﻿using StyleHub.Models;
 namespace StyleHub.Models
 {
-    public class Catogery
+    public class Category
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
-        [ForeignKey(nameof(product))]
-        public int productId { get; set; }
-        public product product { get; set; }
+        public string PhotoPath { get; set; }
+        public string Back_Color { get; set; }
 
+        // هنا ضروري عشان تعدد المنتجات
+        public List<Product> Products { get; set; } = new List<Product>();
     }
 }

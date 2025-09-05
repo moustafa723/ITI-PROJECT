@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<StyleHub.Models.Product>
+@{
     Layout = "~/Views/Shared/_Layout_Style_hub.cshtml";
 }
 @* @await Html.PartialAsync("_PageHeader", ("Category", "Category"))
@@ -272,37 +273,32 @@
                 <div class="container" data-aos="fade-up" data-aos-delay="100">
 
                     <div class="row g-4">
-                        <div class="col-6 col-xl-4">
-                            <div class="product-card" data-aos="zoom-in">
-                                <div class="product-image">
-                                    <img src="~/assets/img/product/product-f-1.webp" class="main-image img-fluid" alt="Product">
-                                    <img src="~/assets/img/product/product-f-2.webp" class="hover-image img-fluid" alt="Product Variant">
-                                    <div class="product-overlay">
-                                        <div class="product-actions">
-                                            <button type="button" class="action-btn" data-bs-toggle="tooltip" title="Quick View">
-                                                <i class="bi bi-eye"></i>
-                                            </button>
-                                            <button type="button" class="action-btn" data-bs-toggle="tooltip" title="Add to Cart">
-                                                <i class="bi bi-cart-plus"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-details">
-                                    <div class="product-category">Women's Fashion</div>
-                                    <h4 class="product-title"><a href="product-details.html">Tempor Incididunt</a></h4>
-                                    <div class="product-meta">
-                                        <div class="product-price">$129.00</div>
-                                        <div class="product-rating">
-                                            <i class="bi bi-star-fill"></i>
-                                            4.8 <span>(42)</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <h2>@ViewBag.CategoryName</h2>
+                       @foreach (var product in Model)
+{
+    <div class="col-6 col-xl-4">
+        <div class="product-card" data-aos="zoom-in">
+            <div class="product-image">
+                <img src="@product.Images?.FirstOrDefault()" class="main-image img-fluid" alt="@product.Alts">
+                <img src="@product.Images?.Skip(1).FirstOrDefault()" class="hover-image img-fluid" alt="@product.Alts">
+            </div>
+            <div class="product-details">
+                                        <div class="product-category">@product.Category?.Name</div>
+                <h4 class="product-title"><a href="#">@product.Name</a></h4>
+                <div class="product-meta">
+                    <div class="product-price">$@product.Price</div>
+                    <div class="product-rating">
+                        <i class="bi bi-star-fill"></i>
+                        @product.Rating <span>(@product.Review)</span>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
 
+
+                    </div>
                 </div>
 
             </section>

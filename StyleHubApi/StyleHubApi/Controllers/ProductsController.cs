@@ -17,13 +17,19 @@ namespace StyleHubApi.Controllers
             _context = context;
         }
 
-        // GET: api/products
+        // GET: api/products?categoryId=3
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
+        public async Task<ActionResult<IEnumerable<Product>>> GetProducts([FromQuery] int? categoryId)
         {
-            return await _context.Products
-                .Include(p => p.Category)
-                .ToListAsync();
+            var query = _context.Products.Include(p => p.Category).AsQueryable();
+
+            if (categoryId.HasValue)
+            {
+                query = query.Where(p => p.CategoryId == categoryId.Value);
+            }
+
+            var products = await query.ToListAsync();
+            return products;
         }
 
         // GET: api/products/5

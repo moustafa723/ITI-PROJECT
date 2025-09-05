@@ -7,6 +7,7 @@ var connectionString = builder.Configuration.GetConnectionString("StyleHubContex
 builder.Services.AddDbContext<StyleHubContext>(options => options.UseSqlite(connectionString));
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false).AddEntityFrameworkStores<StyleHubContext>();
+builder.Services.AddHttpClient();
 
 
 // Add services to the container.

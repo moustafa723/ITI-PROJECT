@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<Category>
+
 @{
     Layout = "~/Views/Shared/_Layout_Style_hub.cshtml";
 }
@@ -97,19 +98,23 @@
 
                 <div class="row gy-4">
 
-                   
+
+                    @foreach (var cat in Model)
+                    {
                         <div class="col-xl-6">
-                            <div class="category-card cat-men" data-aos="fade-up" data-aos-delay="300">
+                            <div class="category-card @cat.Back_Color" data-aos="fade-up" data-aos-delay="300">
                                 <div class="category-image">
-                                    <img src="~/assets/img/product/product-m-5.webp" alt="Men's Fashion" class="img-fluid">
+                                    <img src="@cat.PhotoPath" alt="@cat.Name" class="img-fluid">
                                 </div>
                                 <div class="category-content">
-                                    <h4>Men's Wear</h4>
-                                    <p>242 products</p>
-                                    <a href="#" class="card-link">Shop Now <i class="bi bi-arrow-right"></i></a>
+                                    <h4>@cat.Name</h4>
+                                    <p>@cat.Products.Count() products</p>
+                                    <a asp-controller="Category" asp-action="Index" asp-route-id="@cat.Id" class="card-link">Shop Now <i class="bi bi-arrow-right"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
+                    }
                      
                     
 
