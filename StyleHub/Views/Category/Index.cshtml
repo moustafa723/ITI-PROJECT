@@ -11,7 +11,24 @@
                 <div class="product-categories-widget widget-item">
                     <h3 class="widget-title">Categories</h3>
                     <ul class="category-tree list-unstyled mb-0">
-                        @await Html.PartialAsync("_PageCategories", ("Clothing", "Men's Wear", "Women's Wear", "Kids' Clothing", "Accessories", "categories-1-Clothing-subcategories"))
+                        <li class="category-item">
+                            <div class="d-flex justify-content-between align-items-center category-header collapsed" data-bs-toggle="collapse" data-bs-target="#categories-1-Clothing-subcategories" aria-expanded="false" aria-controls="categories-1-Clothing-subcategories">
+                                <a href="javascript:void(0)" class="category-link">Clothing</a>
+                                <span class="category-toggle">
+                                    <i class="bi bi-chevron-down"></i>
+                                    <i class="bi bi-chevron-up"></i>
+                                </span>
+                            </div>
+                            <ul id="categories-1-Clothing-subcategories" class="subcategory-list list-unstyled collapse ps-3 mt-2">
+                                @foreach (var cat in ViewBag.Categories as List<StyleHub.Models.Category>)
+                                {
+                                    <li>
+                                        <a asp-controller="Category" asp-action="Index" asp-route-id="@cat.Id" class="subcategory-link">@cat.Name</a>
+                                    </li>
+                                }
+                            </ul>
+
+                        </li>
                     </ul>
                 </div>
                 <!-- Pricing Range Widget -->
@@ -50,125 +67,13 @@
                         </div>
 
                         <div class="filter-actions mt-3">
-                            <button type="button" class="btn btn-sm btn-primary w-100">Apply Filter</button>
+                            <button type="button" class="btn btn-sm btn-primary w-100" id="applyPriceFilter">Apply Filter</button>
                         </div>
                     </div>
 
                 </div>
                 <!--/Pricing Range Widget -->
-                <!-- Color Filter Widget -->
-                <div class="color-filter-widget widget-item">
-
-                    <h3 class="widget-title">Filter by Color</h3>
-
-                    <div class="color-filter-content">
-                        <div class="color-options">
-                            <div class="form-check color-option">
-                                <input class="form-check-input" type="checkbox" value="black" id="color-black">
-                                <label class="form-check-label" for="color-black">
-                                    <span class="color-swatch" style="background-color: #000000;" title="Black"></span>
-                                </label>
-                            </div>
-
-                            <div class="form-check color-option">
-                                <input class="form-check-input" type="checkbox" value="white" id="color-white">
-                                <label class="form-check-label" for="color-white">
-                                    <span class="color-swatch" style="background-color: #ffffff;" title="White"></span>
-                                </label>
-                            </div>
-
-                            <div class="form-check color-option">
-                                <input class="form-check-input" type="checkbox" value="red" id="color-red">
-                                <label class="form-check-label" for="color-red">
-                                    <span class="color-swatch" style="background-color: #e74c3c;" title="Red"></span>
-                                </label>
-                            </div>
-
-                            <div class="form-check color-option">
-                                <input class="form-check-input" type="checkbox" value="blue" id="color-blue">
-                                <label class="form-check-label" for="color-blue">
-                                    <span class="color-swatch" style="background-color: #3498db;" title="Blue"></span>
-                                </label>
-                            </div>
-
-                            <div class="form-check color-option">
-                                <input class="form-check-input" type="checkbox" value="green" id="color-green">
-                                <label class="form-check-label" for="color-green">
-                                    <span class="color-swatch" style="background-color: #2ecc71;" title="Green"></span>
-                                </label>
-                            </div>
-
-                            <div class="form-check color-option">
-                                <input class="form-check-input" type="checkbox" value="yellow" id="color-yellow">
-                                <label class="form-check-label" for="color-yellow">
-                                    <span class="color-swatch" style="background-color: #f1c40f;" title="Yellow"></span>
-                                </label>
-                            </div>
-
-                            <div class="form-check color-option">
-                                <input class="form-check-input" type="checkbox" value="purple" id="color-purple">
-                                <label class="form-check-label" for="color-purple">
-                                    <span class="color-swatch" style="background-color: #9b59b6;" title="Purple"></span>
-                                </label>
-                            </div>
-
-                            <div class="form-check color-option">
-                                <input class="form-check-input" type="checkbox" value="orange" id="color-orange">
-                                <label class="form-check-label" for="color-orange">
-                                    <span class="color-swatch" style="background-color: #e67e22;" title="Orange"></span>
-                                </label>
-                            </div>
-
-                            <div class="form-check color-option">
-                                <input class="form-check-input" type="checkbox" value="pink" id="color-pink">
-                                <label class="form-check-label" for="color-pink">
-                                    <span class="color-swatch" style="background-color: #fd79a8;" title="Pink"></span>
-                                </label>
-                            </div>
-                            <div class="form-check color-option">
-                                <input class="form-check-input" type="checkbox" value="brown" id="color-brown">
-                                <label class="form-check-label" for="color-brown">
-                                    <span class="color-swatch" style="background-color: #795548;" title="Brown"></span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="filter-actions mt-3">
-                            <button type="button" class="btn btn-sm btn-outline-secondary">Clear All</button>
-                            <button type="button" class="btn btn-sm btn-primary">Apply Filter</button>
-                        </div>
-                    </div>
-                </div>
-                <!--/Color Filter Widget -->
-                <!-- Brand Filter Widget -->
-                <h3 class="brand-filter-widget widget-item">Filter by Brand</h3>
-                <div class="brand-filter-widget widget-item">
-
-                    <h3 class="widget-title">Filter by Brand</h3>
-
-                    <div class="brand-filter-content">
-                        <div class="brand-search">
-                            <input type="text" class="form-control" placeholder="Search brands...">
-                            <i class="bi bi-search"></i>
-                        </div>
-
-                        <div class="brand-list">
-                            @await Html.PartialAsync("_Pagebrand", ("brand1", "Nike", 24))
-                            @await Html.PartialAsync("_Pagebrand", ("brand2", "Adidas", 18))
-                            @await Html.PartialAsync("_Pagebrand", ("brand3", "Puma", 12))
-                            @await Html.PartialAsync("_Pagebrand", ("brand4", "Reebok", 9))
-                            @await Html.PartialAsync("_Pagebrand", ("brand5", " Under Armour", 7))
-                            @await Html.PartialAsync("_Pagebrand", ("brand6", "New Balance", 6))
-                            @await Html.PartialAsync("_Pagebrand", ("brand7", "Converse", 5))
-                            @await Html.PartialAsync("_Pagebrand", ("brand8", "Vans", 4))
-                        </div>
-                    </div>
-                    <div class="brand-actions">
-                        <button class="btn btn-sm btn-outline-primary">Apply Filter</button>
-                        <button class="btn btn-sm btn-link">Clear All</button>
-                    </div>
-                </div>
-                <!--/Brand Filter Widget -->
+              
             </div>
         </div>
         <div class="col-lg-8">
@@ -184,7 +89,7 @@
                                 <div class="filter-item search-form">
                                     <label for="productSearch" class="form-label">Search Products</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" id="productSearch" placeholder="Search for products..." aria-label="Search for products">
+                                        <input type="text" class="form-control" id="productSearch" name="search" value="@ViewBag.Search" placeholder="Search for products..." aria-label="Search for products">
                                         <button class="btn search-btn" type="button">
                                             <i class="bi bi-search"></i>
                                         </button>
@@ -195,13 +100,22 @@
                             <div class="col-12 col-md-6 col-lg-2">
                                 <div class="filter-item">
                                     <label for="priceRange" class="form-label">Price Range</label>
-                                    <select class="form-select" id="priceRange">
+                                  @*   <select class="form-select" id="priceRange" name="priceRange" onchange="this.form.submit()">
                                         <option selected="">All Prices</option>
-                                        <option>Under $25</option>
-                                        <option>$25 to $50</option>
-                                        <option>$50 to $100</option>
-                                        <option>$100 to $200</option>
-                                        <option>$200 &amp; Above</option>
+                                        <option value="Under $25">Under $25</option>
+                                        <option value="$25 to $50">$25 to $50</option>
+                                        <option value="$50 to $100">$50 to $100</option>
+                                        <option value="$100 to $200">$100 to $200</option>
+                                        <option value="$200 & Above">$200 & Above</option>
+
+                                    </select> *@
+                                    <select class="form-select" id="priceRange">
+                                        <option value="all">All Prices</option>
+                                        <option value="0-25">Under $25</option>
+                                        <option value="25-50">$25 to $50</option>
+                                        <option value="50-100">$50 to $100</option>
+                                        <option value="100-200">$100 to $200</option>
+                                        <option value="200-1000">$200 & Above</option>
                                     </select>
                                 </div>
                             </div>
@@ -339,3 +253,155 @@
         </div>
     </div>
 </div>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const minInput = document.querySelector(".min-price-input");
+    const maxInput = document.querySelector(".max-price-input");
+    const minRange = document.querySelector(".min-range");
+    const maxRange = document.querySelector(".max-range");
+    const applyBtn = document.querySelector(".filter-actions button");
+
+    // القيم الافتراضية
+    let defaultMin = 0;
+    let defaultMax = 1000;
+
+    // تعيين القيم من الـ URL لو موجودة
+    const urlParams = new URLSearchParams(window.location.search);
+    const minPrice = urlParams.has("minPrice") ? urlParams.get("minPrice") : defaultMin;
+    const maxPrice = urlParams.has("maxPrice") ? urlParams.get("maxPrice") : defaultMax;
+
+    minInput.value = minPrice;
+    minRange.value = minPrice;
+    maxInput.value = maxPrice;
+    maxRange.value = maxPrice;
+
+    // تحديث شريط السلايدر لما المستخدم يغير الأرقام
+    minInput.addEventListener("input", function() {
+        minRange.value = minInput.value;
+    });
+    maxInput.addEventListener("input", function() {
+        maxRange.value = maxInput.value;
+    });
+
+    // تحديث الأرقام لما المستخدم يحرك السلايدر
+    minRange.addEventListener("input", function() {
+        minInput.value = minRange.value;
+    });
+    maxRange.addEventListener("input", function() {
+        maxInput.value = maxRange.value;
+    });
+
+    // عند الضغط على Apply Filter
+    applyBtn.addEventListener("click", function() {
+        const minPrice = minInput.value;
+        const maxPrice = maxInput.value;
+        const currentUrl = new URL(window.location.href);
+
+        currentUrl.searchParams.set("minPrice", minPrice);
+        currentUrl.searchParams.set("maxPrice", maxPrice);
+
+        window.location.href = currentUrl.toString();
+    });
+});
+    const searchBtn = document.querySelector(".search-btn");
+    const searchInput = document.getElementById("productSearch");
+
+    searchBtn.addEventListener("click", function() {
+        const query = searchInput.value.trim();
+        const currentUrl = new URL(window.location.href);
+
+        if(query) {
+            currentUrl.searchParams.set("search", query);
+        } else {
+            currentUrl.searchParams.delete("search");
+        }
+
+        window.location.href = currentUrl.toString();
+    });
+            document.addEventListener("DOMContentLoaded", function() {
+        const priceSelect = document.getElementById("priceRange");
+        const urlParams = new URLSearchParams(window.location.search);
+        const minPrice = urlParams.get("minPrice");
+        const maxPrice = urlParams.get("maxPrice");
+
+        // تعيين الخيار المناسب بناءً على minPrice و maxPrice
+        if(minPrice && maxPrice){
+            priceSelect.value = `${minPrice}-${maxPrice}`;
+        } else if(minPrice && !maxPrice){
+            priceSelect.value = "200-1000"; // أعلى فئة
+        } else {
+            priceSelect.value = "all"; // افتراضي
+        }
+
+        // عند تغيير الاختيار
+        priceSelect.addEventListener("change", function() {
+            const selected = priceSelect.value;
+            const currentUrl = new URL(window.location.href);
+
+            switch(selected) {
+                case "0-25":
+                    currentUrl.searchParams.set("minPrice", 0);
+                    currentUrl.searchParams.set("maxPrice", 25);
+                    break;
+                case "25-50":
+                    currentUrl.searchParams.set("minPrice", 25);
+                    currentUrl.searchParams.set("maxPrice", 50);
+                    break;
+                case "50-100":
+                    currentUrl.searchParams.set("minPrice", 50);
+                    currentUrl.searchParams.set("maxPrice", 100);
+                    break;
+                case "100-200":
+                    currentUrl.searchParams.set("minPrice", 100);
+                    currentUrl.searchParams.set("maxPrice", 200);
+                    break;
+                case "200-1000":
+                    currentUrl.searchParams.set("minPrice", 200);
+                    currentUrl.searchParams.delete("maxPrice");
+                    break;
+                default:
+                    currentUrl.searchParams.delete("minPrice");
+                    currentUrl.searchParams.delete("maxPrice");
+            }
+
+            window.location.href = currentUrl.toString();
+        });
+    });
+        const sortSelect = document.getElementById("sortBy");
+
+    sortSelect.addEventListener("change", function() {
+        const sortValue = sortSelect.value;
+        const currentUrl = new URL(window.location.href);
+
+        currentUrl.searchParams.set("sort", sortValue);
+        window.location.href = currentUrl.toString();
+    });
+        const viewButtons = document.querySelectorAll(".view-btn");
+
+    viewButtons.forEach(btn => {
+        btn.addEventListener("click", function() {
+            const view = btn.getAttribute("data-view");
+            localStorage.setItem("viewMode", view);
+            document.body.setAttribute("data-view", view); // تستخدمها في CSS لتغيير العرض
+            viewButtons.forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+        });
+    });
+
+    // عند تحميل الصفحة
+    document.addEventListener("DOMContentLoaded", () => {
+        const savedView = localStorage.getItem("viewMode") || "grid";
+        document.body.setAttribute("data-view", savedView);
+        document.querySelector(`.view-btn[data-view="${savedView}"]`).classList.add("active");
+    });
+        const itemsSelect = document.getElementById("itemsPerPage");
+
+    itemsSelect.addEventListener("change", function() {
+        const perPage = itemsSelect.value;
+        const currentUrl = new URL(window.location.href);
+
+        currentUrl.searchParams.set("itemsPerPage", perPage);
+        window.location.href = currentUrl.toString();
+    });
+
+</script>
