@@ -198,7 +198,7 @@
             </div>
             <div class="product-details">
                                         <div class="product-category">@product.Category?.Name</div>
-                <h4 class="product-title"><a href="#">@product.Name</a></h4>
+                                        <h4 class="product-title"><a asp-controller="Category" asp-action="Product_details" asp-route-id="@product.Id">@product.Name</a></h4>
                 <div class="product-meta">
                     <div class="product-price">$@product.Price</div>
                     <div class="product-rating">

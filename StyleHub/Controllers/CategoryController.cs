@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using StyleHub.Models;
 using System.Net.Http.Json;
 
@@ -7,6 +8,7 @@ namespace StyleHub.Controllers
     public class CategoryController : Controller
     {
         private readonly IHttpClientFactory _clientFactory;
+        private HttpClient client = new HttpClient();
 
         public CategoryController(IHttpClientFactory clientFactory)
         {
@@ -23,7 +25,7 @@ namespace StyleHub.Controllers
         //        : "https://localhost:44374/api/Products";
 
         //    var productsFromApi = await client.GetFromJsonAsync<List<Product>>(url);
-        //    var categoriesFromApi = await client.GetFromJsonAsync<List<Category>>("https://localhost:44374/api/Categories");
+        //    var categoriesFromApi = await client.GetFromJsonAsync<List<Category>>("https://localhost:7158/api/Categories");
         //    ViewBag.CategoryName = categoriesFromApi?.FirstOrDefault(c => c.Id == id)?.Name;
         //    ViewBag.Categories = await client.GetFromJsonAsync<List<Category>>("https://localhost:44374/api/Categories");
         //    var products = productsFromApi?.Select(p =>
@@ -39,11 +41,11 @@ namespace StyleHub.Controllers
             var client = _clientFactory.CreateClient();
 
             var url = id.HasValue
-                ? $"https://localhost:44374/api/Products?categoryId={id.Value}"
-                : "https://localhost:44374/api/Products";
+                ? $"https://localhost:7158/api/Products?categoryId={id.Value}"
+                : "https://localhost:7158/api/Products";
 
             var productsFromApi = await client.GetFromJsonAsync<List<Product>>(url);
-            var categoriesFromApi = await client.GetFromJsonAsync<List<Category>>("https://localhost:44374/api/Categories");
+            var categoriesFromApi = await client.GetFromJsonAsync<List<Category>>("https://localhost:7158/api/Categories");
 
             var products = productsFromApi?.Select(p =>
             {
@@ -86,9 +88,19 @@ namespace StyleHub.Controllers
 
 
 
-        public IActionResult Product_details()
+        public async Task<IActionResult> Product_detailsAsync(int id)
         {
-            return View();
+            HttpResponseMessage response = await client.GetAsync($"https://localhost:7158/api/Products/{id}");
+
+            if (!response.IsSuccessStatusCode)
+            {
+                return NotFound();
+            }
+
+            var json = await response.Content.ReadAsStringAsync();
+            var product = JsonConvert.DeserializeObject<Product>(json);
+
+            return View(product);
         }
     }
 }
