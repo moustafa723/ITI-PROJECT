@@ -3,7 +3,7 @@
 
     Layout = "~/Views/Shared/_Layout_Style_hub.cshtml";
 }
- <!-- Checkout Section -->
+<!-- Checkout Section -->
 <section id="checkout" class="checkout section">
 
     <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -211,46 +211,51 @@
                 <div class="order-summary" data-aos="fade-left" data-aos-delay="200">
                     <div class="order-summary-header">
                         <h3>Order Summary</h3>
-                        <span class="item-count">2 Items</span>
+                        @{
+                            var distinctItems = Model?.CartItems?.Count ?? 0;
+                        }
+                        <span class="item-count">
+                            @distinctItems @(distinctItems == 1 ? "Product" : "Items")
+                        </span>
                     </div>
 
                     <div class="order-summary-content">
-                        @* <div class="order-items">
-                            <div class="order-item">
-                                <div class="order-item-image">
-                                    <img src="assets/img/product/product-1.webp" alt="Product" class="img-fluid">
-                                </div>
-                                <div class="order-item-details">
-                                    <h4>Lorem Ipsum Dolor</h4>
-                                    <p class="order-item-variant">Color: Black | Size: M</p>
-                                    <div class="order-item-price">
-                                        <span class="quantity">1 ×</span>
-                                        <span class="price">$89.99</span>
-                                    </div>
-                                </div>
-                            </div> *@
-                            <div class="order-summary-content">
-                                <div class="order-items">
-                                    @foreach (var item in Model.CartItems)
-                                    {
-                                        <div class="order-item">
-                                            <div class="order-item-image">
-                                                <img src="@item.Product.Images?.FirstOrDefault();" alt="@item.Product.Name" class="img-fluid">
-                                            </div>
-                                            <div class="order-item-details">
-                                                <h4>@item.Product.Name</h4>
-                                                <p class="order-item-variant">
-                                                    Color: @item.Product.Color | Size: @item.Product.Size
-                                                </p>
-                                                <div class="order-item-price">
-                                                    <span class="quantity">@item.Quantity ×</span>
-                                                    <span class="price">$@item.Product.Price</span>
-                                                </div>
-                                            </div>
+
+                        <div class="order-summary-content">
+                            <div class="order-items">
+                                @foreach (var item in Model.CartItems)
+                                {
+                                    <div class="order-item" id="order-item-@item.Id">
+                                        <div class="order-item-image">
+                                            <!-- شيل الـ ; وخلي في حالة عدم وجود صورة يركّب Placeholder -->
+                                            <img src="@(item.Product.Images?.FirstOrDefault() ?? Url.Content("~/images/placeholder.png"))"
+                                                 alt="@item.Product.Name" class="img-fluid" />
                                         </div>
-                                    }
-                                </div>
+
+                                        <div class="order-item-details">
+                                            <h4>@item.Product.Name</h4>
+
+                                            <p class="order-item-variant">
+                                                Color: @item.Product.Color | Size: @item.Product.Size
+                                            </p>
+
+                                            <div class="order-item-price">
+                                                <span class="quantity">@item.Quantity ×</span>
+                                                <span class="price">$@item.Product.Price.ToString("0.00")</span>
+                                                <span class="line-total">= $@((item.Quantity * item.Product.Price).ToString("0.00"))</span>
+                                            </div>
+
+                                            <!-- زرار الحذف: بيبعت DELETE على /api/CartItem/{id} -->
+                                            <button type="button"
+                                                    class="btn btn-danger btn-sm js-remove"
+                                                    data-id="@item.Id">
+                                                Remove
+                                            </button>
+                                        </div>
+                                    </div>
+                                }
                             </div>
+                        </div>
 
 
 
