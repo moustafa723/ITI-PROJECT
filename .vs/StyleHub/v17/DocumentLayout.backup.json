@@ -3,20 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\Fekra\\ITI-PROJECT\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|c:\\users\\fekra\\iti-project\\stylehub\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|solutionrelative:stylehub\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|c:\\users\\fekra\\iti-project\\stylehub\\views\\checkout\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|solutionrelative:stylehub\\views\\checkout\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|c:\\users\\fekra\\iti-project\\stylehub\\views\\cart\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|solutionrelative:stylehub\\views\\cart\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|c:\\users\\fekra\\iti-project\\stylehub\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|solutionrelative:stylehub\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|c:\\users\\fekra\\iti-project\\stylehub\\controllers\\checkoutcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|solutionrelative:stylehub\\controllers\\checkoutcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|c:\\users\\fekra\\iti-project\\stylehub\\views\\checkout\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|solutionrelative:stylehub\\views\\checkout\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|c:\\users\\fekra\\iti-project\\stylehub\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|solutionrelative:stylehub\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|c:\\users\\fekra\\iti-project\\stylehub\\views\\cart\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|solutionrelative:stylehub\\views\\cart\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|c:\\users\\fekra\\iti-project\\stylehub\\models\\cart item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -46,7 +50,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Bookmark",
@@ -58,20 +62,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
+              "Title": "CartController.cs",
+              "DocumentMoniker": "C:\\Users\\Fekra\\ITI-PROJECT\\StyleHub\\Controllers\\CartController.cs",
+              "RelativeDocumentMoniker": "StyleHub\\Controllers\\CartController.cs",
+              "ToolTip": "C:\\Users\\Fekra\\ITI-PROJECT\\StyleHub\\Controllers\\CartController.cs",
+              "RelativeToolTip": "StyleHub\\Controllers\\CartController.cs",
+              "ViewState": "AgIAAEYAAAAAvszMzEwdwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-07T07:51:47.478Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "CategoryController.cs",
               "DocumentMoniker": "C:\\Users\\Fekra\\ITI-PROJECT\\StyleHub\\Controllers\\CategoryController.cs",
               "RelativeDocumentMoniker": "StyleHub\\Controllers\\CategoryController.cs",
               "ToolTip": "C:\\Users\\Fekra\\ITI-PROJECT\\StyleHub\\Controllers\\CategoryController.cs",
               "RelativeToolTip": "StyleHub\\Controllers\\CategoryController.cs",
-              "ViewState": "AgIAAFUAAAAAjpmZmdktwCkAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADwAAAAATmZmZuYSwCkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-07T07:31:12.558Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\Fekra\\ITI-PROJECT\\StyleHub\\Views\\Cart\\Index.cshtml",
               "RelativeDocumentMoniker": "StyleHub\\Views\\Cart\\Index.cshtml",
@@ -84,7 +101,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "OrderItem.cs",
               "DocumentMoniker": "C:\\Users\\Fekra\\ITI-PROJECT\\StyleHub\\Models\\OrderItem.cs",
               "RelativeDocumentMoniker": "StyleHub\\Models\\OrderItem.cs",
@@ -97,7 +114,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "20250907052534_v3.cs",
               "DocumentMoniker": "C:\\Users\\Fekra\\ITI-PROJECT\\StyleHub\\Migrations\\20250907052534_v3.cs",
               "RelativeDocumentMoniker": "StyleHub\\Migrations\\20250907052534_v3.cs",
@@ -110,7 +127,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Cart Item.cs",
               "DocumentMoniker": "C:\\Users\\Fekra\\ITI-PROJECT\\StyleHub\\Models\\Cart Item.cs",
               "RelativeDocumentMoniker": "StyleHub\\Models\\Cart Item.cs",
@@ -129,14 +146,14 @@
               "RelativeDocumentMoniker": "StyleHub\\Controllers\\CheckoutController.cs",
               "ToolTip": "C:\\Users\\Fekra\\ITI-PROJECT\\StyleHub\\Controllers\\CheckoutController.cs",
               "RelativeToolTip": "StyleHub\\Controllers\\CheckoutController.cs",
-              "ViewState": "AgIAAAwAAACAl5mZmZklwDAAAAASAAAAAAAAAA==",
+              "ViewState": "AgIAAB0AAAAgMTMzMzMwwDAAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-06T18:36:52.472Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "product.cs",
               "DocumentMoniker": "C:\\Users\\Fekra\\ITI-PROJECT\\StyleHub\\Models\\product.cs",
               "RelativeDocumentMoniker": "StyleHub\\Models\\product.cs",
@@ -149,20 +166,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\Fekra\\ITI-PROJECT\\StyleHub\\Views\\Checkout\\Index.cshtml",
               "RelativeDocumentMoniker": "StyleHub\\Views\\Checkout\\Index.cshtml",
-              "ToolTip": "C:\\Users\\Fekra\\ITI-PROJECT\\StyleHub\\Views\\Checkout\\Index.cshtml",
-              "RelativeToolTip": "StyleHub\\Views\\Checkout\\Index.cshtml",
-              "ViewState": "AgIAABYBAAAAp2RmZmYEwCgBAABnAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\Fekra\\ITI-PROJECT\\StyleHub\\Views\\Checkout\\Index.cshtml*",
+              "RelativeToolTip": "StyleHub\\Views\\Checkout\\Index.cshtml*",
+              "ViewState": "AgIAAOAAAAAAK5mZmRkmwOoAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-09-06T18:57:45.028Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "Order.cs",
               "DocumentMoniker": "C:\\Users\\Fekra\\ITI-PROJECT\\StyleHub\\Models\\Order.cs",
               "RelativeDocumentMoniker": "StyleHub\\Models\\Order.cs",
