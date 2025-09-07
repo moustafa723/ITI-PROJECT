@@ -1,0 +1,137 @@
+﻿@model StyleHub.Models.Cart
+
+@{
+    Layout = "~/Views/Shared/_Layout_Style_hub.cshtml";
+   // var subtotal = Model?.Sum(x => x.Product.Price * x.Quantity) ?? 0;
+   // var tax = subtotal * 0.1M; // Example: 10% tax
+  //  var shipping = subtotal > 300 ? 0 : 4.99M;
+   // var total = subtotal + tax + shipping;
+}
+
+<section id="cart" class="cart section">
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row">
+            <!-- Cart Items -->
+            <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
+                <div class="cart-items">
+
+                    <!-- Header Row -->
+                    <div class="cart-header d-none d-lg-block">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6"><h5>Product</h5></div>
+                            <div class="col-lg-2 text-center"><h5>Price</h5></div>
+                            <div class="col-lg-2 text-center"><h5>Quantity</h5></div>
+                            <div class="col-lg-2 text-center"><h5>Total</h5></div>
+                        </div>
+                    </div>
+
+                    <!-- Loop through cart items -->
+                    @foreach (var item in Model.CartItems)
+                    {
+                        <div class="cart-item">
+                            <div class="row align-items-center">
+                                <!-- Product -->
+                                <div class="col-lg-6 col-12">
+                                    <div class="product-info d-flex align-items-center">
+                                        <div class="product-image">
+                                            <img src="@item.Product.Images?.FirstOrDefault()" alt="@item.Product.Name" class="img-fluid" />
+                                        </div>
+                                        <div class="product-details">
+                                            <h6 class="product-title">@item.Product.Name</h6>
+                                            @* <button class="remove-item" type="button">
+                                                <i class="bi bi-trash"></i> Remove
+                                            </button> *@
+                                            <form asp-action="RemoveItem" method="post" style="display:inline">
+                                                <input type="hidden" name="cartId" value="@Model.Id" />
+                                                <input type="hidden" name="productId" value="@item.ProductId" />
+                                                <button type="submit" class="btn btn-link text-danger">
+                                                    <i class="bi bi-trash"></i> Remove
+                                                </button>
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Price -->
+                                <div class="col-lg-2 col-12 text-center">
+                                    <span class="current-price">$@item.Product.Price</span>
+                                </div>
+
+                                <!-- Quantity -->
+                                <div class="col-lg-2 col-12 text-center">
+                                    <input type="number" value="@item.Quantity" min="1" class="quantity-input" />
+                                </div>
+
+                                <!-- Item Total -->
+                                <div class="col-lg-2 col-12 text-center">
+                                    <span>$@(item.Product.Price* item.Quantity)</span>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    <!-- Cart Actions -->
+                    <div class="cart-actions mt-3">
+                        <button class="btn btn-outline-heading me-2">
+                            <i class="bi bi-arrow-clockwise"></i> Update Cart
+                        </button>
+                        @* <button class="btn btn-outline-remove">
+                            <i class="bi bi-trash"></i> Clear Cart
+                        </button> *@
+                        <form asp-controller="Cart" asp-action="ClearCart" asp-route-id="@Model.Id" method="post">
+                            <button type="submit" class="btn btn-outline-remove">
+                                <i class="bi bi-trash"></i> Clear Cart
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cart Summary -->
+            @* <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="300">
+                <div class="cart-summary">
+                    <h4 class="summary-title">Order Summary</h4>
+
+                    <div class="summary-item">
+                        <span class="summary-label">Subtotal</span>
+                        <span class="summary-value">$@subtotal</span>
+                    </div>
+
+                    <div class="summary-item">
+                        <span class="summary-label">Shipping</span>
+                        <span class="summary-value">$@shipping</span>
+                    </div> *@
+
+                  @*   <div class="summary-item">
+                        <span class="summary-label">Tax</span>
+                        <span class="summary-value">$@tax</span>
+                    </div>
+
+                    <div class="summary-total">
+                        <span class="summary-label">Total</span>
+                        <span class="summary-value">$@total</span>
+                    </div> *@
+
+                    @* <div class="checkout-button mt-3">
+                        <a href="#" class="btn btn-accent w-100">
+                            Proceed to Checkout <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div> *@
+                    <div class="checkout-button mt-3">
+                        <a asp-controller="Checkout" asp-action="Index" asp-route-cartId="@Model.Id" class="btn btn-accent w-100">
+                            Proceed to Checkout <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <div class="continue-shopping mt-2">
+                        <a href="/" class="btn btn-link w-100">
+                            <i class="bi bi-arrow-left"></i> Continue Shopping
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

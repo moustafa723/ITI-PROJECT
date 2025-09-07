@@ -44,14 +44,17 @@ namespace StyleHubApi.Controllers
         public async Task<ActionResult<Order>> CreateOrder(Order order)
         {
             order.Date = DateTime.UtcNow;
-            order.Status = "Pending"; // default status
-            order.TotalAmount = 0;    // calculated when adding items
+            order.Status = "Pending";
+
+            // you can calculate total if needed:
+            order.TotalAmount = order.OrderItems?.Sum(i => i.Quantity * i.Price) ?? 0;
 
             _context.Orders.Add(order);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(GetOrder), new { id = order.Id }, order);
         }
+
 
         // PUT: api/orders/5
         [HttpPut("{id}")]

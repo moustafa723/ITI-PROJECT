@@ -11,10 +11,10 @@ namespace StyleHubApi.Models
 
         [Precision(18, 2)]
         public decimal Price { get; set; }
-        public string ImageUrl { get; set; }
+        //public List<string> ImageUrl { get; set; }
 
-        public Cart Cart { get; set; }
-        public Product Product { get; set; }
+        public Cart? Cart { get; set; }
+        public Product? Product { get; set; }
     }
 
 }
