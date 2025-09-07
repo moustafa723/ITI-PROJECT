@@ -48,8 +48,8 @@
                                         <div class="product-details">
                                             <h6 class="product-title">@item.Product.Name</h6>
                                             @* <button class="remove-item" type="button">
-                                                <i class="bi bi-trash"></i> Remove
-                                            </button> *@
+                                        <i class="bi bi-trash"></i> Remove
+                                        </button> *@
                                             <form asp-action="RemoveItem" method="post">
                                                 <input type="hidden" name="cartId" value="@Model.Id" />
                                                 <input type="hidden" name="productId" value="@item.ProductId" />
@@ -154,7 +154,7 @@
 
                     <div class="summary-item">
                         <span class="summary-label">Tax</span>
-                        <span class="summary-value">$2f.00</span>
+                        <span class="summary-value">$27.00</span>
                     </div>
 
                     <div class="summary-item discount">
@@ -208,42 +208,42 @@
                 const shippingRadios = document.querySelectorAll("input[name='shipping']");
                 const TAX = 27;
 
-                       function updateSummary() {
-            let subtotal = 0;
-            document.querySelectorAll(".cart-item").forEach(item => {
-                const quantity = parseInt(item.querySelector(".quantity-input").value);
-                const price = parseFloat(item.querySelector(".current-price").textContent.replace("EGP", "").trim());
-                subtotal += price * quantity;
-            });
+                function updateSummary() {
+                    let subtotal = 0;
+                    document.querySelectorAll(".cart-item").forEach(item => {
+                        const quantity = parseInt(item.querySelector(".quantity-input").value);
+                        const price = parseFloat(item.querySelector(".current-price").textContent.replace("EGP", "").trim());
+                        subtotal += price * quantity;
+                    });
 
-           
-            const subtotalSpan = document.querySelector(".summary-item .summary-value");
-            if(subtotalSpan) subtotalSpan.textContent = EGP ${subtotal.toFixed(2)};
+                    // تحديث Subtotal
+                    const subtotalSpan = document.querySelector(".summary-item .summary-value");
+                    if (subtotalSpan) subtotalSpan.textContent = `EGP ${subtotal.toFixed(2)}`;
 
-            let shippingCost = 4.99;
-            const standardRadio = document.getElementById("standard");
-            const expressRadio = document.getElementById("express");
-            const freeRadio = document.getElementById("free");
+                    let shippingCost = 4.99; // default
+                    const standardRadio = document.getElementById("standard");
+                    const expressRadio = document.getElementById("express");
+                    const freeRadio = document.getElementById("free");
 
-            if(subtotal >= 300){
-                shippingCost = 0;
-                if(freeRadio) freeRadio.checked = true;
-            } else {
-                
-                if(freeRadio) freeRadio.checked = false;
-                if(standardRadio && standardRadio.checked) shippingCost = parseFloat(standardRadio.value);
-                if(expressRadio && expressRadio.checked) shippingCost = parseFloat(expressRadio.value);
-            }
+                    if (subtotal >= 300) {
+                        shippingCost = 0;
+                        if (freeRadio) freeRadio.checked = true;
+                    } else {
+                        // لو subtotal أقل من 300، ارجع الشحن اللي كان مختار (Standard أو Express)
+                        if (freeRadio) freeRadio.checked = false;
+                        if (standardRadio && standardRadio.checked) shippingCost = parseFloat(standardRadio.value);
+                        if (expressRadio && expressRadio.checked) shippingCost = parseFloat(expressRadio.value);
+                    }
 
-            
-            const totalSpan = document.querySelector(".summary-total .summary-value");
-            if(totalSpan) totalSpan.textContent = EGP ${(subtotal + shippingCost + 27).toFixed(2)};
-        }
+                    // تحديث Total
+                    const totalSpan = document.querySelector(".summary-total .summary-value");
+                    if (totalSpan) totalSpan.textContent = `EGP ${(subtotal + shippingCost + 27).toFixed(2)}`;
+                }
 
                 function updateTotal(cartItem, quantity) {
                     const price = parseFloat(cartItem.querySelector(".current-price").textContent.replace("EGP", "").trim());
                     const totalSpan = cartItem.querySelector(".item-total span");
-                    totalSpan.textContent = EGP ${(price * quantity).toFixed(2)};
+                    totalSpan.textContent = `EGP ${(price * quantity).toFixed(2)}`;
                 }
 
                 function updateSession(productId, quantity) {
@@ -255,12 +255,12 @@
                 }
 
                 increaseBtns.forEach(btn => {
-                    btn.addEventListener("click", function(e){
+                    btn.addEventListener("click", function (e) {
                         e.preventDefault();
                         const input = this.parentElement.querySelector(".quantity-input");
                         const max = parseInt(input.getAttribute("max"));
                         let quantity = parseInt(input.value);
-                        if(quantity < max) quantity += 0;
+                        if (quantity < max) quantity += 0;
                         input.value = quantity;
                         updateTotal(this.closest(".cart-item"), quantity);
                         updateSession(this.getAttribute("data-id"), quantity);
@@ -271,12 +271,12 @@
                 });
 
                 decreaseBtns.forEach(btn => {
-                    btn.addEventListener("click", function(e){
+                    btn.addEventListener("click", function (e) {
                         e.preventDefault();
                         const input = this.parentElement.querySelector(".quantity-input");
                         const min = parseInt(input.getAttribute("min"));
                         let quantity = parseInt(input.value);
-                        if(quantity > min) quantity -= 0;
+                        if (quantity > min) quantity -= 0;
                         input.value = quantity;
                         updateTotal(this.closest(".cart-item"), quantity);
                         updateSession(this.getAttribute("data-id"), quantity);
@@ -287,9 +287,9 @@
                 });
 
                 shippingRadios.forEach(input => {
-                    input.addEventListener("change", function(){
+                    input.addEventListener("change", function () {
                         const cost = parseFloat(this.value);
-                       
+                        // حفظ الشحن في السيشن
                         fetch('/Cart/UpdateShipping', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
@@ -299,7 +299,7 @@
                     });
                 });
 
-               
+                // تحديث أول مرة عند تحميل الصفحة
                 updateSummary();
             });
         }
