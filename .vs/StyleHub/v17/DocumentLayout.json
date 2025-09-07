@@ -1,45 +1,49 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\DELL\\Desktop\\ITI-PROJECT\\",
+  "WorkspaceRootPath": "C:\\Users\\mahmo\\Desktop\\ITI-PROJECT\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|c:\\users\\dell\\desktop\\iti-project\\stylehub\\views\\cart\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|c:\\users\\mahmo\\desktop\\iti-project\\stylehub\\views\\category\\product_details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|solutionrelative:stylehub\\views\\category\\product_details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|c:\\users\\mahmo\\desktop\\iti-project\\stylehub\\views\\cart\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|solutionrelative:stylehub\\views\\cart\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|c:\\users\\dell\\desktop\\iti-project\\stylehub\\views\\checkout\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|c:\\users\\mahmo\\desktop\\iti-project\\stylehub\\views\\checkout\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|solutionrelative:stylehub\\views\\checkout\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|c:\\users\\dell\\desktop\\iti-project\\stylehub\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|c:\\users\\mahmo\\desktop\\iti-project\\stylehub\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|solutionrelative:stylehub\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|c:\\users\\dell\\desktop\\iti-project\\stylehub\\controllers\\checkoutcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|c:\\users\\mahmo\\desktop\\iti-project\\stylehub\\controllers\\checkoutcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|solutionrelative:stylehub\\controllers\\checkoutcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|c:\\users\\dell\\desktop\\iti-project\\stylehub\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|c:\\users\\mahmo\\desktop\\iti-project\\stylehub\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|solutionrelative:stylehub\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|c:\\users\\dell\\desktop\\iti-project\\stylehub\\models\\cart item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|c:\\users\\mahmo\\desktop\\iti-project\\stylehub\\models\\cart item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|solutionrelative:stylehub\\models\\cart item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|c:\\users\\dell\\desktop\\iti-project\\stylehub\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|c:\\users\\mahmo\\desktop\\iti-project\\stylehub\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|solutionrelative:stylehub\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|c:\\users\\dell\\desktop\\iti-project\\stylehub\\models\\orderitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|c:\\users\\mahmo\\desktop\\iti-project\\stylehub\\models\\orderitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|solutionrelative:stylehub\\models\\orderitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|c:\\users\\dell\\desktop\\iti-project\\stylehub\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|c:\\users\\mahmo\\desktop\\iti-project\\stylehub\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|solutionrelative:stylehub\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|c:\\users\\dell\\desktop\\iti-project\\stylehub\\migrations\\20250907052534_v3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|c:\\users\\mahmo\\desktop\\iti-project\\stylehub\\migrations\\20250907052534_v3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|solutionrelative:stylehub\\migrations\\20250907052534_v3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -50,7 +54,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -58,11 +62,32 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
+              "Title": "Product_details.cshtml",
+              "DocumentMoniker": "C:\\Users\\mahmo\\Desktop\\ITI-PROJECT\\StyleHub\\Views\\Category\\Product_details.cshtml",
+              "RelativeDocumentMoniker": "StyleHub\\Views\\Category\\Product_details.cshtml",
+              "ToolTip": "C:\\Users\\mahmo\\Desktop\\ITI-PROJECT\\StyleHub\\Views\\Category\\Product_details.cshtml",
+              "RelativeToolTip": "StyleHub\\Views\\Category\\Product_details.cshtml",
+              "ViewState": "AgIAAGYBAAAAAAAAAAAgwIQBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-07T09:07:53.229Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{56df62a4-05a3-4e5b-aa1a-99371ccfb997}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "CategoryController.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\ITI-PROJECT\\StyleHub\\Controllers\\CategoryController.cs",
+              "DocumentMoniker": "C:\\Users\\mahmo\\Desktop\\ITI-PROJECT\\StyleHub\\Controllers\\CategoryController.cs",
               "RelativeDocumentMoniker": "StyleHub\\Controllers\\CategoryController.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\ITI-PROJECT\\StyleHub\\Controllers\\CategoryController.cs",
+              "ToolTip": "C:\\Users\\mahmo\\Desktop\\ITI-PROJECT\\StyleHub\\Controllers\\CategoryController.cs",
               "RelativeToolTip": "StyleHub\\Controllers\\CategoryController.cs",
               "ViewState": "AgIAADwAAAAATmZmZuYSwCkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -70,11 +95,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\ITI-PROJECT\\StyleHub\\Views\\Cart\\Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\mahmo\\Desktop\\ITI-PROJECT\\StyleHub\\Views\\Cart\\Index.cshtml",
               "RelativeDocumentMoniker": "StyleHub\\Views\\Cart\\Index.cshtml",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\ITI-PROJECT\\StyleHub\\Views\\Cart\\Index.cshtml",
+              "ToolTip": "C:\\Users\\mahmo\\Desktop\\ITI-PROJECT\\StyleHub\\Views\\Cart\\Index.cshtml",
               "RelativeToolTip": "StyleHub\\Views\\Cart\\Index.cshtml",
               "ViewState": "AgIAAG4BAAAAAAAAAAAuwIQBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
@@ -83,11 +108,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "OrderItem.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\ITI-PROJECT\\StyleHub\\Models\\OrderItem.cs",
+              "DocumentMoniker": "C:\\Users\\mahmo\\Desktop\\ITI-PROJECT\\StyleHub\\Models\\OrderItem.cs",
               "RelativeDocumentMoniker": "StyleHub\\Models\\OrderItem.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\ITI-PROJECT\\StyleHub\\Models\\OrderItem.cs",
+              "ToolTip": "C:\\Users\\mahmo\\Desktop\\ITI-PROJECT\\StyleHub\\Models\\OrderItem.cs",
               "RelativeToolTip": "StyleHub\\Models\\OrderItem.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -95,11 +120,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "20250907052534_v3.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\ITI-PROJECT\\StyleHub\\Migrations\\20250907052534_v3.cs",
+              "DocumentMoniker": "C:\\Users\\mahmo\\Desktop\\ITI-PROJECT\\StyleHub\\Migrations\\20250907052534_v3.cs",
               "RelativeDocumentMoniker": "StyleHub\\Migrations\\20250907052534_v3.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\ITI-PROJECT\\StyleHub\\Migrations\\20250907052534_v3.cs",
+              "ToolTip": "C:\\Users\\mahmo\\Desktop\\ITI-PROJECT\\StyleHub\\Migrations\\20250907052534_v3.cs",
               "RelativeToolTip": "StyleHub\\Migrations\\20250907052534_v3.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -107,11 +132,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Cart Item.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\ITI-PROJECT\\StyleHub\\Models\\Cart Item.cs",
+              "DocumentMoniker": "C:\\Users\\mahmo\\Desktop\\ITI-PROJECT\\StyleHub\\Models\\Cart Item.cs",
               "RelativeDocumentMoniker": "StyleHub\\Models\\Cart Item.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\ITI-PROJECT\\StyleHub\\Models\\Cart Item.cs",
+              "ToolTip": "C:\\Users\\mahmo\\Desktop\\ITI-PROJECT\\StyleHub\\Models\\Cart Item.cs",
               "RelativeToolTip": "StyleHub\\Models\\Cart Item.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -119,11 +144,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "CheckoutController.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\ITI-PROJECT\\StyleHub\\Controllers\\CheckoutController.cs",
+              "DocumentMoniker": "C:\\Users\\mahmo\\Desktop\\ITI-PROJECT\\StyleHub\\Controllers\\CheckoutController.cs",
               "RelativeDocumentMoniker": "StyleHub\\Controllers\\CheckoutController.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\ITI-PROJECT\\StyleHub\\Controllers\\CheckoutController.cs",
+              "ToolTip": "C:\\Users\\mahmo\\Desktop\\ITI-PROJECT\\StyleHub\\Controllers\\CheckoutController.cs",
               "RelativeToolTip": "StyleHub\\Controllers\\CheckoutController.cs",
               "ViewState": "AgIAAB0AAAAgMTMzMzMwwDAAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -131,11 +156,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "product.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\ITI-PROJECT\\StyleHub\\Models\\product.cs",
+              "DocumentMoniker": "C:\\Users\\mahmo\\Desktop\\ITI-PROJECT\\StyleHub\\Models\\product.cs",
               "RelativeDocumentMoniker": "StyleHub\\Models\\product.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\ITI-PROJECT\\StyleHub\\Models\\product.cs",
+              "ToolTip": "C:\\Users\\mahmo\\Desktop\\ITI-PROJECT\\StyleHub\\Models\\product.cs",
               "RelativeToolTip": "StyleHub\\Models\\product.cs",
               "ViewState": "AgIAAAIAAAAAMTMzMzMLwAcAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -143,24 +168,23 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\ITI-PROJECT\\StyleHub\\Views\\Checkout\\Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\mahmo\\Desktop\\ITI-PROJECT\\StyleHub\\Views\\Checkout\\Index.cshtml",
               "RelativeDocumentMoniker": "StyleHub\\Views\\Checkout\\Index.cshtml",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\ITI-PROJECT\\StyleHub\\Views\\Checkout\\Index.cshtml",
+              "ToolTip": "C:\\Users\\mahmo\\Desktop\\ITI-PROJECT\\StyleHub\\Views\\Checkout\\Index.cshtml",
               "RelativeToolTip": "StyleHub\\Views\\Checkout\\Index.cshtml",
               "ViewState": "AgIAABcAAAAAlszMzAw0wOoAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-06T18:57:45.028Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-06T18:57:45.028Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "CartController.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\ITI-PROJECT\\StyleHub\\Controllers\\CartController.cs",
+              "DocumentMoniker": "C:\\Users\\mahmo\\Desktop\\ITI-PROJECT\\StyleHub\\Controllers\\CartController.cs",
               "RelativeDocumentMoniker": "StyleHub\\Controllers\\CartController.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\ITI-PROJECT\\StyleHub\\Controllers\\CartController.cs",
+              "ToolTip": "C:\\Users\\mahmo\\Desktop\\ITI-PROJECT\\StyleHub\\Controllers\\CartController.cs",
               "RelativeToolTip": "StyleHub\\Controllers\\CartController.cs",
               "ViewState": "AgIAAEYAAAAAvszMzEwdwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -168,11 +192,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "Order.cs",
-              "DocumentMoniker": "C:\\Users\\DELL\\Desktop\\ITI-PROJECT\\StyleHub\\Models\\Order.cs",
+              "DocumentMoniker": "C:\\Users\\mahmo\\Desktop\\ITI-PROJECT\\StyleHub\\Models\\Order.cs",
               "RelativeDocumentMoniker": "StyleHub\\Models\\Order.cs",
-              "ToolTip": "C:\\Users\\DELL\\Desktop\\ITI-PROJECT\\StyleHub\\Models\\Order.cs",
+              "ToolTip": "C:\\Users\\mahmo\\Desktop\\ITI-PROJECT\\StyleHub\\Models\\Order.cs",
               "RelativeToolTip": "StyleHub\\Models\\Order.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
