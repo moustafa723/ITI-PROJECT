@@ -1,3 +1,4 @@
+
 ﻿namespace StyleHub.Models
 {
     public class Payment
