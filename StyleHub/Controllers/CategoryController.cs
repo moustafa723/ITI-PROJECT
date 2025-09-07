@@ -25,7 +25,7 @@ namespace StyleHub.Controllers
         //        : "https://localhost:44374/api/Products";
 
         //    var productsFromApi = await client.GetFromJsonAsync<List<Product>>(url);
-        //    var categoriesFromApi = await client.GetFromJsonAsync<List<Category>>("https://localhost:7158/api/Categories");
+        //    var categoriesFromApi = await client.GetFromJsonAsync<List<Category>>("https://localhost:44374/api/Categories");
         //    ViewBag.CategoryName = categoriesFromApi?.FirstOrDefault(c => c.Id == id)?.Name;
         //    ViewBag.Categories = await client.GetFromJsonAsync<List<Category>>("https://localhost:44374/api/Categories");
         //    var products = productsFromApi?.Select(p =>
@@ -41,11 +41,11 @@ namespace StyleHub.Controllers
             var client = _clientFactory.CreateClient();
 
             var url = id.HasValue
-                ? $"https://localhost:7158/api/Products?categoryId={id.Value}"
-                : "https://localhost:7158/api/Products";
+                ? $"https://localhost:44374/api/Products?categoryId={id.Value}"
+                : "https://localhost:44374/api/Products";
 
             var productsFromApi = await client.GetFromJsonAsync<List<Product>>(url);
-            var categoriesFromApi = await client.GetFromJsonAsync<List<Category>>("https://localhost:7158/api/Categories");
+            var categoriesFromApi = await client.GetFromJsonAsync<List<Category>>("https://localhost:44374/api/Categories");
 
             var products = productsFromApi?.Select(p =>
             {
@@ -90,7 +90,7 @@ namespace StyleHub.Controllers
 
         public async Task<IActionResult> Product_detailsAsync(int id)
         {
-            HttpResponseMessage response = await client.GetAsync($"https://localhost:7158/api/Products/{id}");
+            HttpResponseMessage response = await client.GetAsync($"https://localhost:44374/api/Products/{id}");
 
             if (!response.IsSuccessStatusCode)
             {

@@ -70,9 +70,23 @@
                                 <!-- Quantity -->
                                 <div class="col-lg-2 col-12 mt-3 mt-lg-0 text-center">
                                     <div class="quantity-selector">
-                                        <button type="button" class="quantity-btn decrease" data-id="@item.ProductId">-</button>
+                                        <form asp-controller="Cart" asp-action="AddToCart" method="post">
+                                            <input type="hidden" name="cartId" value="1" /> <!-- hardcoded for now -->
+                                            <input type="hidden" name="productId" value="@item.ProductId" />
+                                            <input type="hidden" name="quantity" value="-1" min="1" />
+                                            <button type="submit" class="btn primary-action">
+                                                -
+                                            </button>
+                                        </form>
                                         <input type="number" class="quantity-input" value="@item.Quantity" min="1" max="10" readonly>
-                                        <button type="button" class="quantity-btn increase" data-id="@item.ProductId">+</button>
+                                        <form asp-controller="Cart" asp-action="AddToCart" method="post">
+                                            <input type="hidden" name="cartId" value="1" /> <!-- hardcoded for now -->
+                                            <input type="hidden" name="productId" value="@item.ProductId" />
+                                            <input type="hidden" name="quantity" value="1" min="1" />
+                                            <button type="submit" class="btn primary-action">
+                                                +
+                                            </button>
+                                        </form>
 
                                     </div>
                                 </div>
@@ -140,7 +154,7 @@
 
                     <div class="summary-item">
                         <span class="summary-label">Tax</span>
-                        <span class="summary-value">$27.00</span>
+                        <span class="summary-value">$2f.00</span>
                     </div>
 
                     <div class="summary-item discount">
@@ -177,7 +191,7 @@
                 </div>
             </div>
 
-        
+
         </div>
     </div>
 
@@ -202,11 +216,11 @@
                 subtotal += price * quantity;
             });
 
-            // تحديث Subtotal
+           
             const subtotalSpan = document.querySelector(".summary-item .summary-value");
-            if(subtotalSpan) subtotalSpan.textContent = `EGP ${subtotal.toFixed(2)}`;
+            if(subtotalSpan) subtotalSpan.textContent = EGP ${subtotal.toFixed(2)};
 
-            let shippingCost = 4.99; // default
+            let shippingCost = 4.99;
             const standardRadio = document.getElementById("standard");
             const expressRadio = document.getElementById("express");
             const freeRadio = document.getElementById("free");
@@ -215,21 +229,21 @@
                 shippingCost = 0;
                 if(freeRadio) freeRadio.checked = true;
             } else {
-                // لو subtotal أقل من 300، ارجع الشحن اللي كان مختار (Standard أو Express)
+                
                 if(freeRadio) freeRadio.checked = false;
                 if(standardRadio && standardRadio.checked) shippingCost = parseFloat(standardRadio.value);
                 if(expressRadio && expressRadio.checked) shippingCost = parseFloat(expressRadio.value);
             }
 
-            // تحديث Total
+            
             const totalSpan = document.querySelector(".summary-total .summary-value");
-            if(totalSpan) totalSpan.textContent = `EGP ${(subtotal + shippingCost + 27).toFixed(2)}`;
+            if(totalSpan) totalSpan.textContent = EGP ${(subtotal + shippingCost + 27).toFixed(2)};
         }
 
                 function updateTotal(cartItem, quantity) {
                     const price = parseFloat(cartItem.querySelector(".current-price").textContent.replace("EGP", "").trim());
                     const totalSpan = cartItem.querySelector(".item-total span");
-                    totalSpan.textContent = `EGP ${(price * quantity).toFixed(2)}`;
+                    totalSpan.textContent = EGP ${(price * quantity).toFixed(2)};
                 }
 
                 function updateSession(productId, quantity) {
@@ -275,7 +289,7 @@
                 shippingRadios.forEach(input => {
                     input.addEventListener("change", function(){
                         const cost = parseFloat(this.value);
-                        // حفظ الشحن في السيشن
+                       
                         fetch('/Cart/UpdateShipping', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
@@ -285,7 +299,7 @@
                     });
                 });
 
-                // تحديث أول مرة عند تحميل الصفحة
+               
                 updateSummary();
             });
         }

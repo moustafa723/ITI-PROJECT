@@ -132,7 +132,8 @@ namespace StyleHubApi.Controllers
                 {
                     ProductId = dto.ProductId,
                     Quantity = dto.Quantity,
-                    Product = product
+                    Product = product,
+                    Price = product.Price
                 });
             }
 
