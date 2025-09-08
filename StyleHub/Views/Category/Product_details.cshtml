@@ -155,7 +155,7 @@
                             <div class="action-buttons">
 
                                 <form asp-controller="Cart" asp-action="AddToCart" method="post">
-                                    <input type="hidden" name="cartId" value="1" /> <!-- hardcoded for now -->
+                                    <input type="hidden" name="cartId" value="@Model.Id" /> <!-- hardcoded for now -->
                                     <input type="hidden" name="productId" value="@Model.Id" />
                                     <input type="hidden" name="quantity" value="1" min="1" />
                                     <button type="submit" class="btn primary-action">

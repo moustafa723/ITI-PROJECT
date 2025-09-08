@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StyleHubApi.Data;
 
@@ -10,12 +11,70 @@ using StyleHubApi.Data;
 namespace StyleHubApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250908082323_vb")]
+    partial class vb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.8");
+
+            modelBuilder.Entity("StyleHubApi.Models.ApplicationUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("fullName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("applicationUsers");
+                });
 
             modelBuilder.Entity("StyleHubApi.Models.Cart", b =>
                 {
@@ -28,9 +87,7 @@ namespace StyleHubApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId")
-                        .IsUnique()
-                        .HasFilter("UserId IS NOT NULL");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Carts");
                 });
@@ -44,9 +101,9 @@ namespace StyleHubApi.Migrations
                     b.Property<int>("CartId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<double>("Price")
+                    b.Property<decimal>("Price")
                         .HasPrecision(18, 2)
-                        .HasColumnType("REAL");
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("INTEGER");
@@ -56,10 +113,9 @@ namespace StyleHubApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("CartId");
 
-                    b.HasIndex("CartId", "ProductId")
-                        .IsUnique();
+                    b.HasIndex("ProductId");
 
                     b.ToTable("CartItems");
                 });
@@ -194,7 +250,7 @@ namespace StyleHubApi.Migrations
                     b.Property<string>("Color")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Images")
+                    b.PrimitiveCollection<string>("Images")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -227,6 +283,15 @@ namespace StyleHubApi.Migrations
                     b.ToTable("Products");
                 });
 
+            modelBuilder.Entity("StyleHubApi.Models.Cart", b =>
+                {
+                    b.HasOne("StyleHubApi.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("StyleHubApi.Models.CartItem", b =>
                 {
                     b.HasOne("StyleHubApi.Models.Cart", "Cart")
@@ -238,7 +303,7 @@ namespace StyleHubApi.Migrations
                     b.HasOne("StyleHubApi.Models.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Cart");
@@ -273,7 +338,7 @@ namespace StyleHubApi.Migrations
                     b.HasOne("StyleHubApi.Models.Category", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Category");

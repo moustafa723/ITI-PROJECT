@@ -1,7 +1,8 @@
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using StyleHubApi.Data;
 using System.Text;
+using System.Text.Json.Serialization;
 //
 namespace StyleHubApi
 {
@@ -12,8 +13,8 @@ namespace StyleHubApi
             var builder = WebApplication.CreateBuilder(args);
 
             builder.Services.AddControllers()
-    .AddJsonOptions(x =>
-        x.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles);
+      .AddJsonOptions(o => o.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+
 
 
 

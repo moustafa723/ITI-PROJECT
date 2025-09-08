@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using StyleHub.Models;
 using System.Net.Http.Json;
+using System.Security.Claims;
 
 namespace StyleHub.Controllers
 {
@@ -14,31 +15,43 @@ namespace StyleHub.Controllers
             _httpClient = httpClientFactory.CreateClient();
             _httpClient.BaseAddress = new Uri("https://localhost:44374/"); // Your API URL
         }
+        private void AttachUserHeader()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            _httpClient.DefaultRequestHeaders.Remove("X-User-Id");
+            if (!string.IsNullOrWhiteSpace(userId))
+                _httpClient.DefaultRequestHeaders.Add("X-User-Id", userId);
+        }
 
         // GET: /Checkout
         [HttpGet]
-        public async Task<IActionResult> Index(int cartId = 1)
+        public async Task<IActionResult> Index()
         {
-            var cart = await _httpClient.GetFromJsonAsync<Cart>($"api/Cart/{cartId}");
+            AttachUserHeader();
+
+            var cart = await _httpClient.GetFromJsonAsync<Cart>("api/cart/mine");
             if (cart == null || cart.CartItems == null || !cart.CartItems.Any())
             {
                 TempData["Error"] = "Your cart is empty.";
-                return RedirectToAction("Index", "Cart", new { cartId });
+                return RedirectToAction("Index", "Cart");
             }
 
-            return View(cart); // 👈 sends Cart model to Checkout.cshtml
+            return View(cart);
         }
+
 
         // POST: /Checkout
         [HttpPost, ActionName("Checkout")]
-        public async Task<IActionResult> PlaceOrder(int cartId, string customerName, string customerEmail)
+        public async Task<IActionResult> PlaceOrder(string customerName, string customerEmail)
         {
-            // 1. Get cart from API
-            var cart = await _httpClient.GetFromJsonAsync<Cart>($"api/Cart/{cartId}");
+            AttachUserHeader();
+
+            // 1. Get cart
+            var cart = await _httpClient.GetFromJsonAsync<Cart>("api/cart/mine");
             if (cart == null || cart.CartItems.Count == 0)
                 return BadRequest("Cart is empty");
 
-            // 2. Build order object
+            // 2. Build order
             var order = new Order
             {
                 CustomerName = customerName,
@@ -47,7 +60,7 @@ namespace StyleHub.Controllers
                 {
                     ProductId = ci.ProductId,
                     Quantity = ci.Quantity,
-                    Price = ci.Product.Price
+                    Price = ci.Product?.Price ?? 0
                 }).ToList()
             };
 
@@ -56,14 +69,15 @@ namespace StyleHub.Controllers
             if (!response.IsSuccessStatusCode)
             {
                 TempData["Error"] = "❌ Failed to place order.";
-                return RedirectToAction("Checkout", new { cartId });
+                return RedirectToAction("Checkout");
             }
 
             // 4. Clear the cart
-            await _httpClient.DeleteAsync($"api/Cart/{cartId}");
+            await _httpClient.PostAsync("api/cart/mine/clear", null);
 
             return RedirectToAction("Success");
         }
+
 
         // GET: /Checkout/Success
         public IActionResult Success()

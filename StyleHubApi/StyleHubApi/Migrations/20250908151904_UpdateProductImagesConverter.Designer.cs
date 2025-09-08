@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StyleHubApi.Data;
 
@@ -10,9 +11,11 @@ using StyleHubApi.Data;
 namespace StyleHubApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250908151904_UpdateProductImagesConverter")]
+    partial class UpdateProductImagesConverter
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.8");
@@ -191,6 +194,9 @@ namespace StyleHubApi.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int?>("CategoryId1")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Color")
                         .HasColumnType("TEXT");
 
@@ -223,6 +229,8 @@ namespace StyleHubApi.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("CategoryId1");
 
                     b.ToTable("Products");
                 });
@@ -271,10 +279,14 @@ namespace StyleHubApi.Migrations
             modelBuilder.Entity("StyleHubApi.Models.Product", b =>
                 {
                     b.HasOne("StyleHubApi.Models.Category", "Category")
-                        .WithMany("Products")
+                        .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.HasOne("StyleHubApi.Models.Category", null)
+                        .WithMany("Products")
+                        .HasForeignKey("CategoryId1");
 
                     b.Navigation("Category");
                 });
