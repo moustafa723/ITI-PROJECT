@@ -1,105 +1,79 @@
 ﻿@page
 @model RegisterModel
 @{
-    Layout = "~/Views/Shared/_Layout_Style_hub.cshtml";
+    ViewData["Title"] = "Register";
 }
 
-<section id="register" class="register section">
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+            <div class="card shadow-lg border-0 rounded-3">
+                <div class="card-header bg-success text-white text-center py-3 rounded-top">
+                    <h3 class="mb-0">Create a New Account</h3>
+                </div>
+                <div class="card-body p-4">
+                    <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3" role="alert"></div>
 
-    <div class="container" data-aos="fade-up" data-aos-delay="100">
+                        <!-- Email -->
+                        <div class="mb-3">
+                            <label asp-for="Input.Email" class="form-label">Email</label>
+                            <input asp-for="Input.Email" class="form-control" autocomplete="username" placeholder="name@example.com" />
+                            <span asp-validation-for="Input.Email" class="text-danger"></span>
+                        </div>
 
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
-                <div class="registration-form-wrapper">
-                    <div class="form-header text-center">
-                        <h2>Create Your Account</h2>
-                        <p>Create your account and start shopping with us</p>
-                    </div>
+                        <!-- Password -->
+                        <div class="mb-3">
+                            <label asp-for="Input.Password" class="form-label">Password</label>
+                            <input asp-for="Input.Password" type="password" class="form-control" autocomplete="new-password" placeholder="Enter your password" />
+                            <span asp-validation-for="Input.Password" class="text-danger"></span>
+                        </div>
 
-                    <div class="row">
-                        <div class="col-lg-8 mx-auto">
-                            <form class="custom-form" role="form" method="post">
-                                <div class="form-floating mb-3">
-                                    <input asp-for="Input.Email" id="email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
-                                    <label for="email">Email Address</label>
-                                </div>
+                        <!-- Confirm Password -->
+                        <div class="mb-3">
+                            <label asp-for="Input.ConfirmPassword" class="form-label">Confirm Password</label>
+                            <input asp-for="Input.ConfirmPassword" type="password" class="form-control" autocomplete="new-password" placeholder="Confirm your password" />
+                            <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                        </div>
 
-                                <div class="row mb-3">
-                                    <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <input asp-for="Input.Password" id="password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
-                                            <label for="password">Password</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-floating">
-                                            <input asp-for="Input.ConfirmPassword" id="confirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                        <!-- Submit -->
+                        <div class="d-grid">
+                            <button id="registerSubmit" type="submit" class="btn btn-success btn-lg">Register</button>
+                        </div>
+                    </form>
 
-                                            <label for="confirmPassword">Confirm Password</label>
-                                        </div>
-                                    </div>
-                                </div>
+                    <hr class="my-4" />
 
-                                <div class="form-check mb-4">
-                                    <input class="form-check-input" type="checkbox" id="termsCheck" name="termsCheck" required="">
-                                    <label class="form-check-label" for="termsCheck">
-                                        I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
-                                    </label>
-                                </div>
-
-                                <div class="form-check mb-4">
-                                    <input class="form-check-input" type="checkbox" id="marketingCheck" name="marketingCheck">
-                                    <label class="form-check-label" for="marketingCheck">
-                                        I would like to receive marketing communications about products, services, and promotions
-                                    </label>
-                                </div>
-
-                                <div class="d-grid mb-4">
-                                    <button id="registerSubmit" type="submit" class="btn btn-register">Create Account</button>
-                                </div>
-
-                                <div class="login-link text-center">
-                                    <p>Already have an account?<a class="ms-2" id="login" asp-area="Identity" asp-page="/Account/Login">Sign in</a></p>
-                                </div>
+                    <!-- External Logins -->
+                    <div class="text-center">
+                        <h5 class="mb-3">Or use another service to register</h5>
+                        @if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                        {
+                            <p class="text-muted">
+                                No external authentication services configured.<br />
+                                <a href="https://go.microsoft.com/fwlink/?LinkID=532715" target="_blank">Learn how to add them</a>.
+                            </p>
+                        }
+                        else
+                        {
+                            <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                                @foreach (var provider in Model.ExternalLogins!)
+                                {
+                                    <button type="submit" class="btn btn-outline-primary me-2 mb-2"
+                                            name="provider" value="@provider.Name"
+                                            title="Register using your @provider.DisplayName account">
+                                        @provider.DisplayName
+                                    </button>
+                                }
                             </form>
-                        </div>
-                    </div>
-
-                    <div class="social-login">
-                        <div class="row">
-                            <div class="col-lg-8 mx-auto">
-                                <div class="divider">
-                                    <span>or sign up with</span>
-                                </div>
-                                <div class="social-buttons">
-                                    <a href="#" class="btn btn-social">
-                                        <i class="bi bi-google"></i>
-                                        <span>Google</span>
-                                    </a>
-                                    <a href="#" class="btn btn-social">
-                                        <i class="bi bi-facebook"></i>
-                                        <span>Facebook</span>
-                                    </a>
-                                    <a href="#" class="btn btn-social">
-                                        <i class="bi bi-apple"></i>
-                                        <span>Apple</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="decorative-elements">
-                        <div class="circle circle-1"></div>
-                        <div class="circle circle-2"></div>
-                        <div class="circle circle-3"></div>
-                        <div class="square square-1"></div>
-                        <div class="square square-2"></div>
+                        }
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
+</div>
 
-</section>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
