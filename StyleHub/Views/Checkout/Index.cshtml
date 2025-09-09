@@ -3,6 +3,10 @@
 
     Layout = "~/Views/Shared/_Layout_Style_hub.cshtml";
 }
+
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
+@inject SignInManager<IdentityUser> SignInManager
 <!-- Checkout Section -->
 <section id="checkout" class="checkout section">
 
@@ -11,38 +15,39 @@
         <div class="row">
             <div class="col-lg-7">
                 <!-- Checkout Form -->
+              
                 <div class="checkout-container" data-aos="fade-up">
                     <form asp-action="Checkout" asp-controller="Checkout" method="post" class="checkout-form">
+                        @Html.AntiForgeryToken()
                         <input type="hidden" name="cartId" value="@Model.Id" />
 
                         <!-- Customer Information -->
                         <div class="checkout-section" id="customer-info">
+                            @{
+                                var firstName = User.FindFirst("given_name")?.Value ?? "";
+                                var lastName = User.FindFirst("family_name")?.Value ?? ""; 
+                                var currentUser = await UserManager.GetUserAsync(User);
+                            }
+                           
+
                             <div class="section-header">
                                 <div class="section-number">1</div>
                                 <h3>Customer Information</h3>
                             </div>
                             <div class="section-content">
                                 <div class="row">
-                                    @* <div class="col-md-6 form-group">
-                                        <label for="first-name">First Name</label>
-                                        <input type="text" name="first-name" class="form-control" id="first-name" placeholder="Your First Name" required="">
-                                    </div> *@
-                                    @* <div class="col-md-6 form-group">
-                                        <label for="last-name"> Name</label>
-                                        <input type="text" name="last-name" class="form-control" id="last-name" placeholder="Your Last Name" required="">
-                                    </div> *@
                                 </div>
                                 <div class="form-group">
                                     <label for="last-name"> Name</label>
-                                    <input type="text" name="customerName" class="form-control" id="customerName" placeholder="Your Name" required />
+                            <input type="text" name="customerName" class="form-control" id="customerName" placeholder="" value="@firstName" required />
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email Address</label>
-                                    <input type="email" name="customerEmail" class="form-control" id="customerEmail" placeholder="Your Email" required />
+                            <input type="email" name="customerEmail" class="form-control" id="customerEmail" placeholder="" value="@currentUser.Email" required />
                                 </div>
                                 <div class="form-group">
                                     <label for="phone">Phone Number</label>
-                                    <input type="tel" class="form-control" name="phone" id="phone" placeholder="Your Phone Number" required="">
+                            <input type="tel" class="form-control" name="phone" id="phone" placeholder="Your Phone Number" value="@currentUser.PhoneNumber" required="">
                                 </div>
                                 <div class="form-group">
                                     <label for="address">Shipping Address</label>
@@ -110,7 +115,7 @@
                         <!-- Payment Method -->
                         <div class="checkout-section" id="payment-method">
                             <div class="section-header">
-                                <div class="section-number">3</div>
+                                <div class="section-number">2</div>
                                 <h3>Payment Method</h3>
                             </div>
                             <div class="section-content">
@@ -197,7 +202,7 @@
                                 <div class="place-order-container">
                                     <button type="submit" class="btn btn-primary place-order-btn">
                                         <span class="btn-text">Place Order</span>
-                                        <span class="btn-price">$240.96</span>
+                                        <span class="btn-price">@(Model.CartItems.Sum(i => i.Quantity * i.Product.Price) + 9.99m)</span>
                                     </button>
                                 </div>
                             </div>

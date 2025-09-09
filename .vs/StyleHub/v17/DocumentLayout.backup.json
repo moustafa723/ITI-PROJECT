@@ -3,12 +3,24 @@
   "WorkspaceRootPath": "D:\\ITI-PROJECT\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|d:\\iti-project\\stylehub\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|solutionrelative:stylehub\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|d:\\iti-project\\stylehub\\views\\checkout\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|solutionrelative:stylehub\\views\\checkout\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|d:\\iti-project\\stylehub\\views\\account\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|solutionrelative:stylehub\\views\\account\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|d:\\iti-project\\stylehub\\views\\orders\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|solutionrelative:stylehub\\views\\orders\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|d:\\iti-project\\stylehub\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|solutionrelative:stylehub\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|d:\\iti-project\\stylehub\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|solutionrelative:stylehub\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|d:\\iti-project\\stylehub\\models\\profilevm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -17,10 +29,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|d:\\iti-project\\stylehub\\migrations\\20250909215006_mn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|solutionrelative:stylehub\\migrations\\20250909215006_mn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|d:\\iti-project\\stylehub\\views\\orders\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|solutionrelative:stylehub\\views\\orders\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|d:\\iti-project\\stylehub\\areas\\identity\\pages\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -69,10 +77,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|d:\\iti-project\\stylehub\\views\\shared\\_loginpartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|solutionrelative:stylehub\\views\\shared\\_loginpartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|d:\\iti-project\\stylehub\\views\\checkout\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|solutionrelative:stylehub\\views\\checkout\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{156E845A-3EEF-4EDA-874D-DB4C170FD11D}|StyleHub\\StyleHub.csproj|d:\\iti-project\\stylehub\\models\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -138,7 +142,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -146,7 +150,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
+              "Title": "Privacy.cshtml",
+              "DocumentMoniker": "D:\\ITI-PROJECT\\StyleHub\\Views\\Home\\Privacy.cshtml",
+              "RelativeDocumentMoniker": "StyleHub\\Views\\Home\\Privacy.cshtml",
+              "ToolTip": "D:\\ITI-PROJECT\\StyleHub\\Views\\Home\\Privacy.cshtml",
+              "RelativeToolTip": "StyleHub\\Views\\Home\\Privacy.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-09T22:39:20.394Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "AccountController.cs",
               "DocumentMoniker": "D:\\ITI-PROJECT\\StyleHub\\Controllers\\AccountController.cs",
               "RelativeDocumentMoniker": "StyleHub\\Controllers\\AccountController.cs",
@@ -159,7 +176,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "ProfileVm.cs",
               "DocumentMoniker": "D:\\ITI-PROJECT\\StyleHub\\Models\\ProfileVm.cs",
               "RelativeDocumentMoniker": "StyleHub\\Models\\ProfileVm.cs",
@@ -178,14 +195,14 @@
               "RelativeDocumentMoniker": "StyleHub\\Views\\Account\\Index.cshtml",
               "ToolTip": "D:\\ITI-PROJECT\\StyleHub\\Views\\Account\\Index.cshtml",
               "RelativeToolTip": "StyleHub\\Views\\Account\\Index.cshtml",
-              "ViewState": "AgIAAD8CAAAAAAAAAAAUwEsCAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-09-08T02:22:33.899Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "20250909215006_MN.cs",
               "DocumentMoniker": "D:\\ITI-PROJECT\\StyleHub\\Migrations\\20250909215006_MN.cs",
               "RelativeDocumentMoniker": "StyleHub\\Migrations\\20250909215006_MN.cs",
@@ -198,7 +215,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\ITI-PROJECT\\StyleHub\\Views\\Orders\\Index.cshtml",
+              "RelativeDocumentMoniker": "StyleHub\\Views\\Orders\\Index.cshtml",
+              "ToolTip": "D:\\ITI-PROJECT\\StyleHub\\Views\\Orders\\Index.cshtml",
+              "RelativeToolTip": "StyleHub\\Views\\Orders\\Index.cshtml",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-09T18:46:14.711Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\ITI-PROJECT\\StyleHub\\Views\\Checkout\\Index.cshtml",
+              "RelativeDocumentMoniker": "StyleHub\\Views\\Checkout\\Index.cshtml",
+              "ToolTip": "D:\\ITI-PROJECT\\StyleHub\\Views\\Checkout\\Index.cshtml",
+              "RelativeToolTip": "StyleHub\\Views\\Checkout\\Index.cshtml",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAQwBEAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-06T18:57:45.028Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "Register.cshtml.cs",
               "DocumentMoniker": "D:\\ITI-PROJECT\\StyleHub\\Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
               "RelativeDocumentMoniker": "StyleHub\\Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
@@ -210,19 +253,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\ITI-PROJECT\\StyleHub\\Views\\Orders\\Index.cshtml",
-              "RelativeDocumentMoniker": "StyleHub\\Views\\Orders\\Index.cshtml",
-              "ToolTip": "D:\\ITI-PROJECT\\StyleHub\\Views\\Orders\\Index.cshtml",
-              "RelativeToolTip": "StyleHub\\Views\\Orders\\Index.cshtml",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-09T18:46:14.711Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 14,
               "Title": "OrdersController.cs",
               "DocumentMoniker": "D:\\ITI-PROJECT\\StyleHub\\Controllers\\OrdersController.cs",
               "RelativeDocumentMoniker": "StyleHub\\Controllers\\OrdersController.cs",
@@ -234,7 +265,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\ITI-PROJECT\\StyleHub\\Program.cs",
               "RelativeDocumentMoniker": "StyleHub\\Program.cs",
@@ -246,7 +277,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "CheckoutController.cs",
               "DocumentMoniker": "D:\\ITI-PROJECT\\StyleHub\\Controllers\\CheckoutController.cs",
               "RelativeDocumentMoniker": "StyleHub\\Controllers\\CheckoutController.cs",
@@ -258,7 +289,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "Register.cshtml",
               "DocumentMoniker": "D:\\ITI-PROJECT\\StyleHub\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
               "RelativeDocumentMoniker": "StyleHub\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
@@ -270,7 +301,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 13,
               "Title": "Create.cshtml",
               "DocumentMoniker": "D:\\ITI-PROJECT\\StyleHub\\Views\\Orders\\Create.cshtml",
               "RelativeDocumentMoniker": "StyleHub\\Views\\Orders\\Create.cshtml",
@@ -282,7 +313,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "_Layout_Style_hub.cshtml",
               "DocumentMoniker": "D:\\ITI-PROJECT\\StyleHub\\Views\\Shared\\_Layout_Style_hub.cshtml",
               "RelativeDocumentMoniker": "StyleHub\\Views\\Shared\\_Layout_Style_hub.cshtml",
@@ -294,7 +325,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 15,
               "Title": "HelpController.cs",
               "DocumentMoniker": "D:\\ITI-PROJECT\\StyleHub\\Controllers\\HelpController.cs",
               "RelativeDocumentMoniker": "StyleHub\\Controllers\\HelpController.cs",
@@ -306,7 +337,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 16,
               "Title": "HomeController.cs",
               "DocumentMoniker": "D:\\ITI-PROJECT\\StyleHub\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "StyleHub\\Controllers\\HomeController.cs",
@@ -318,7 +349,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 17,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\ITI-PROJECT\\StyleHub\\Views\\Cart\\Index.cshtml",
               "RelativeDocumentMoniker": "StyleHub\\Views\\Cart\\Index.cshtml",
@@ -330,7 +361,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\ITI-PROJECT\\StyleHub\\appsettings.json",
               "RelativeDocumentMoniker": "StyleHub\\appsettings.json",
@@ -342,7 +373,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "Cart.cs",
               "DocumentMoniker": "D:\\ITI-PROJECT\\StyleHub\\Models\\Cart.cs",
               "RelativeDocumentMoniker": "StyleHub\\Models\\Cart.cs",
@@ -354,7 +385,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "Product_details.cshtml",
               "DocumentMoniker": "D:\\ITI-PROJECT\\StyleHub\\Views\\Category\\Product_details.cshtml",
               "RelativeDocumentMoniker": "StyleHub\\Views\\Category\\Product_details.cshtml",
@@ -366,7 +397,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 18,
               "Title": "_LoginPartial.cshtml",
               "DocumentMoniker": "D:\\ITI-PROJECT\\StyleHub\\Views\\Shared\\_LoginPartial.cshtml",
               "RelativeDocumentMoniker": "StyleHub\\Views\\Shared\\_LoginPartial.cshtml",
@@ -378,7 +409,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "Catogery.cs",
               "DocumentMoniker": "D:\\ITI-PROJECT\\StyleHub\\Models\\Catogery.cs",
               "RelativeDocumentMoniker": "StyleHub\\Models\\Catogery.cs",
@@ -390,7 +421,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 22,
               "Title": "Cart Item.cs",
               "DocumentMoniker": "D:\\ITI-PROJECT\\StyleHub\\Models\\Cart Item.cs",
               "RelativeDocumentMoniker": "StyleHub\\Models\\Cart Item.cs",
@@ -402,7 +433,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 23,
               "Title": "product.cs",
               "DocumentMoniker": "D:\\ITI-PROJECT\\StyleHub\\Models\\product.cs",
               "RelativeDocumentMoniker": "StyleHub\\Models\\product.cs",
@@ -414,7 +445,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 24,
               "Title": "Order.cs",
               "DocumentMoniker": "D:\\ITI-PROJECT\\StyleHub\\Models\\Order.cs",
               "RelativeDocumentMoniker": "StyleHub\\Models\\Order.cs",
@@ -426,7 +457,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 25,
               "Title": "ChangePassword.cshtml",
               "DocumentMoniker": "D:\\ITI-PROJECT\\StyleHub\\Areas\\Identity\\Pages\\Account\\Manage\\ChangePassword.cshtml",
               "RelativeDocumentMoniker": "StyleHub\\Areas\\Identity\\Pages\\Account\\Manage\\ChangePassword.cshtml",
@@ -438,7 +469,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 26,
               "Title": "ResetPassword.cshtml",
               "DocumentMoniker": "D:\\ITI-PROJECT\\StyleHub\\Areas\\Identity\\Pages\\Account\\ResetPassword.cshtml",
               "RelativeDocumentMoniker": "StyleHub\\Areas\\Identity\\Pages\\Account\\ResetPassword.cshtml",
@@ -450,7 +481,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 27,
               "Title": "ForgotPasswordConfirmation.cshtml",
               "DocumentMoniker": "D:\\ITI-PROJECT\\StyleHub\\Areas\\Identity\\Pages\\Account\\ForgotPasswordConfirmation.cshtml",
               "RelativeDocumentMoniker": "StyleHub\\Areas\\Identity\\Pages\\Account\\ForgotPasswordConfirmation.cshtml",
@@ -462,7 +493,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 28,
               "Title": "ForgotPassword.cshtml",
               "DocumentMoniker": "D:\\ITI-PROJECT\\StyleHub\\Areas\\Identity\\Pages\\Account\\ForgotPassword.cshtml",
               "RelativeDocumentMoniker": "StyleHub\\Areas\\Identity\\Pages\\Account\\ForgotPassword.cshtml",
@@ -474,7 +505,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 30,
               "Title": "Login.cshtml",
               "DocumentMoniker": "D:\\ITI-PROJECT\\StyleHub\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
               "RelativeDocumentMoniker": "StyleHub\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
@@ -486,7 +517,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 29,
               "Title": "ScaffoldingReadMe.txt",
               "DocumentMoniker": "D:\\ITI-PROJECT\\StyleHub\\ScaffoldingReadMe.txt",
               "RelativeDocumentMoniker": "StyleHub\\ScaffoldingReadMe.txt",
@@ -498,7 +529,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 31,
               "Title": "OrderItem.cs",
               "DocumentMoniker": "D:\\ITI-PROJECT\\StyleHub\\Models\\OrderItem.cs",
               "RelativeDocumentMoniker": "StyleHub\\Models\\OrderItem.cs",
@@ -510,7 +541,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 32,
               "Title": "20250907052534_v3.cs",
               "DocumentMoniker": "D:\\ITI-PROJECT\\StyleHub\\Migrations\\20250907052534_v3.cs",
               "RelativeDocumentMoniker": "StyleHub\\Migrations\\20250907052534_v3.cs",
@@ -519,18 +550,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-07T05:25:34.201Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\ITI-PROJECT\\StyleHub\\Views\\Checkout\\Index.cshtml",
-              "RelativeDocumentMoniker": "StyleHub\\Views\\Checkout\\Index.cshtml",
-              "ToolTip": "D:\\ITI-PROJECT\\StyleHub\\Views\\Checkout\\Index.cshtml",
-              "RelativeToolTip": "StyleHub\\Views\\Checkout\\Index.cshtml",
-              "ViewState": "AgIAAFMBAAAAAAAAAAAswG0BAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-06T18:57:45.028Z"
             }
           ]
         }
