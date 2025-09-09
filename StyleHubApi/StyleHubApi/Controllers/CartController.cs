@@ -43,44 +43,53 @@ namespace StyleHubApi.Controllers
             return cart;
         }
 
-        // POST: api/cart/mine/items
         [HttpPost("mine/items")]
         public async Task<IActionResult> AddItemToMyCart([FromBody] CartItemdto dto)
         {
             var uid = GetUserId();
             if (string.IsNullOrWhiteSpace(uid)) return BadRequest("Missing userId");
-            if (dto == null || dto.Quantity <= 0) return BadRequest("Quantity must be > 0");
 
             var product = await _context.Products.FindAsync(dto.ProductId);
             if (product == null) return NotFound("Product not found");
 
             var cart = await _context.Carts.Include(c => c.CartItems)
-                          .FirstOrDefaultAsync(c => c.UserId == uid);
+                                  .FirstOrDefaultAsync(c => c.UserId == uid);
 
             if (cart == null)
             {
+                if (dto.Quantity <= 0) return BadRequest("Quantity must be > 0");
+
                 cart = new Cart { UserId = uid, CartItems = new List<CartItem>() };
                 _context.Carts.Add(cart);
-                await _context.SaveChangesAsync(); // لازم قبل إضافة CartItems
+                await _context.SaveChangesAsync();
             }
 
             var existing = cart.CartItems.FirstOrDefault(x => x.ProductId == dto.ProductId);
-            if (existing != null) existing.Quantity += dto.Quantity;
-            else _context.CartItems.Add(new CartItem
+
+            if (existing != null)
             {
-                CartId = cart.Id,
-                ProductId = dto.ProductId,
-                Quantity = dto.Quantity,
-                Price = product.Price
-            });
+                existing.Quantity += dto.Quantity;
+
+                if (existing.Quantity <= 0)
+                {
+                    _context.CartItems.Remove(existing); // حذف لو الكمية أصبحت 0 أو أقل
+                }
+            }
+            else
+            {
+                if (dto.Quantity <= 0) return BadRequest("Quantity must be > 0 for new item");
+
+                _context.CartItems.Add(new CartItem
+                {
+                    CartId = cart.Id,
+                    ProductId = dto.ProductId,
+                    Quantity = dto.Quantity,
+                    Price = product.Price
+                });
+            }
 
             await _context.SaveChangesAsync();
-
-            var result = await _context.Carts
-                .Include(c => c.CartItems).ThenInclude(ci => ci.Product)
-                .FirstOrDefaultAsync(c => c.Id == cart.Id);
-
-            return Ok(result);
+            return Ok();
         }
 
         // PUT: api/cart/mine/items/{productId}

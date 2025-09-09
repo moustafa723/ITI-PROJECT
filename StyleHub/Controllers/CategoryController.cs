@@ -15,37 +15,16 @@ namespace StyleHub.Controllers
             _clientFactory = clientFactory;
         }
 
-        // index ممكن ياخد categoryId اختياري
-        //public async Task<IActionResult> Index(int? id)
-        //{
-        //    var client = _clientFactory.CreateClient();
-
-        //    var url = id.HasValue
-        //        ? $"https://localhost:44374/api/Products?categoryId={id.Value}"
-        //        : "https://localhost:44374/api/Products";
-
-        //    var productsFromApi = await client.GetFromJsonAsync<List<Product>>(url);
-        //    var categoriesFromApi = await client.GetFromJsonAsync<List<Category>>("https://localhost:44374/api/Categories");
-        //    ViewBag.CategoryName = categoriesFromApi?.FirstOrDefault(c => c.Id == id)?.Name;
-        //    ViewBag.Categories = await client.GetFromJsonAsync<List<Category>>("https://localhost:44374/api/Categories");
-        //    var products = productsFromApi?.Select(p =>
-        //    {
-        //        p.Category = categoriesFromApi?.FirstOrDefault(c => c.Id == p.CategoryId);
-        //        return p;
-        //    });
-
-        //    return View(products?.ToList());
-        //}
         public async Task<IActionResult> Index(int? id, decimal? minPrice, decimal? maxPrice, string search, string priceRange)
         {
             var client = _clientFactory.CreateClient();
 
             var url = id.HasValue
-                ? $"https://localhost:44374/api/Products?categoryId={id.Value}"
-                : "https://localhost:44374/api/Products";
+                ? $"https://localhost:7158/api/Products?categoryId={id.Value}"
+                : "https://localhost:7158/api/Products";
 
             var productsFromApi = await client.GetFromJsonAsync<List<Product>>(url);
-            var categoriesFromApi = await client.GetFromJsonAsync<List<Category>>("https://localhost:44374/api/Categories");
+            var categoriesFromApi = await client.GetFromJsonAsync<List<Category>>("https://localhost:7158/api/Categories");
 
             var products = productsFromApi?.Select(p =>
             {
@@ -90,7 +69,7 @@ namespace StyleHub.Controllers
 
         public async Task<IActionResult> Product_detailsAsync(int id)
         {
-            HttpResponseMessage response = await client.GetAsync($"https://localhost:44374/api/Products/{id}");
+            HttpResponseMessage response = await client.GetAsync($"https://localhost:7158/api/Products/{id}");
 
             if (!response.IsSuccessStatusCode)
             {
