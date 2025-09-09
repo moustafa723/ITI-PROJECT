@@ -21,14 +21,14 @@ namespace StyleHub.Controllers
         private void AttachUserHeader()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            Console.WriteLine("➡️ X-User-Id = " + userId); // أو حطها في الـ logger
+            Console.WriteLine("➡️ X-User-Id = " + userId); 
             _httpClient.DefaultRequestHeaders.Remove("X-User-Id");
 
             if (!string.IsNullOrWhiteSpace(userId))
                 _httpClient.DefaultRequestHeaders.Add("X-User-Id", userId);
         }
 
-        // عرض السلة
+       
         public async Task<IActionResult> Index()
         {
             AttachUserHeader();
@@ -47,7 +47,7 @@ namespace StyleHub.Controllers
             return View(cart);
         }
 
-        // إضافة منتج
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> AddToCart(int productId, int quantity = 1)
         {
