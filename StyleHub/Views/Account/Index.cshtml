@@ -536,42 +536,56 @@
                                 }
 
                     <!-- Security Settings -->
-                    <div class="settings-section" data-aos="fade-up" data-aos-delay="200">
-                      <h3>Security</h3>
-                      <form class="php-email-form settings-form">
-                        <div class="row g-3">
-                          <div class="col-md-12">
-                            <label for="currentPassword" class="form-label">Current Password</label>
-                            <input type="password" class="form-control" id="currentPassword" required="">
-                          </div>
-                          <div class="col-md-6">
-                            <label for="newPassword" class="form-label">New Password</label>
-                            <input type="password" class="form-control" id="newPassword" required="">
-                          </div>
-                          <div class="col-md-6">
-                            <label for="confirmPassword" class="form-label">Confirm Password</label>
-                            <input type="password" class="form-control" id="confirmPassword" required="">
-                          </div>
-                        </div>
+                                <div class="settings-section" data-aos="fade-up" data-aos-delay="200">
+                                    <h3>Security</h3>
 
-                        <div class="form-buttons">
-                          <button type="submit" class="btn-save">Update Password</button>
-                        </div>
+                                    <form asp-area="" asp-controller="Account" asp-action="ChangePassword" method="post" class="settings-form">
+                                        @Html.AntiForgeryToken()
 
-                        <div class="loading">Loading</div>
-                        <div class="error-message"></div>
-                        <div class="sent-message">Your password has been updated successfully!</div>
-                      </form>
-                    </div>
+                                        <div class="row g-3">
+                                            <div class="col-md-12">
+                                                <label for="currentPassword" class="form-label">Current Password</label>
+                                                <input name="CurrentPassword" type="password" class="form-control" id="currentPassword" required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="newPassword" class="form-label">New Password</label>
+                                                <input name="NewPassword" type="password" class="form-control" id="newPassword" required>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                                <input name="ConfirmPassword" type="password" class="form-control" id="confirmPassword" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-buttons mt-3">
+                                            <button type="submit" class="btn-save btn btn-primary">Update Password</button>
+                                        </div>
+                                    </form>
+
+                                    @* (اختياري) عرض رسالة نجاح/خطأ *@
+                                    @if (TempData["PwdMsg"] is string msgg && !string.IsNullOrWhiteSpace(msgg))
+                                    {
+                                        <div class="alert alert-info mt-3">@msgg</div>
+                                    }
+                                    <div asp-validation-summary="All" class="text-danger mt-2"></div>
+                                </div>
+
 
                     <!-- Delete Account -->
-                    <div class="settings-section danger-zone" data-aos="fade-up" data-aos-delay="300">
-                      <h3>Delete Account</h3>
-                      <div class="danger-zone-content">
-                        <p>Once you delete your account, there is no going back. Please be certain.</p>
-                        <button type="button" class="btn-danger">Delete Account</button>
-                      </div>
-                    </div>
+                                <div class="settings-section danger-zone" data-aos="fade-up" data-aos-delay="300">
+                                    <h3>Delete Account</h3>
+                                    <div class="danger-zone-content">
+                                        <p>Once you delete your account, there is no going back. Please be certain.</p>
+
+                                        <form asp-area="" asp-controller="Account" asp-action="DeleteAccount" method="post" onsubmit="return confirm('Are you sure? This cannot be undone.');">
+                                            @Html.AntiForgeryToken()
+                                            <button type="submit" class="btn-danger btn btn-outline-danger">
+                                                Delete Account
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+
                   </div>
                 </div>
               </div>

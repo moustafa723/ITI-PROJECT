@@ -18,7 +18,6 @@ namespace StyleHub.Controllers
             _signInManager = signInManager;
         }
         [Authorize]
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateProfile(ProfileVm model)
@@ -71,7 +70,74 @@ namespace StyleHub.Controllers
                 await _userManager.ReplaceClaimAsync(user, existing, new System.Security.Claims.Claim(type, value));
             }
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ChangePassword(string CurrentPassword, string NewPassword, string ConfirmPassword)
+        {
+            // تحقق بسيط
+            if (string.IsNullOrWhiteSpace(CurrentPassword) ||
+                string.IsNullOrWhiteSpace(NewPassword) ||
+                string.IsNullOrWhiteSpace(ConfirmPassword))
+            {
+                ModelState.AddModelError(string.Empty, "من فضلك املأ جميع الحقول.");
+                return RedirectBackWithModelState();
+            }
 
+            if (NewPassword != ConfirmPassword)
+            {
+                ModelState.AddModelError(string.Empty, "كلمة المرور الجديدة وتأكيدها غير متطابقين.");
+                return RedirectBackWithModelState();
+            }
+
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null) return Challenge();
+
+            var result = await _userManager.ChangePasswordAsync(user, CurrentPassword, NewPassword);
+            if (!result.Succeeded)
+            {
+                foreach (var e in result.Errors)
+                    ModelState.AddModelError(string.Empty, e.Description);
+
+                return RedirectBackWithModelState();
+            }
+
+            await _signInManager.RefreshSignInAsync(user);
+            TempData["PwdMsg"] = "تم تحديث كلمة المرور بنجاح.";
+            return Redirect(Request.Headers["Referer"].ToString());
+        }
+
+        // helper بسيط علشان نرجّع لنفس الصفحة ومعانا الأخطاء
+        private IActionResult RedirectBackWithModelState()
+        {
+            // خزن الأخطاء في TempData (اختياري). أبسط بديل: اعرض الأخطاء داخل نفس View strongly-typed.
+            TempData["PwdMsg"] = string.Join(" | ",
+                ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage));
+
+            return Redirect(Request.Headers["Referer"].ToString());
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteAccount()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return Challenge(); // لو مش لاقي المستخدم
+            }
+
+            // (اختياري) لو عايز تتأكد بكلمة المرور قبل الحذف
+            // var check = await _userManager.CheckPasswordAsync(user, passwordFromForm);
+
+            var result = await _userManager.DeleteAsync(user);
+            if (!result.Succeeded)
+            {
+                TempData["StatusMessage"] = string.Join(" | ", result.Errors.Select(e => e.Description));
+                return RedirectToAction("Settings"); // ارجع لنفس الصفحة لو حصل خطأ
+            }
+
+            await _signInManager.SignOutAsync(); // اعمل تسجيل خروج بعد الحذف
+            return RedirectToAction("Index", "Home"); // رجّعه للهوم بيج
+        }
         public IActionResult Index()
         {
             return View();
