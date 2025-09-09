@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using StyleHub.Models;
 using System.Net.Http.Json;
 using System.Security.Claims;
 
 namespace StyleHub.Controllers
 {
+    [Authorize]  
     [Route("[controller]/[action]")]
     public class CheckoutController : Controller
     {
@@ -15,6 +17,7 @@ namespace StyleHub.Controllers
             _httpClient = httpClientFactory.CreateClient();
             _httpClient.BaseAddress = new Uri("https://localhost:44374/"); // Your API URL
         }
+
         private void AttachUserHeader()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -23,7 +26,6 @@ namespace StyleHub.Controllers
                 _httpClient.DefaultRequestHeaders.Add("X-User-Id", userId);
         }
 
-        // GET: /Checkout
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -39,19 +41,15 @@ namespace StyleHub.Controllers
             return View(cart);
         }
 
-
-        // POST: /Checkout
         [HttpPost, ActionName("Checkout")]
         public async Task<IActionResult> PlaceOrder(string customerName, string customerEmail)
         {
             AttachUserHeader();
 
-            // 1. Get cart
             var cart = await _httpClient.GetFromJsonAsync<Cart>("api/cart/mine");
             if (cart == null || cart.CartItems.Count == 0)
                 return BadRequest("Cart is empty");
 
-            // 2. Build order
             var order = new Order
             {
                 CustomerName = customerName,
@@ -64,7 +62,6 @@ namespace StyleHub.Controllers
                 }).ToList()
             };
 
-            // 3. Send order to API
             var response = await _httpClient.PostAsJsonAsync("api/Orders", order);
             if (!response.IsSuccessStatusCode)
             {
@@ -72,14 +69,11 @@ namespace StyleHub.Controllers
                 return RedirectToAction("Checkout");
             }
 
-            // 4. Clear the cart
             await _httpClient.PostAsync("api/cart/mine/clear", null);
 
             return RedirectToAction("Success");
         }
 
-
-        // GET: /Checkout/Success
         public IActionResult Success()
         {
             return View();
