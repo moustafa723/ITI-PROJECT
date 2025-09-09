@@ -154,7 +154,7 @@
 
                     <div class="summary-item">
                         <span class="summary-label">Tax</span>
-                        <span class="summary-value">$27.00</span>
+                        <span class="summary-value">$0</span>
                     </div>
 
                     <div class="summary-item discount">
@@ -237,7 +237,7 @@
 
                     // تحديث Total
                     const totalSpan = document.querySelector(".summary-total .summary-value");
-                    if (totalSpan) totalSpan.textContent = `EGP ${(subtotal + shippingCost + 27).toFixed(2)}`;
+                    if (totalSpan) totalSpan.textContent = `EGP ${(subtotal + shippingCost ).toFixed(2)}`;
                 }
 
                 function updateTotal(cartItem, quantity) {
