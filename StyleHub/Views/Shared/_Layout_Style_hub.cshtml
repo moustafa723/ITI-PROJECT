@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -200,6 +203,16 @@
                         <li class="nav-item">
                             <a asp-controller="Home" asp-action="Contact" class="nav-link">Contact</a>
                         </li>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="AdminCategory" asp-action="Index">Manage Categories</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="AdminProduct" asp-action="Index">Manage Products</a>
+                            </li>
+                        }
+                       
                     </ul>
                 </nav>
             </div>
