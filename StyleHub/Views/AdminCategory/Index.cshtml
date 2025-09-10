@@ -3,47 +3,47 @@
 @{
     ViewData["Title"] = "Categories";
     Layout = "~/Views/Shared/_Layout_Style_hub.cshtml";
-
 }
 
-<h1>Categories</h1>
+<h1 class="mt-4 mb-4 text-primary">Categories</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="btn btn-success mb-3" asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
+
+<table class="table table-bordered table-hover table-striped">
+    <thead class="table-dark">
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PhotoPath)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Back_Color)
-            </th>
-            <th></th>
+            <th>@Html.DisplayNameFor(model => model.Name)</th>
+            <th>Image</th>
+            <th>@Html.DisplayNameFor(model => model.Back_Color)</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PhotoPath)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Back_Color)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.PhotoPath))
+                    {
+                        <img src="@item.PhotoPath" alt="Image" width="100" height="100" class="img-thumbnail" />
+                    }
+                    else
+                    {
+                        <span class="text-muted">No image</span>
+                    }
+                </td>
+                <td style="background-color:@item.Back_Color; color: black;">
+                    @Html.DisplayFor(modelItem => item.Back_Color)
+                </td>
+                <td>
+                    <a class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                    <a class="btn btn-info btn-sm mx-1" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

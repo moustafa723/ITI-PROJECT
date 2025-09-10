@@ -22,8 +22,16 @@
             @Html.DisplayNameFor(model => model.PhotoPath)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PhotoPath)
-        </dd>
+        
+            @if (!string.IsNullOrEmpty(Model.PhotoPath))
+            {
+                <img src="@Model.PhotoPath" alt="Image" width="200" height="200" class="img-thumbnail" />
+            }
+            else
+            {
+                <span class="text-muted">No image</span>
+            }
+                </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Back_Color)
         </dt>

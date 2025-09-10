@@ -97,5 +97,17 @@ namespace StyleHub.Controllers
             ModelState.AddModelError("", "Failed to delete category");
             return RedirectToAction(nameof(Index));
         }
+        // GET: /AdminCategory/Details/5
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
+        {
+            var category = await _http.GetFromJsonAsync<Category>($"api/Categories/{id}");
+            if (category == null)
+            {
+                return NotFound();
+            }
+            return View(category);
+        }
+
     }
 }
