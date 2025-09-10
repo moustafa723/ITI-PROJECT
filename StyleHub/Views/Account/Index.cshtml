@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<AddressDto>
+
+@{
     Layout = "~/Views/Shared/_Layout_Style_hub.cshtml";
 }
 
@@ -413,65 +415,24 @@
                 <div class="tab-pane fade" id="addresses">
                   <div class="section-header" data-aos="fade-up">
                     <h2>My Addresses</h2>
-                    <div class="header-actions">
-                      <button type="button" class="btn-add-new">
-                        <i class="bi bi-plus-lg"></i>
-                        Add New Address
-                      </button>
-                    </div>
-                  </div>
-@*                             addresses-grid
- *@                  <div class="addresses-grid">
-                    <!-- Address Card 1 -->
-                    <div class="address-card default" data-aos="fade-up" data-aos-delay="100">
-                      <div class="card-header">
-                        <h4>Home</h4>
-                        <span class="default-badge">Default</span>
-                      </div>
-                      <div class="card-body">
-                        <p class="address-text">123 Main Street<br>Apt 4B<br>New York, NY 10001<br>United States</p>
-                        <div class="contact-info">
-                          <div><i class="bi bi-person"></i> Sarah Anderson</div>
-                          <div><i class="bi bi-telephone"></i> +1 (555) 123-4567</div>
-                        </div>
-                      </div>
-                      <div class="card-actions">
-                        <button type="button" class="btn-edit">
-                          <i class="bi bi-pencil"></i>
-                          Edit
-                        </button>
-                        <button type="button" class="btn-remove">
-                          <i class="bi bi-trash"></i>
-                          Remove
-                        </button>
-                      </div>
-                    </div>
+                                <div class="header-actions">
+                                    <button type="button" class="btn-add-new" id="btnAddAddress">
+                                        <i class="bi bi-plus-lg"></i> Add New Address
+                                    </button>
+                                </div>
 
-                    <!-- Address Card 2 -->
-                    <div class="address-card" data-aos="fade-up" data-aos-delay="200">
-                      <div class="card-header">
-                        <h4>Office</h4>
-                      </div>
-                      <div class="card-body">
-                        <p class="address-text">456 Business Ave<br>Suite 200<br>San Francisco, CA 94107<br>United States</p>
-                        <div class="contact-info">
-                          <div><i class="bi bi-person"></i> Sarah Anderson</div>
-                          <div><i class="bi bi-telephone"></i> +1 (555) 987-6543</div>
-                        </div>
-                      </div>
-                      <div class="card-actions">
-                        <button type="button" class="btn-edit">
-                          <i class="bi bi-pencil"></i>
-                          Edit
-                        </button>
-                        <button type="button" class="btn-remove">
-                          <i class="bi bi-trash"></i>
-                          Remove
-                        </button>
-                        <button type="button" class="btn-make-default">Make Default</button>
-                      </div>
+                                <div id="addFormContainer"></div> <!-- الفورم هيتحقن هنا -->
+
                     </div>
-                  </div>
+                 
+                            @if (TempData["Msg"] is string msge && !string.IsNullOrWhiteSpace(msge))
+                            {
+                                <div class="alert alert-info">@msge</div>
+                            }
+@*                             addresses-grid
+ *@                    <div id="addressesGrid">
+                                @await Html.PartialAsync("~/Views/AddressesMvc/_List.cshtml", Model /* لو الصفحة Strongly typed */)
+                            </div>
                 </div>
 
                 <!-- Settings Tab -->
@@ -594,3 +555,167 @@
         </div>
     </div>
 </section>
+@section Scripts {
+    <script>
+        (() => {
+          const btnAdd = document.getElementById("btnAddAddress");
+          const host   = document.getElementById("addFormContainer");
+          const grid   = document.getElementById("addressesGrid"); // خلي الـ div ده يلفّ كل cards
+
+          if (!host || !grid) {
+            console.warn("addressesGrid/addFormContainer not found");
+          }
+
+          /* ========================
+             1) Load CREATE form
+             ======================== */
+          if (btnAdd && host) {
+            btnAdd.addEventListener("click", async () => {
+              try {
+                const r = await fetch("/AddressesMvc/CreateInline", { credentials: "same-origin" });
+                host.innerHTML = await r.text();
+                wireUpCreateForm(); // اربط الايفنتات
+                host.scrollIntoView({behavior:"smooth", block:"center"});
+              } catch (e) {
+                console.error(e);
+                alert("Couldn't load form.");
+              }
+            });
+          }
+
+          function wireUpCreateForm() {
+            const form   = host.querySelector("#createAddressForm");
+            const cancel = host.querySelector("#cancelAdd");
+            if (!form) return;
+
+            cancel?.addEventListener("click", () => host.innerHTML = "");
+
+            form.addEventListener("submit", async (e) => {
+              e.preventDefault();
+              const token = form.querySelector('input[name="__RequestVerificationToken"]')?.value;
+
+              const res = await fetch(form.action, {
+                method: "POST",
+                body: new FormData(form), // التوكن ضمن الـ FormData
+                headers: token ? { "RequestVerificationToken": token } : {},
+                credentials: "same-origin"
+              });
+
+              const ct  = res.headers.get("content-type") || "";
+              const txt = await res.text();
+
+              if (!res.ok) {
+                if (ct.includes("text/html")) {
+                  host.innerHTML = txt;   // عرض أخطاء الفاليديشن
+                  wireUpCreateForm();
+                } else {
+                  alert("Failed: " + res.status + "\n" + txt);
+                }
+                return;
+              }
+
+              // بعد النجاح الكنترولر بيرجع _List
+              if (ct.includes("text/html")) {
+                grid.innerHTML = txt;     // تحديث الجريد
+                host.innerHTML = "";      // إغلاق الفورم
+              } else if (ct.includes("application/json")) {
+                try { const data = JSON.parse(txt); if (data?.success) location.reload(); } catch {}
+              } else {
+                location.reload();
+              }
+            });
+          }
+
+          /* ========================
+             2) Open EDIT form (delegation)
+             ======================== */
+          document.addEventListener("click", async (e) => {
+            const a = e.target.closest(".btn-edit[data-edit-id]");
+            if (!a) return;
+            e.preventDefault();
+
+            const id = a.getAttribute("data-edit-id");
+            try {
+              const r = await fetch(`/AddressesMvc/EditInline?id=${encodeURIComponent(id)}`, { credentials:"same-origin" });
+              if (!r.ok) { alert("Failed to load edit form."); return; }
+              host.innerHTML = await r.text();
+              wireUpEditForm();
+              host.scrollIntoView({behavior:"smooth", block:"center"});
+            } catch (err) {
+              console.error(err);
+              alert("Network error.");
+            }
+          });
+
+          function wireUpEditForm() {
+            const form   = host.querySelector("#editAddressForm");
+            const cancel = host.querySelector("#cancelEdit");
+            if (!form) return;
+
+            cancel?.addEventListener("click", () => host.innerHTML = "");
+
+            form.addEventListener("submit", async (e) => {
+              e.preventDefault();
+
+              const token = form.querySelector('input[name="__RequestVerificationToken"]')?.value;
+              const res = await fetch(form.action, {
+                method: "POST",
+                body: new FormData(form),
+                headers: token ? { "RequestVerificationToken": token } : {},
+                credentials: "same-origin"
+              });
+
+              const ct = res.headers.get("content-type") || "";
+              const txt = await res.text();
+
+              if (!res.ok) {
+                if (ct.includes("text/html")) {
+                  host.innerHTML = txt; // اخطاء فاليديشن
+                  wireUpEditForm();
+                } else {
+                  alert("Save failed: " + res.status);
+                }
+                return;
+              }
+
+              // رجّع _List بعد النجاح
+              if (ct.includes("text/html")) {
+                grid.innerHTML = txt;
+                host.innerHTML = "";
+              } else {
+                location.reload();
+              }
+            });
+          }
+
+          /* =========================================
+             3) Delete / MakeDefault via ajax (delegation)
+             ========================================= */
+          grid?.addEventListener("submit", async (e) => {
+            const form = e.target;
+            if (!(form instanceof HTMLFormElement)) return;
+            if (!form.dataset.ajax) return; // حط data-ajax="true" على فورم الحذف/الديفولت
+
+            e.preventDefault();
+            const token = form.querySelector('input[name="__RequestVerificationToken"]')?.value;
+            const action = form.dataset.action; // "Delete" or "MakeDefault"
+
+            const res = await fetch(`/AddressesMvc/${action}`, {
+              method: "POST",
+              body: new FormData(form),
+              headers: token ? { "RequestVerificationToken": token } : {},
+              credentials: "same-origin"
+            });
+
+            const txt = await res.text();
+            if (!res.ok) {
+              alert("Failed: " + res.status + "\n" + txt);
+              return;
+            }
+
+            // الكنترولر بيرجع _List
+            grid.innerHTML = txt;
+          });
+        })();
+    </script>
+}

@@ -1,0 +1,57 @@
+﻿@model List<AddressDto>
+
+<div class="addresses-grid">
+    @foreach (var a in Model)
+    {
+        <div class="address-card @(a.IsDefault ? "default" : "")" data-aos="fade-up">
+            <div class="card-header">
+                <h4>@(a.Label ?? "Address")</h4>
+                @if (a.IsDefault)
+                {
+                    <span class="default-badge">Default</span>
+                }
+            </div>
+
+            <div class="card-body">
+                <p class="address-text">
+                    @a.Line1<br />
+                    @if (!string.IsNullOrWhiteSpace(a.Line2))
+                    {
+                        @a.Line2
+                        <br />
+     }
+                    @a.City, @a.State @a.PostalCode<br />
+                    @a.Country
+                </p>
+                <div class="contact-info">
+                    <div><i class="bi bi-person"></i> @a.ContactName</div>
+                    <div><i class="bi bi-telephone"></i> @a.Phone</div>
+                </div>
+            </div>
+
+            <div class="card-actions">
+                <a href="#" class="btn-edit" data-edit-id="@a.Id">
+                    <i class="bi bi-pencil"></i> Edit
+                </a>
+
+
+                <form data-ajax="true" data-action="Delete" method="post" class="d-inline">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="id" value="@a.Id" />
+                    <button type="submit" class="btn-remove">
+                        <i class="bi bi-trash"></i> Remove
+                    </button>
+                </form>
+
+                @if (!a.IsDefault)
+                {
+                    <form data-ajax="true" data-action="MakeDefault" method="post" class="d-inline">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="id" value="@a.Id" />
+                        <button type="submit" class="btn-make-default">Make Default</button>
+                    </form>
+                }
+            </div>
+        </div>
+    }
+</div>

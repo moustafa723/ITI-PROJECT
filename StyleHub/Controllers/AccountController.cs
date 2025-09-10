@@ -2,20 +2,37 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using StyleHub.Models;
+using System.Net.Http.Headers;
+using System.Security.Claims;
 
 namespace StyleHub.Controllers
 {
     public class AccountController : Controller
     {
+        private readonly string _apiBase;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
-
         public AccountController(
-            UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager)
+           UserManager<IdentityUser> userManager,
+           IConfiguration cfg,
+           SignInManager<IdentityUser> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _apiBase = (cfg["ApiBaseUrl"] ?? "https://localhost:7158/").TrimEnd('/') + "/"; }
+
+        private string? GetUserId() =>
+            User?.FindFirst(ClaimTypes.NameIdentifier)?.Value
+            ?? User?.FindFirst("sub")?.Value;
+
+        private HttpClient NewClientWithUser()
+        {
+            var c = new HttpClient { BaseAddress = new Uri(_apiBase) };
+            c.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            var uid = GetUserId();
+            if (!string.IsNullOrWhiteSpace(uid))
+                c.DefaultRequestHeaders.Add("X-User-Id", uid); // مطابق للـ API عندك
+            return c;
         }
         [Authorize]
         [HttpPost]
@@ -138,9 +155,15 @@ namespace StyleHub.Controllers
             await _signInManager.SignOutAsync(); // اعمل تسجيل خروج بعد الحذف
             return RedirectToAction("Index", "Home"); // رجّعه للهوم بيج
         }
-        public IActionResult Index()
+        [Authorize]
+        [HttpGet]
+        public async Task<IActionResult> Index()
         {
-            return View();
+            using var http = NewClientWithUser();
+            var addresses = await http.GetFromJsonAsync<List<AddressDto>>("api/addresses/mine");
+
+            // مهم: ابعت دايمًا list مش null
+            return View(addresses ?? new List<AddressDto>());
         }
     }
 }

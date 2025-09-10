@@ -1,9 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using StyleHubApi.models;
 using StyleHubApi.Models;
-using System.Text.Json;
 using System.Linq;
+using System.Text.Json;
 
 namespace StyleHubApi.Data
 {
@@ -19,6 +20,7 @@ namespace StyleHubApi.Data
         public DbSet<CartItem> CartItems { get; set; } = null!;
         public DbSet<Payment> Payments { get; set; } = null!;
         public DbSet<OrderItem> OrderItems { get; set; } = null!;
+        public DbSet<Address> Addresses { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
