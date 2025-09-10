@@ -37,19 +37,40 @@ namespace StyleHub.Controllers
                 TempData["Error"] = "Your cart is empty.";
                 return RedirectToAction("Index", "Cart");
             }
+            var addresses = await _httpClient.GetFromJsonAsync<List<AddressDto>>("api/addresses/mine")
+                                        ?? new List<AddressDto>();
+            var def = addresses.FirstOrDefault(a => a.IsDefault) ?? addresses.FirstOrDefault();
 
-            return View(cart);
+            var vm = new CheckoutVm { Cart = cart, DefaultAddress = def };
+            return View(vm);
         }
 
         [HttpPost, ActionName("Checkout")]
-        public async Task<IActionResult> PlaceOrder(string customerName, string customerEmail)
+        public async Task<IActionResult> PlaceOrder(string customerName, string customerEmail, string address, string? apartment, string city, string state, string zip, string country,
+            bool? saveAddress, bool? billingSame)
         {
             AttachUserHeader();
 
             var cart = await _httpClient.GetFromJsonAsync<Cart>("api/cart/mine");
             if (cart == null || cart.CartItems.Count == 0)
                 return BadRequest("Cart is empty");
+              if (saveAddress == true)
+            {
+                var addrDto = new AddressDto
+                {
+                    Label = "Checkout",
+                    Line1 = address,
+                    Line2 = apartment,
+                    City = city,
+                    State = state,
+                    PostalCode = zip,
+                    Country = country,
+                    // ContactName/Phone لو عندك حقول في الفورم
+                };
 
+                var addrRes = await _httpClient.PostAsJsonAsync("api/addresses/mine", addrDto);
+                // مش هنوقف الأوردر لو فشل حفظ العنوان، لكن ممكن تسجل رسالة لو حابب
+            }
             var order = new Order
             {
                 CustomerName = customerName,
@@ -61,7 +82,7 @@ namespace StyleHub.Controllers
                     Price = ci.Product?.Price ?? 0
                 }).ToList()
             };
-
+          
             var response = await _httpClient.PostAsJsonAsync("api/Orders", order);
             if (!response.IsSuccessStatusCode)
             {

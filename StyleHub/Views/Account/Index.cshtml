@@ -557,6 +557,16 @@
 </section>
 @section Scripts {
     <script>
+
+  document.addEventListener("DOMContentLoaded", function () {
+    if (window.location.hash) {
+        var target = document.querySelector('a[href="' + window.location.hash + '"]');
+        if (target) {
+            new bootstrap.Tab(target).show();
+        }
+    }
+  });
+
         (() => {
           const btnAdd = document.getElementById("btnAddAddress");
           const host   = document.getElementById("addFormContainer");

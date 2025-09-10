@@ -1,4 +1,4 @@
-﻿@model StyleHub.Models.Cart
+﻿@model CheckoutVm
 @{
 
     Layout = "~/Views/Shared/_Layout_Style_hub.cshtml";
@@ -19,39 +19,30 @@
                 <div class="checkout-container" data-aos="fade-up">
                     <form asp-action="Checkout" asp-controller="Checkout" method="post" class="checkout-form">
                         @Html.AntiForgeryToken()
-                        <input type="hidden" name="cartId" value="@Model.Id" />
+                        <input type="hidden" name="cartId" value="@Model.Cart.Id" />
 
+                        <!-- Customer Information -->
                         <!-- Customer Information -->
                         <div class="checkout-section" id="customer-info">
                             @{
                                 var firstName = User.FindFirst("given_name")?.Value ?? "";
-                                var lastName = User.FindFirst("family_name")?.Value ?? ""; 
+                                var lastName = User.FindFirst("family_name")?.Value ?? "";
                                 var currentUser = await UserManager.GetUserAsync(User);
                             }
-                           
-
                             <div class="section-header">
                                 <div class="section-number">1</div>
                                 <h3>Customer Information</h3>
                             </div>
                             <div class="section-content">
-                                <div class="row">
+                                <div class="form-group">
+                                    <label for="customerName">Name</label>
+                                    <input type="text" name="customerName" class="form-control" id="customerName"
+                                           value="@firstName" readonly />
                                 </div>
                                 <div class="form-group">
-                                    <label for="last-name"> Name</label>
-                            <input type="text" name="customerName" class="form-control" id="customerName" placeholder="" value="@firstName" required />
-                                </div>
-                                <div class="form-group">
-                                    <label for="email">Email Address</label>
-                            <input type="email" name="customerEmail" class="form-control" id="customerEmail" placeholder="" value="@currentUser.Email" required />
-                                </div>
-                                <div class="form-group">
-                                    <label for="phone">Phone Number</label>
-                            <input type="tel" class="form-control" name="phone" id="phone" placeholder="Your Phone Number" value="@currentUser.PhoneNumber" required="">
-                                </div>
-                                <div class="form-group">
-                                    <label for="address">Shipping Address</label>
-                                    <input type="text" class="form-control" name="address" id="address" placeholder="Your Address" required="">
+                                    <label for="customerEmail">Email Address</label>
+                                    <input type="email" name="customerEmail" class="form-control" id="customerEmail"
+                                           value="@currentUser.Email" readonly />
                                 </div>
                             </div>
                         </div>
@@ -65,49 +56,45 @@
                             <div class="section-content">
                                 <div class="form-group">
                                     <label for="address">Street Address</label>
-                                    <input type="text" class="form-control" name="address" id="address" placeholder="Street Address" required="">
+                                    <input type="text" class="form-control" name="address" id="address"
+                                           value="@Model.DefaultAddress?.Line1" readonly />
                                 </div>
                                 <div class="form-group">
                                     <label for="apartment">Apartment, Suite, etc. (optional)</label>
-                                    <input type="text" class="form-control" name="apartment" id="apartment" placeholder="Apartment, Suite, Unit, etc.">
+                                    <input type="text" class="form-control" name="apartment" id="apartment"
+                                           value="@Model.DefaultAddress?.Line2" readonly />
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4 form-group">
                                         <label for="city">City</label>
-                                        <input type="text" name="city" class="form-control" id="city" placeholder="City" required="">
+                                        <input type="text" name="city" class="form-control" id="city"
+                                               value="@Model.DefaultAddress?.City" readonly />
                                     </div>
                                     <div class="col-md-4 form-group">
                                         <label for="state">State</label>
-                                        <input type="text" name="state" class="form-control" id="state" placeholder="State" required="">
+                                        <input type="text" name="state" class="form-control" id="state"
+                                               value="@Model.DefaultAddress?.State" readonly />
                                     </div>
                                     <div class="col-md-4 form-group">
                                         <label for="zip">ZIP Code</label>
-                                        <input type="text" name="zip" class="form-control" id="zip" placeholder="ZIP Code" required="">
+                                        <input type="text" name="zip" class="form-control" id="zip"
+                                               value="@Model.DefaultAddress?.PostalCode" readonly />
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="country">Country</label>
-                                    <select class="form-select" id="country" name="country" required="">
-                                        <option value="">Select Country</option>
-                                        <option value="US">United States</option>
-                                        <option value="CA">Canada</option>
-                                        <option value="UK">United Kingdom</option>
-                                        <option value="AU">Australia</option>
-                                        <option value="DE">Germany</option>
-                                        <option value="FR">France</option>
-                                    </select>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="save-address" name="save-address">
-                                    <label class="form-check-label" for="save-address">
-                                        Save this address for future orders
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="billing-same" name="billing-same" checked="">
-                                    <label class="form-check-label" for="billing-same">
-                                        Billing address same as shipping
-                                    </label>
+                                    <div class="col-md-6 form-group">
+                                        <label for="Country">Country</label>
+                                        <input type="text" name="Country" class="form-control"
+                                               value="@Model.DefaultAddress?.Country" readonly />
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <label for="Phone">Phone</label>
+                                        <input type="text" name="Phone" class="form-control"
+                                               value="@Model.DefaultAddress?.Phone" readonly />
+                                    </div>
+                                    <a asp-controller="Account" asp-action="Index" asp-fragment="addresses"
+                                       class="btn btn-outline-primary">
+                                        📍 تعديل عناوين الشحن
+                                    </a>
+
                                 </div>
                             </div>
                         </div>
@@ -115,7 +102,7 @@
                         <!-- Payment Method -->
                         <div class="checkout-section" id="payment-method">
                             <div class="section-header">
-                                <div class="section-number">2</div>
+                                <div class="section-number">3</div>
                                 <h3>Payment Method</h3>
                             </div>
                             <div class="section-content">
@@ -202,7 +189,7 @@
                                 <div class="place-order-container">
                                     <button type="submit" class="btn btn-primary place-order-btn">
                                         <span class="btn-text">Place Order</span>
-                                        <span class="btn-price">@(Model.CartItems.Sum(i => i.Quantity * i.Product.Price) + 9.99m)</span>
+                                        <span class="btn-price">@(Model.Cart.CartItems.Sum(i => i.Quantity * i.Product.Price) + 9.99m)</span>
                                     </button>
                                 </div>
                             </div>
@@ -217,7 +204,7 @@
                     <div class="order-summary-header">
                         <h3>Order Summary</h3>
                         @{
-                            var distinctItems = Model?.CartItems?.Count ?? 0;
+                            var distinctItems = Model?.Cart.CartItems?.Count ?? 0;
                         }
                         <span class="item-count">
                             @distinctItems @(distinctItems == 1 ? "Product" : "Items")
@@ -228,7 +215,7 @@
 
                         <div class="order-summary-content">
                             <div class="order-items">
-                                @foreach (var item in Model.CartItems)
+                                @foreach (var item in Model.Cart.CartItems)
                                 {
                                     <div class="order-item" id="order-item-@item.Id">
                                         <div class="order-item-image">
@@ -292,7 +279,7 @@
                         <div class="order-totals">
                             <div class="order-subtotal d-flex justify-content-between">
                                 <span>Subtotal</span>
-                                <span>$@Model.CartItems.Sum(i => i.Quantity * i.Product.Price)</span>
+                                <span>$@Model.Cart.CartItems.Sum(i => i.Quantity * i.Product.Price)</span>
                             </div>
                             <div class="order-shipping d-flex justify-content-between">
                                 <span>Shipping</span>
@@ -304,7 +291,7 @@
                             </div>
                             <div class="order-total d-flex justify-content-between">
                                 <span>Total</span>
-                                <span>$@(Model.CartItems.Sum(i => i.Quantity * i.Product.Price) + 9.99m)</span>
+                                <span>$@(Model.Cart.CartItems.Sum(i => i.Quantity * i.Product.Price) + 9.99m)</span>
                             </div>
                         </div>
 
