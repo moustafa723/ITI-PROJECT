@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿
+using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 namespace StyleHubApi.Models
 {
@@ -11,7 +13,8 @@ namespace StyleHubApi.Models
 
         [Precision(18, 2)]
         public decimal Price { get; set; }
-
-        public virtual Order Order { get; set; }
+        public Product Product { get; set; }
+        [JsonIgnore]
+        public  Order Order { get; set; }
     }
 }

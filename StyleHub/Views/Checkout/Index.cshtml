@@ -17,7 +17,7 @@
                 <!-- Checkout Form -->
               
                 <div class="checkout-container" data-aos="fade-up">
-                    <form asp-action="Checkout" asp-controller="Checkout" method="post" class="checkout-form">
+                    <form asp-action="PlaceOrder" asp-controller="Checkout" method="post" class="checkout-form">
                         @Html.AntiForgeryToken()
                         <input type="hidden" name="cartId" value="@Model.Cart.Id" />
 
@@ -92,7 +92,7 @@
                                     </div>
                                     <a asp-controller="Account" asp-action="Index" asp-fragment="addresses"
                                        class="btn btn-outline-primary">
-                                        📍 تعديل عناوين الشحن
+                                        Edit Shipping Address
                                     </a>
 
                                 </div>
@@ -100,7 +100,7 @@
                         </div>
 
                         <!-- Payment Method -->
-                        <div class="checkout-section" id="payment-method">
+                        @* <div class="checkout-section" id="payment-method">
                             <div class="section-header">
                                 <div class="section-number">3</div>
                                 <h3>Payment Method</h3>
@@ -170,7 +170,7 @@
                                     <p class="payment-info">You will be prompted to authorize payment with Apple Pay.</p>
                                 </div>
                             </div>
-                        </div>
+                        </div> *@
 
                         <!-- Order Review -->
                         <div class="checkout-section" id="order-review">
@@ -186,6 +186,7 @@
                                     </label>
                                 </div>
                                 <div class="success-message d-none">Your order has been placed successfully! Thank you for your purchase.</div>
+                               
                                 <div class="place-order-container">
                                     <button type="submit" class="btn btn-primary place-order-btn">
                                         <span class="btn-text">Place Order</span>

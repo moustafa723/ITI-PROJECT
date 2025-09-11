@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using StyleHub.Models;
 using System.Net.Http.Json;
@@ -6,8 +7,7 @@ using System.Security.Claims;
 
 namespace StyleHub.Controllers
 {
-    [Authorize]  
-    [Route("[controller]/[action]")]
+    [Authorize]
     public class CheckoutController : Controller
     {
         private readonly HttpClient _httpClient;
@@ -15,89 +15,65 @@ namespace StyleHub.Controllers
         public CheckoutController(IHttpClientFactory httpClientFactory)
         {
             _httpClient = httpClientFactory.CreateClient();
-            _httpClient.BaseAddress = new Uri("https://localhost:7158/"); // Your API URL
+            _httpClient.BaseAddress = new Uri("https://localhost:7158/"); 
         }
 
         private void AttachUserHeader()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             _httpClient.DefaultRequestHeaders.Remove("X-User-Id");
-            if (!string.IsNullOrWhiteSpace(userId))
+            if (!string.IsNullOrEmpty(userId))
                 _httpClient.DefaultRequestHeaders.Add("X-User-Id", userId);
         }
 
+        //  GET Checkout page
         [HttpGet]
         public async Task<IActionResult> Index()
         {
             AttachUserHeader();
 
             var cart = await _httpClient.GetFromJsonAsync<Cart>("api/cart/mine");
-            if (cart == null || cart.CartItems == null || !cart.CartItems.Any())
+            if (cart == null || !cart.CartItems.Any())
             {
                 TempData["Error"] = "Your cart is empty.";
                 return RedirectToAction("Index", "Cart");
             }
+
             var addresses = await _httpClient.GetFromJsonAsync<List<AddressDto>>("api/addresses/mine")
-                                        ?? new List<AddressDto>();
+                           ?? new List<AddressDto>();
             var def = addresses.FirstOrDefault(a => a.IsDefault) ?? addresses.FirstOrDefault();
 
             var vm = new CheckoutVm { Cart = cart, DefaultAddress = def };
             return View(vm);
         }
-
-        [HttpPost, ActionName("Checkout")]
-        public async Task<IActionResult> PlaceOrder(string customerName, string customerEmail, string address, string? apartment, string city, string state, string zip, string country,
-            bool? saveAddress, bool? billingSame)
+        [HttpPost]
+        public async Task<IActionResult> PlaceOrder(string cartId)
         {
-            AttachUserHeader();
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            var cart = await _httpClient.GetFromJsonAsync<Cart>("api/cart/mine");
-            if (cart == null || cart.CartItems.Count == 0)
-                return BadRequest("Cart is empty");
-              if (saveAddress == true)
-            {
-                var addrDto = new AddressDto
-                {
-                    Label = "Checkout",
-                    Line1 = address,
-                    Line2 = apartment,
-                    City = city,
-                    State = state,
-                    PostalCode = zip,
-                    Country = country,
-                    // ContactName/Phone لو عندك حقول في الفورم
-                };
+            if (string.IsNullOrEmpty(userId))
+                return Unauthorized();
 
-                var addrRes = await _httpClient.PostAsJsonAsync("api/addresses/mine", addrDto);
-                // مش هنوقف الأوردر لو فشل حفظ العنوان، لكن ممكن تسجل رسالة لو حابب
-            }
-            var order = new Order
-            {
-                CustomerName = customerName,
-                Email = customerEmail,
-                OrderItems = cart.CartItems.Select(ci => new OrderItem
-                {
-                    ProductId = ci.ProductId,
-                    Quantity = ci.Quantity,
-                    Price = ci.Product?.Price ?? 0
-                }).ToList()
-            };
-          
-            var response = await _httpClient.PostAsJsonAsync("api/Orders", order);
+            // 🔴 Call API, do NOT use _context
+            var response = await _httpClient.PostAsJsonAsync($"api/orders?userId={userId}", new { CartId = cartId });
+
             if (!response.IsSuccessStatusCode)
             {
-                TempData["Error"] = "❌ Failed to place order.";
-                return RedirectToAction("Checkout");
+                TempData["Error"] = "Failed to place order.";
+                return RedirectToAction("Index");
             }
 
-            await _httpClient.PostAsync("api/cart/mine/clear", null);
+            var order = await response.Content.ReadFromJsonAsync<Order>();
 
-            return RedirectToAction("Success");
+            return RedirectToAction("Confirmation", new { id = order?.Id });
         }
 
-        public IActionResult Success()
+        public IActionResult Confirmation(int id)
         {
+            ViewBag.OrderId = id;
             return View();
         }
+
+
     }
 }

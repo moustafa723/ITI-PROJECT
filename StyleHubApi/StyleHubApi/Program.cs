@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using StyleHubApi.Data;
-using System.Text;
 using System.Text.Json.Serialization;
-//
+
 namespace StyleHubApi
 {
     public class Program
@@ -13,23 +11,29 @@ namespace StyleHubApi
             var builder = WebApplication.CreateBuilder(args);
 
             builder.Services.AddControllers()
-      .AddJsonOptions(o => o.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+                .AddJsonOptions(x =>
+                    x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
-
-
-
-            // Configure SQLite
             builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-            // Add services to the container.
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+            builder.Services.AddAuthentication("Identity.Application")
+    .AddCookie("Identity.Application");
+            builder.Services.AddAuthorization();
+
+
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            builder.Services.AddControllers()
+    .AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles);
+
+
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
+
+
+
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
@@ -37,7 +41,10 @@ namespace StyleHubApi
             }
 
             app.UseHttpsRedirection();
+            app.UseAuthentication();
             app.UseAuthorization();
+
+
             app.MapControllers();
 
             app.Run();

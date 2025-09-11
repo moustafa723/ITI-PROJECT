@@ -7,8 +7,9 @@
         public decimal unitPrice { get; set; }
         public int ProductId { get; set; }
         public decimal Price { get; set; }
+        
         public Order Orders { get; set; }
-        public ICollection<Product> products { get; set; }
+        public Product Product { get; set; }
 
     }
 }

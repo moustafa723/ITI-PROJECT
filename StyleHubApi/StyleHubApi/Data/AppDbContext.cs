@@ -31,10 +31,9 @@ namespace StyleHubApi.Data
             {
                 e.HasKey(c => c.Id);
 
-                // سلة واحدة لكل يوزر (لما UserId يكون مش null)
                 e.HasIndex(c => c.UserId)
                  .IsUnique()
-                 .HasFilter("UserId IS NOT NULL"); // SQLite: الفلتر بدون أقواس
+                 .HasFilter("UserId IS NOT NULL"); 
             });
 
             // -------- CartItem --------
@@ -42,7 +41,6 @@ namespace StyleHubApi.Data
             {
                 e.HasKey(ci => ci.Id);
 
-                // منع تكرار نفس المنتج داخل نفس السلة
                 e.HasIndex(ci => new { ci.CartId, ci.ProductId }).IsUnique();
 
                 e.HasOne(ci => ci.Cart)
@@ -55,12 +53,10 @@ namespace StyleHubApi.Data
                  .HasForeignKey(ci => ci.ProductId)
                  .OnDelete(DeleteBehavior.Restrict);
 
-                // (اختياري) SQLite لا يدعم precision قوي للـdecimal، التحويل لـdouble بيخلّي التخزين مستقر
                 e.Property(ci => ci.Price).HasConversion<double>();
             });
 
             // -------- Product --------
-            // خزن List<string> Images كـ JSON في عمود TEXT
             var imagesConverter = new ValueConverter<List<string>, string>(
      v => JsonSerializer.Serialize(v, new JsonSerializerOptions()),
      v => JsonSerializer.Deserialize<List<string>>(v, new JsonSerializerOptions()) ?? new List<string>()
@@ -79,7 +75,7 @@ namespace StyleHubApi.Data
                 e.HasKey(p => p.Id);
 
                 e.HasOne(p => p.Category)
-                 .WithMany(c => c.Products) // ✅ دي اللي محتاجينها فقط
+                 .WithMany(c => c.Products) 
                  .HasForeignKey(p => p.CategoryId)
                  .OnDelete(DeleteBehavior.Restrict);
 
@@ -91,10 +87,11 @@ namespace StyleHubApi.Data
             });
 
 
-            // -------- علاقات إضافية (اختياري حسب موديلاتك) --------
-            // مثال لو Order/OrderItem/Payment محتاجين ضبط، بس ممكن تسيبهم لو شغالين.
-            // modelBuilder.Entity<OrderItem>(...);
-            // modelBuilder.Entity<Payment>(...);
+            modelBuilder.Entity<Order>()
+        .HasMany(o => o.OrderItems)
+        .WithOne(i => i.Order)
+        .HasForeignKey(i => i.OrderId);
+
         }
     }
 }

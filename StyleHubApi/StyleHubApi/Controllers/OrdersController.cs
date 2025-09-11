@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StyleHubApi.Data;
@@ -5,8 +6,8 @@ using StyleHubApi.Models;
 
 namespace StyleHubApi.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class OrdersController : ControllerBase
     {
         private readonly AppDbContext _context;
@@ -16,84 +17,66 @@ namespace StyleHubApi.Controllers
             _context = context;
         }
 
-        // GET: api/orders
+        //  Get current user's orders
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Order>>> GetOrders()
+        public async Task<ActionResult<IEnumerable<Order>>> GetOrders([FromQuery] string userId)
         {
-            return await _context.Orders
+            if (string.IsNullOrEmpty(userId))
+                return BadRequest(new { message = "Missing userId" });
+
+            var orders = await _context.Orders
                 .Include(o => o.OrderItems)
+                .Where(o => o.UserId == userId)
                 .ToListAsync();
+
+            return Ok(orders);
         }
 
-        // GET: api/orders/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Order>> GetOrder(int id)
-        {
-            var order = await _context.Orders
-                .Include(o => o.OrderItems)
-                .FirstOrDefaultAsync(o => o.Id == id);
-
-            if (order == null)
-                return NotFound();
-
-            return order;
-        }
-
-        // POST: api/orders
+        //  Place a new order
         [HttpPost]
-        public async Task<ActionResult<Order>> CreateOrder(Order order)
+        public async Task<IActionResult> PlaceOrder(Order order, [FromQuery] string userId)
         {
-            order.Date = DateTime.UtcNow;
-            order.Status = "Pending";
+            if (string.IsNullOrEmpty(userId))
+                return BadRequest(new { message = "Missing userId" });
 
-            // you can calculate total if needed:
-            order.TotalAmount = order.OrderItems?.Sum(i => i.Quantity * i.Price) ?? 0;
-
+            order.UserId = userId;
             _context.Orders.Add(order);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetOrder), new { id = order.Id }, order);
+            return Ok(order);
         }
 
-
-        // PUT: api/orders/5
+        //  Update order status
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateOrder(int id, Order order)
+        public async Task<IActionResult> UpdateOrder(int id, [FromBody] Order updated, [FromQuery] string userId)
         {
-            if (id != order.Id)
-                return BadRequest();
+            if (string.IsNullOrEmpty(userId))
+                return BadRequest(new { message = "Missing userId" });
 
-            _context.Entry(order).State = EntityState.Modified;
+            var order = await _context.Orders.FirstOrDefaultAsync(o => o.Id == id && o.UserId == userId);
+            if (order == null) return NotFound();
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!_context.Orders.Any(e => e.Id == id))
-                    return NotFound();
-                else
-                    throw;
-            }
+            order.Status = updated.Status;
+            await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        // DELETE: api/orders/5
+        //  Delete an order
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteOrder(int id)
+        public async Task<IActionResult> DeleteOrder(int id, [FromQuery] string userId)
         {
+            if (string.IsNullOrEmpty(userId))
+                return BadRequest(new { message = "Missing userId" });
+
             var order = await _context.Orders
                 .Include(o => o.OrderItems)
-                .FirstOrDefaultAsync(o => o.Id == id);
+                .FirstOrDefaultAsync(o => o.Id == id && o.UserId == userId);
 
-            if (order == null)
-                return NotFound();
+            if (order == null) return NotFound();
 
             _context.OrderItems.RemoveRange(order.OrderItems);
             _context.Orders.Remove(order);
-
             await _context.SaveChangesAsync();
 
             return NoContent();

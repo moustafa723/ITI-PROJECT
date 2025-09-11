@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StyleHub.Data;
 
@@ -10,9 +11,11 @@ using StyleHub.Data;
 namespace StyleHub.Migrations
 {
     [DbContext(typeof(StyleHubContext))]
-    partial class StyleHubContextModelSnapshot : ModelSnapshot
+    [Migration("20250910201429_vc")]
+    partial class vc
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.11");

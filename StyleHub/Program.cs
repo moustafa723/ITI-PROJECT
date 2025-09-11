@@ -16,8 +16,12 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 .AddDefaultTokenProviders()
 .AddDefaultUI();
 
-builder.Services.AddHttpClient();
-builder.Services.AddControllersWithViews();
+
+builder.Services.AddHttpClient("StyleHubApi", client =>
+{
+    client.BaseAddress = new Uri("https://localhost:7158/"); // API base URL
+    client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+}); builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
