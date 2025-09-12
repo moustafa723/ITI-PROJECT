@@ -1,12 +1,10 @@
-﻿namespace StyleHub.Models
+﻿namespace StyleHubApi.models.DTO
 {
-    public class OrderItem
+    public class OrderItemDto
     {
         public int ProductId { get; set; }
         public int Quantity { get; set; }
         public decimal Price { get; set; }
-        public Product Product { get; set; }
-    
 
     }
 }

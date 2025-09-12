@@ -1,6 +1,7 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StyleHubApi.Data;
+using StyleHubApi.models.DTO;
 using StyleHubApi.Models;
 
 namespace StyleHubApi.Controllers
@@ -10,93 +11,54 @@ namespace StyleHubApi.Controllers
     public class OrdersController : ControllerBase
     {
         private readonly AppDbContext _context;
+        public OrdersController(AppDbContext context) => _context = context;
 
-        public OrdersController(AppDbContext context)
-        {
-            _context = context;
-        }
+        private string? GetUserId() =>
+            Request.Headers.TryGetValue("X-User-Id", out var h) ? h.ToString() : null;
 
         // GET: api/orders
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Order>>> GetOrders()
-        {
-            return await _context.Orders
-                .Include(o => o.OrderItems)
-                .ToListAsync();
-        }
-
-        // GET: api/orders/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Order>> GetOrder(int id)
-        {
-            var order = await _context.Orders
-                .Include(o => o.OrderItems)
-                .FirstOrDefaultAsync(o => o.Id == id);
-
-            if (order == null)
-                return NotFound();
-
-            return order;
-        }
-
-        // POST: api/orders
         [HttpPost]
-        public async Task<ActionResult<Order>> CreateOrder(Order order)
+        public async Task<IActionResult> CreateOrder([FromBody] OrderDto dto)
         {
-            order.Date = DateTime.UtcNow;
-            order.Status = "Pending";
+            var userId = GetUserId();
+            if (userId is null) return BadRequest("Missing user ID");
 
-            // you can calculate total if needed:
-            order.TotalAmount = order.OrderItems?.Sum(i => i.Quantity * i.Price) ?? 0;
+            var order = new Order
+            {
+                UserId = userId,
+                CustomerName = dto.CustomerName,
+                Email = dto.Email,
+                CreatedAt = DateTime.UtcNow,
+                AddressId = dto.AddressId,
+                OrderItems = dto.OrderItems.Select(i => new OrderItem
+                {
+                    ProductId = i.ProductId,
+                    Quantity = i.Quantity,
+                    Price = i.Price
+                }).ToList()
+            };
 
             _context.Orders.Add(order);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetOrder), new { id = order.Id }, order);
+            return Ok(order);
         }
 
 
-        // PUT: api/orders/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateOrder(int id, Order order)
+        // GET: api/orders/mine
+        [HttpGet("mine")]
+        public async Task<ActionResult<List<Order>>> GetMyOrders()
         {
-            if (id != order.Id)
-                return BadRequest();
+            var userId = GetUserId();
+            if (userId is null) return BadRequest("Missing user ID");
 
-            _context.Entry(order).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!_context.Orders.Any(e => e.Id == id))
-                    return NotFound();
-                else
-                    throw;
-            }
-
-            return NoContent();
-        }
-
-        // DELETE: api/orders/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteOrder(int id)
-        {
-            var order = await _context.Orders
+            return await _context.Orders
+                .Where(o => o.UserId == userId)
+                .Include(o => o.Address)
                 .Include(o => o.OrderItems)
-                .FirstOrDefaultAsync(o => o.Id == id);
-
-            if (order == null)
-                return NotFound();
-
-            _context.OrderItems.RemoveRange(order.OrderItems);
-            _context.Orders.Remove(order);
-
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+                    .ThenInclude(i => i.Product)
+                .OrderByDescending(o => o.CreatedAt)
+                .ToListAsync();
         }
     }
 }

@@ -160,8 +160,13 @@ namespace StyleHub.Controllers
         public async Task<IActionResult> Index()
         {
             using var http = NewClientWithUser();
-            var addresses = await http.GetFromJsonAsync<List<AddressDto>>("api/addresses/mine");
+          
 
+            var addresses = await http.GetFromJsonAsync<List<AddressDto>>("api/addresses/mine") ?? new();
+            var orders = await http.GetFromJsonAsync<List<Order>>("api/orders/mine") ?? new();
+
+            // ممكن تعمل ViewModel، لكن مؤقتًا نستخدم ViewData
+            ViewData["Orders"] = orders;
             // مهم: ابعت دايمًا list مش null
             return View(addresses ?? new List<AddressDto>());
         }

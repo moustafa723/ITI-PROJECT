@@ -44,60 +44,60 @@ namespace StyleHub.Controllers
             var vm = new CheckoutVm { Cart = cart, DefaultAddress = def };
             return View(vm);
         }
-
-        [HttpPost, ActionName("Checkout")]
-        public async Task<IActionResult> PlaceOrder(string customerName, string customerEmail, string address, string? apartment, string city, string state, string zip, string country,
-            bool? saveAddress, bool? billingSame)
+        [HttpPost]
+        public async Task<IActionResult> PlaceOrder()
         {
             AttachUserHeader();
 
+            // 1. هات السلة
             var cart = await _httpClient.GetFromJsonAsync<Cart>("api/cart/mine");
             if (cart == null || cart.CartItems.Count == 0)
                 return BadRequest("Cart is empty");
-              if (saveAddress == true)
-            {
-                var addrDto = new AddressDto
-                {
-                    Label = "Checkout",
-                    Line1 = address,
-                    Line2 = apartment,
-                    City = city,
-                    State = state,
-                    PostalCode = zip,
-                    Country = country,
-                    // ContactName/Phone لو عندك حقول في الفورم
-                };
 
-                var addrRes = await _httpClient.PostAsJsonAsync("api/addresses/mine", addrDto);
-                // مش هنوقف الأوردر لو فشل حفظ العنوان، لكن ممكن تسجل رسالة لو حابب
+            // 2. هات العناوين واختر الديفولت
+            var addresses = await _httpClient.GetFromJsonAsync<List<AddressDto>>("api/addresses/mine");
+            var defaultAddress = addresses?.FirstOrDefault(a => a.IsDefault) ?? addresses?.FirstOrDefault();
+
+            if (defaultAddress == null)
+            {
+                TempData["Error"] = "❌ No shipping address found. Please add one first.";
+                return RedirectToAction("Index", "Account");
             }
+
+            // 3. أنشئ الطلب واربط كل عنصر بالعنوان
+            var userName = User.FindFirst("given_name")?.Value ?? "Customer";
+            var userEmail = User.FindFirst(ClaimTypes.Email)?.Value ?? "unknown@example.com";
+
             var order = new Order
             {
-                CustomerName = customerName,
-                Email = customerEmail,
+                CustomerName = userName,
+                Email = userEmail,            
+                AddressId = defaultAddress.Id, // ✅ ربط مباشر
+
                 OrderItems = cart.CartItems.Select(ci => new OrderItem
                 {
                     ProductId = ci.ProductId,
-                    Quantity = ci.Quantity,
+                    Quantity = (int)ci.Quantity,
                     Price = ci.Product?.Price ?? 0
                 }).ToList()
             };
-          
-            var response = await _httpClient.PostAsJsonAsync("api/Orders", order);
+
+            // 4. إرسال الطلب
+            var response = await _httpClient.PostAsJsonAsync("api/orders", order);
             if (!response.IsSuccessStatusCode)
             {
                 TempData["Error"] = "❌ Failed to place order.";
                 return RedirectToAction("Checkout");
             }
 
-            await _httpClient.PostAsync("api/cart/mine/clear", null);
-
-            return RedirectToAction("Success");
+            // 5. مسح السلة
+            foreach (var item in cart.CartItems)
+            {
+                await _httpClient.DeleteAsync($"api/cart/mine/items/{item.ProductId}");
+            }
+            return RedirectToAction("Index", "Account", new { fragment = "orders" });
         }
 
-        public IActionResult Success()
-        {
-            return View();
-        }
+      
     }
 }

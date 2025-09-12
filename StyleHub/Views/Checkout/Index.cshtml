@@ -17,11 +17,8 @@
                 <!-- Checkout Form -->
               
                 <div class="checkout-container" data-aos="fade-up">
-                    <form asp-action="Checkout" asp-controller="Checkout" method="post" class="checkout-form">
-                        @Html.AntiForgeryToken()
-                        <input type="hidden" name="cartId" value="@Model.Cart.Id" />
+                    <form asp-action="PlaceOrder" asp-controller="Checkout" method="post">
 
-                        <!-- Customer Information -->
                         <!-- Customer Information -->
                         <div class="checkout-section" id="customer-info">
                             @{
@@ -99,78 +96,6 @@
                             </div>
                         </div>
 
-                        <!-- Payment Method -->
-                        <div class="checkout-section" id="payment-method">
-                            <div class="section-header">
-                                <div class="section-number">3</div>
-                                <h3>Payment Method</h3>
-                            </div>
-                            <div class="section-content">
-                                <div class="payment-options">
-                                    <div class="payment-option active">
-                                        <input type="radio" name="payment-method" id="credit-card" checked="">
-                                        <label for="credit-card">
-                                            <span class="payment-icon"><i class="bi bi-credit-card-2-front"></i></span>
-                                            <span class="payment-label">Credit / Debit Card</span>
-                                        </label>
-                                    </div>
-                                    <div class="payment-option">
-                                        <input type="radio" name="payment-method" id="paypal">
-                                        <label for="paypal">
-                                            <span class="payment-icon"><i class="bi bi-paypal"></i></span>
-                                            <span class="payment-label">PayPal</span>
-                                        </label>
-                                    </div>
-                                    <div class="payment-option">
-                                        <input type="radio" name="payment-method" id="apple-pay">
-                                        <label for="apple-pay">
-                                            <span class="payment-icon"><i class="bi bi-apple"></i></span>
-                                            <span class="payment-label">Apple Pay</span>
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <div class="payment-details" id="credit-card-details">
-                                    <div class="form-group">
-                                        <label for="card-number">Card Number</label>
-                                        <div class="card-number-wrapper">
-                                            <input type="text" class="form-control" name="card-number" id="card-number" placeholder="1234 5678 9012 3456" required="">
-                                            <div class="card-icons">
-                                                <i class="bi bi-credit-card-2-front"></i>
-                                                <i class="bi bi-credit-card"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6 form-group">
-                                            <label for="expiry">Expiration Date</label>
-                                            <input type="text" class="form-control" name="expiry" id="expiry" placeholder="MM/YY" required="">
-                                        </div>
-                                        <div class="col-md-6 form-group">
-                                            <label for="cvv">Security Code (CVV)</label>
-                                            <div class="cvv-wrapper">
-                                                <input type="text" class="form-control" name="cvv" id="cvv" placeholder="123" required="">
-                                                <span class="cvv-hint" data-bs-toggle="tooltip" data-bs-placement="top" title="3-digit code on the back of your card">
-                                                    <i class="bi bi-question-circle"></i>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="card-name">Name on Card</label>
-                                        <input type="text" class="form-control" name="card-name" id="card-name" placeholder="John Doe" required="">
-                                    </div>
-                                </div>
-
-                                <div class="payment-details d-none" id="paypal-details">
-                                    <p class="payment-info">You will be redirected to PayPal to complete your purchase securely.</p>
-                                </div>
-
-                                <div class="payment-details d-none" id="apple-pay-details">
-                                    <p class="payment-info">You will be prompted to authorize payment with Apple Pay.</p>
-                                </div>
-                            </div>
-                        </div>
 
                         <!-- Order Review -->
                         <div class="checkout-section" id="order-review">
@@ -186,6 +111,8 @@
                                     </label>
                                 </div>
                                 <div class="success-message d-none">Your order has been placed successfully! Thank you for your purchase.</div>
+
+
                                 <div class="place-order-container">
                                     <button type="submit" class="btn btn-primary place-order-btn">
                                         <span class="btn-text">Place Order</span>
@@ -194,7 +121,11 @@
                                 </div>
                             </div>
                         </div>
+
+
                     </form>
+
+
                 </div>
             </div>
 

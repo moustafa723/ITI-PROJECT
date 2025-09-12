@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StyleHubApi.Data;
 
@@ -10,9 +11,11 @@ using StyleHubApi.Data;
 namespace StyleHubApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250912070504_VB54")]
+    partial class VB54
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.8");
@@ -92,9 +95,6 @@ namespace StyleHubApi.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("AddressId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("TEXT");
 
@@ -115,8 +115,6 @@ namespace StyleHubApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddressId");
-
                     b.ToTable("Orders");
                 });
 
@@ -124,6 +122,9 @@ namespace StyleHubApi.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("AddressId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("OrderId")
@@ -139,6 +140,8 @@ namespace StyleHubApi.Migrations
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AddressId");
 
                     b.HasIndex("OrderId");
 
@@ -294,17 +297,12 @@ namespace StyleHubApi.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("StyleHubApi.Models.Order", b =>
+            modelBuilder.Entity("StyleHubApi.Models.OrderItem", b =>
                 {
                     b.HasOne("StyleHubApi.models.Address", "Address")
                         .WithMany()
                         .HasForeignKey("AddressId");
 
-                    b.Navigation("Address");
-                });
-
-            modelBuilder.Entity("StyleHubApi.Models.OrderItem", b =>
-                {
                     b.HasOne("StyleHubApi.Models.Order", "Order")
                         .WithMany("OrderItems")
                         .HasForeignKey("OrderId")
@@ -316,6 +314,8 @@ namespace StyleHubApi.Migrations
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Address");
 
                     b.Navigation("Order");
 
