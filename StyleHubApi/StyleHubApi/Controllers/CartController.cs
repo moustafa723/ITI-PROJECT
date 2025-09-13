@@ -148,6 +148,20 @@ namespace StyleHubApi.Controllers
             await _context.SaveChangesAsync();
             return NoContent();
         }
+        // GET: api/cart/mine/count
+        [HttpGet("mine/count")]
+        public async Task<IActionResult> GetMyCartCount()
+        {
+            var uid = GetUserId();
+            if (string.IsNullOrWhiteSpace(uid))
+                return BadRequest("Missing userId");
+
+            var count = await _context.CartItems
+                .Where(i => i.Cart.UserId == uid)
+                .SumAsync(i => i.Quantity);
+
+            return Ok(count);
+        }
 
         public record UpdateQuantityDto(int Quantity);
 

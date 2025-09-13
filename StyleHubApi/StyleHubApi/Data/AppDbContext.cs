@@ -18,9 +18,9 @@ namespace StyleHubApi.Data
         public DbSet<Category> Categories { get; set; } = null!;
         public DbSet<Cart> Carts { get; set; } = null!;
         public DbSet<CartItem> CartItems { get; set; } = null!;
-        public DbSet<Payment> Payments { get; set; } = null!;
         public DbSet<OrderItem> OrderItems { get; set; } = null!;
         public DbSet<Address> Addresses { get; set; }
+        public DbSet<OrderStatusHistory> OrderStatusHistories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -19,7 +19,7 @@ namespace StyleHub.Controllers
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _apiBase = (cfg["ApiBaseUrl"] ?? "https://localhost:7158/").TrimEnd('/') + "/"; }
+            _apiBase = (cfg["ApiBaseUrl"] ?? "https://stylehubteamde.runasp.net//").TrimEnd('/') + "/"; }
 
         private string? GetUserId() =>
             User?.FindFirst(ClaimTypes.NameIdentifier)?.Value

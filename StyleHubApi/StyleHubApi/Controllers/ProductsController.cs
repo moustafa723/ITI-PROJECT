@@ -69,7 +69,8 @@ namespace StyleHubApi.Controllers
                         await image.CopyToAsync(stream);
                     }
 
-                    imagePaths.Add($"/uploads/{fileName}");
+                    var baseUrl = $"{Request.Scheme}://{Request.Host}";
+                    imagePaths.Add($"{baseUrl}/uploads/{fileName}");
                 }
             }
 
@@ -134,7 +135,8 @@ namespace StyleHubApi.Controllers
                         await image.CopyToAsync(stream);
                     }
 
-                    imagePaths.Add($"/uploads/{fileName}");
+                    var baseUrl = $"{Request.Scheme}://{Request.Host}";
+                    imagePaths.Add($"{baseUrl}/uploads/{fileName}");
                 }
 
                 product.Images = imagePaths;

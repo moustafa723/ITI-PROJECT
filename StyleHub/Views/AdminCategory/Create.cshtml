@@ -1,45 +1,28 @@
-﻿@model StyleHub.Models.Category
-
+﻿@model StyleHub.Models.AdminCategory
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create Category";
     Layout = "~/Views/Shared/_Layout_Style_hub.cshtml";
-
 }
+<div class="container mt-4">
 
-<h1>Create</h1>
 
-<h4>Category</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PhotoPath" class="control-label"></label>
-                <input asp-for="PhotoPath" class="form-control" />
-                <span asp-validation-for="PhotoPath" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Back_Color" class="control-label"></label>
-                <input asp-for="Back_Color" class="form-control" />
-                <span asp-validation-for="Back_Color" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+
+<h2>Create Category</h2>
+
+<form asp-action="Create" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
     </div>
-</div>
+    <div class="form-group">
+        <label asp-for="Photo">Image</label>
+        <input asp-for="Photo" class="form-control" type="file" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Back_Color">Background Color</label>
+        <input asp-for="Back_Color" class="form-control" type="text" />
+    </div>
+    <button type="submit" class="btn btn-success mt-2">Create</button>
+</form>
 
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

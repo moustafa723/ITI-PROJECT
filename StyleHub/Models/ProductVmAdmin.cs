@@ -2,6 +2,7 @@
 {
     public class ProductVmAdmin
     {
+        public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public decimal Price { get; set; }
         public string? Size { get; set; }
@@ -14,5 +15,6 @@
         public List<IFormFile>? Images { get; set; } // رفع الصور
         public string? Alts { get; set; }
         public int CategoryId { get; set; }
+        public Category Category { get; set; }
     }
 }

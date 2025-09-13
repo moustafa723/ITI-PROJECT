@@ -20,11 +20,11 @@ namespace StyleHub.Controllers
             var client = _clientFactory.CreateClient();
 
             var url = id.HasValue
-                ? $"https://localhost:7158/api/Products?categoryId={id.Value}"
-                : "https://localhost:7158/api/Products";
+                ? $"http://stylehubteamde.runasp.net/api/Products?categoryId={id.Value}"
+                : "http://stylehubteamde.runasp.net/api/Products";
 
             var productsFromApi = await client.GetFromJsonAsync<List<Product>>(url);
-            var categoriesFromApi = await client.GetFromJsonAsync<List<Category>>("https://localhost:7158/api/Categories");
+            var categoriesFromApi = await client.GetFromJsonAsync<List<Category>>("http://stylehubteamde.runasp.net/api/Categories");
 
             var products = productsFromApi?.Select(p =>
             {
@@ -69,7 +69,7 @@ namespace StyleHub.Controllers
 
         public async Task<IActionResult> Product_detailsAsync(int id)
         {
-            HttpResponseMessage response = await client.GetAsync($"https://localhost:7158/api/Products/{id}");
+            HttpResponseMessage response = await client.GetAsync($"http://stylehubteamde.runasp.net/api/Products/{id}");
 
             if (!response.IsSuccessStatusCode)
             {

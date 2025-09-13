@@ -15,7 +15,7 @@ namespace StyleHub.Controllers
         public CheckoutController(IHttpClientFactory httpClientFactory)
         {
             _httpClient = httpClientFactory.CreateClient();
-            _httpClient.BaseAddress = new Uri("https://localhost:7158/"); // Your API URL
+            _httpClient.BaseAddress = new Uri("http://stylehubteamde.runasp.net"); // Your API URL
         }
 
         private void AttachUserHeader()

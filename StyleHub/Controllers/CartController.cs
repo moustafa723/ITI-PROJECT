@@ -15,7 +15,7 @@ namespace StyleHub.Controllers
         public CartController(IHttpClientFactory httpClientFactory)
         {
             _httpClient = httpClientFactory.CreateClient();
-            _httpClient.BaseAddress = new Uri("https://localhost:7158/");
+            _httpClient.BaseAddress = new Uri("http://stylehubteamde.runasp.net");
         }
 
         private void AttachUserHeader()

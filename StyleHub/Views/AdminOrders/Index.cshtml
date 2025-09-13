@@ -1,0 +1,53 @@
+﻿@model List<StyleHub.Models.OrderViewModel>
+@using StyleHub.Models
+@{
+    Layout = "~/Views/Shared/_Layout_Style_hub.cshtml";
+
+}
+<h2>طلبات العملاء</h2>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>العميل</th>
+            <th>البريد الإلكتروني</th>
+            <th>تاريخ الإنشاء</th>
+            <th>الحالة</th>
+            <th>تعديل الحالة</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td>@order.CustomerName</td>
+                <td>@order.Email</td>
+                <td>@order.CreatedAt.ToString("yyyy-MM-dd HH:mm")</td>
+                <td>@order.Status</td>
+                <td>
+                    <form asp-action="UpdateStatus" asp-controller="AdminOrders" method="post">
+                        <input type="hidden" name="id" value="@order.Id" />
+                        <select name="newStatus" class="form-select d-inline w-auto">
+                            @foreach (OrderStatus status in Enum.GetValues(typeof(OrderStatus)))
+                            {
+                                <option value="@((int)status)" selected="@(status == order.Status ? "selected" : null)">
+                                    @status
+                                </option>
+                            }
+                        </select>
+                        <button type="submit" class="btn btn-sm btn-primary">تحديث</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

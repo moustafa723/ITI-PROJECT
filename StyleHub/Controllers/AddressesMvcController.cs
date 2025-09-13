@@ -12,7 +12,7 @@ public class AddressesMvcController : Controller
 
     public AddressesMvcController(IConfiguration config)
     {
-        _apiBase = (config["ApiBaseUrl"] ?? "https://localhost:7158")
+        _apiBase = (config["ApiBaseUrl"] ?? "http://stylehubteamde.runasp.net")
                      .TrimEnd('/') + "/";
     }
 

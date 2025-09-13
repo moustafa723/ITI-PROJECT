@@ -11,7 +11,7 @@ namespace StyleHub.Controllers
     public class OrdersController : Controller
     {
         private readonly HttpClient _httpClient;
-        private readonly string _apiBaseUrl = "https://localhost:7158/api/Orders";
+        private readonly string _apiBaseUrl = "http://stylehubteamde.runasp.net/api/Orders";
 
         public OrdersController(HttpClient httpClient)
         {

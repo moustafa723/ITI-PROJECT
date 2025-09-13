@@ -1,22 +1,19 @@
-﻿@model IEnumerable<StyleHub.Models.Category>
-
+﻿@model List<StyleHub.Models.Category>
 @{
     ViewData["Title"] = "Categories";
     Layout = "~/Views/Shared/_Layout_Style_hub.cshtml";
 }
+<div class="container mt-4">
 
-<h1 class="mt-4 mb-4 text-primary">Categories</h1>
+<h2 class="mt-4 mb-3">All Categories</h2>
+<a class="btn btn-success mb-3" asp-action="Create">+ Add Category</a>
 
-<p>
-    <a class="btn btn-success mb-3" asp-action="Create">Create New</a>
-</p>
-
-<table class="table table-bordered table-hover table-striped">
+<table class="table table-bordered">
     <thead class="table-dark">
         <tr>
-            <th>@Html.DisplayNameFor(model => model.Name)</th>
-            <th>Image</th>
-            <th>@Html.DisplayNameFor(model => model.Back_Color)</th>
+            <th>Name</th>
+            <th>Photo</th>
+            <th>Color</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -24,26 +21,24 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                <td>@item.Name</td>
                 <td>
                     @if (!string.IsNullOrEmpty(item.PhotoPath))
                     {
-                        <img src="@item.PhotoPath" alt="Image" width="100" height="100" class="img-thumbnail" />
+                        <img src="@item.PhotoPath" width="100" class="img-thumbnail" />
                     }
                     else
                     {
-                        <span class="text-muted">No image</span>
+                        <span class="text-muted">No Image</span>
                     }
                 </td>
-                <td style="background-color:@item.Back_Color; color: black;">
-                    @Html.DisplayFor(modelItem => item.Back_Color)
-                </td>
+                <td style="background:@item.Back_Color">@item.Back_Color</td>
                 <td>
-                    <a class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                    <a class="btn btn-info btn-sm mx-1" asp-action="Details" asp-route-id="@item.Id">Details</a>
-                    <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Delete</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+</div>

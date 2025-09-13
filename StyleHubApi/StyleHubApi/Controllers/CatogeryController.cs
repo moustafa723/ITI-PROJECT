@@ -63,8 +63,9 @@ namespace StyleHubApi.Controllers
                 {
                     await categoryVm.Photo.CopyToAsync(stream);
                 }
+                var baseUrl = $"{Request.Scheme}://{Request.Host}";
+                imagePath = $"{baseUrl}/uploads/{fileName}";
 
-                imagePath = $"/uploads/{fileName}";
             }
 
             var category = new Category

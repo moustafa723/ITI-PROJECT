@@ -1,93 +1,82 @@
-﻿@model StyleHub.Models.Product
+﻿@model StyleHub.Models.ProductVmAdmin
 
 @{
     ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_Layout_Style_hub.cshtml";
 
 }
+<div class="container mt-4">
 
 <h1>Edit</h1>
 
 <h4>Product</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Size" class="control-label"></label>
-                <input asp-for="Size" class="form-control" />
-                <span asp-validation-for="Size" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Review" class="control-label"></label>
-                <input asp-for="Review" class="form-control" />
-                <span asp-validation-for="Review" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="InStock" /> @Html.DisplayNameFor(model => model.InStock)
-                </label>
-            </div>
-            <div class="form-group">
-                <label asp-for="Badge" class="control-label"></label>
-                <input asp-for="Badge" class="form-control" />
-                <span asp-validation-for="Badge" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="OldPrice" class="control-label"></label>
-                <input asp-for="OldPrice" class="form-control" />
-                <span asp-validation-for="OldPrice" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Rating" class="control-label"></label>
-                <input asp-for="Rating" class="form-control" />
-                <span asp-validation-for="Rating" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Color" class="control-label"></label>
-                <input asp-for="Color" class="form-control" />
-                <span asp-validation-for="Color" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Images">Upload Images</label>
-                <input asp-for="Images" type="file" class="form-control" multiple />
-            </div>
-            <div class="form-group">
-                <label asp-for="Alts" class="control-label"></label>
-                <input asp-for="Alts" class="form-control" />
-                <span asp-validation-for="Alts" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label for="CategoryId" class="control-label">Category</label>
-                <select asp-for="CategoryId" class="form-control" asp-items="@(new SelectList(ViewBag.Categories, "Id", "Name"))">
-                    <option value="">-- Select Category --</option>
-                </select>
-                <span asp-validation-for="CategoryId" class="text-danger"></span>
-            </div>
 
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+
+<form asp-action="Edit" method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="Id" />
+
+    <!-- باقي الحقول نفس create -->
+        <div class="form-group">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Price"></label>
+            <input asp-for="Price" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Size"></label>
+            <input asp-for="Size" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Review"></label>
+            <input asp-for="Review" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="InStock"></label>
+            <input asp-for="InStock" class="form-check-input" type="checkbox" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Badge"></label>
+            <input asp-for="Badge" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="OldPrice"></label>
+            <input asp-for="OldPrice" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Rating"></label>
+            <input asp-for="Rating" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Color"></label>
+            <input asp-for="Color" class="form-control" />
+        </div>
+    <div class="form-group">
+        <label asp-for="Images">New Images (optional)</label>
+        <input asp-for="Images" class="form-control" type="file" multiple />
+        <small class="form-text text-muted">Upload to replace old images</small>
     </div>
-</div>
+        <div class="form-group">
+            <label asp-for="Alts"></label>
+            <input asp-for="Alts" class="form-control" />
+        </div>
+    <div class="form-group">
+        <label asp-for="CategoryId">Category</label>
+            <select asp-for="CategoryId" asp-items="@(new SelectList(ViewBag.Categories, "Id", "Name"))" class="form-control">
+                <option value="">-- Select Category --</option>
+        </select>
+    </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    <button type="submit" class="btn btn-success">Update</button>
+</form>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+</div>

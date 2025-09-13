@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using StyleHub.Models;
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
 
 namespace StyleHub.Controllers
@@ -13,70 +14,85 @@ namespace StyleHub.Controllers
         public AdminCategoryController(IHttpClientFactory factory)
         {
             _http = factory.CreateClient();
-            _http.BaseAddress = new Uri("https://localhost:7158/"); // ✅ Change to your API base URL
+            _http.BaseAddress = new Uri("http://stylehubteamde.runasp.net"); // 🔁 API Base URL
         }
 
-        // GET: /AdminCategory
         public async Task<IActionResult> Index()
         {
             var categories = await _http.GetFromJsonAsync<List<Category>>("api/Categories");
             return View(categories);
         }
 
-        // GET: /AdminCategory/Create
-        [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: /AdminCategory/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Category category)
+        public async Task<IActionResult> Create(AdminCategory vm)
         {
-            if (ModelState.IsValid)
+            var content = new MultipartFormDataContent();
+            content.Add(new StringContent(vm.Name), "Name");
+            content.Add(new StringContent(vm.Back_Color ?? "#FFFFFF"), "Back_Color");
+
+            if (vm.Photo != null)
             {
-                var response = await _http.PostAsJsonAsync("api/Categories", category);
-                if (response.IsSuccessStatusCode)
-                {
-                    return RedirectToAction(nameof(Index));
-                }
-                ModelState.AddModelError("", "Failed to create category");
+                var stream = vm.Photo.OpenReadStream();
+                var fileContent = new StreamContent(stream);
+                fileContent.Headers.ContentType = new MediaTypeHeaderValue(vm.Photo.ContentType);
+                content.Add(fileContent, "Photo", vm.Photo.FileName);
             }
-            return View(category);
+
+            var response = await _http.PostAsync("api/Categories", content);
+            if (response.IsSuccessStatusCode)
+                return RedirectToAction(nameof(Index));
+
+            ModelState.AddModelError("", "Failed to create category");
+            return View(vm);
         }
 
-        // GET: /AdminCategory/Edit/5
-        [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
             var category = await _http.GetFromJsonAsync<Category>($"api/Categories/{id}");
             if (category == null) return NotFound();
-            return View(category);
+
+            var vm = new AdminCategory
+            {
+                Id = category.Id,
+                Name = category.Name,
+                Back_Color = category.Back_Color
+            };
+
+            return View(vm);
         }
 
-        // POST: /AdminCategory/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Category category)
+        public async Task<IActionResult> Edit(int id, AdminCategory vm)
         {
-            if (id != category.Id) return BadRequest();
+            if (id != vm.Id) return BadRequest();
 
-            if (ModelState.IsValid)
+            var content = new MultipartFormDataContent();
+            content.Add(new StringContent(vm.Name), "Name");
+            content.Add(new StringContent(vm.Back_Color ?? "#FFFFFF"), "Back_Color");
+
+            if (vm.Photo != null)
             {
-                var response = await _http.PutAsJsonAsync($"api/Categories/{id}", category);
-                if (response.IsSuccessStatusCode)
-                {
-                    return RedirectToAction(nameof(Index));
-                }
-                ModelState.AddModelError("", "Failed to update category");
+                var stream = vm.Photo.OpenReadStream();
+                var fileContent = new StreamContent(stream);
+                fileContent.Headers.ContentType = new MediaTypeHeaderValue(vm.Photo.ContentType);
+                content.Add(fileContent, "Photo", vm.Photo.FileName);
             }
-            return View(category);
+
+            var response = await _http.PutAsync($"api/Categories/{id}", content);
+            if (response.IsSuccessStatusCode)
+                return RedirectToAction(nameof(Index));
+
+            ModelState.AddModelError("", "Failed to update category");
+            return View(vm);
         }
 
-        // GET: /AdminCategory/Delete/5
-        [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
             var category = await _http.GetFromJsonAsync<Category>($"api/Categories/{id}");
@@ -84,30 +100,18 @@ namespace StyleHub.Controllers
             return View(category);
         }
 
-        // POST: /AdminCategory/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var response = await _http.DeleteAsync($"api/Categories/{id}");
             if (response.IsSuccessStatusCode)
-            {
                 return RedirectToAction(nameof(Index));
-            }
+
             ModelState.AddModelError("", "Failed to delete category");
             return RedirectToAction(nameof(Index));
         }
-        // GET: /AdminCategory/Details/5
-        [HttpGet]
-        public async Task<IActionResult> Details(int id)
-        {
-            var category = await _http.GetFromJsonAsync<Category>($"api/Categories/{id}");
-            if (category == null)
-            {
-                return NotFound();
-            }
-            return View(category);
-        }
 
+     
     }
 }

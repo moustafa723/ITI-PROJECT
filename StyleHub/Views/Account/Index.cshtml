@@ -63,9 +63,6 @@
                     <nav class="menu-nav">
                         <ul class="nav flex-column" role="tablist">
                             @await Html.PartialAsync("_AccountTabItem", new { Icon = "bi-box-seam", Title = "My Orders", Href = "orders", Count =orders.Count, IsActive = true })
-@*                             @await Html.PartialAsync("_AccountTabItem", new { Icon = "bi-heart", Title = "Wishlist", Href = "wishlist", Count = 12, IsActive = false })
- *@                            @await Html.PartialAsync("_AccountTabItem", new { Icon = "bi-wallet2", Title = "Payment Methods", Href = "wallet", Count = (int?)null, IsActive = false })
-                            @await Html.PartialAsync("_AccountTabItem", new { Icon = "bi-star", Title = "My Reviews", Href = "reviews", Count = (int?)null, IsActive = false })
                             @await Html.PartialAsync("_AccountTabItem", new { Icon = "bi-geo-alt", Title = "Addresses", Href = "addresses", Count = (int?)null, IsActive = false })
                             @await Html.PartialAsync("_AccountTabItem", new { Icon = "bi-gear", Title = "Account Settings", Href = "settings", Count = (int?)null, IsActive = false })
                         </ul>
@@ -148,6 +145,10 @@
                                                         <div class="info-row">
                                                             <span>Items</span>
                                                             <span>@order.OrderItems.Count items</span>
+                                                        </div> 
+                                                        <div class="info-row">
+                                                                <span>Status</span>
+                                                                <span class="status processing">@order.Status.ToString()</span>
                                                         </div>
                                                         <div class="info-row">
                                                             <span>Total</span>
@@ -158,7 +159,41 @@
                                                     </div>
                                                 </div>
                                                 <div class="order-footer">
+                                                    <button type="button" class="btn-details" data-bs-toggle="collapse" data-bs-target="#Track-@order.Id">Track Order</button>
                                                     <button type="button" class="btn-details" data-bs-toggle="collapse" data-bs-target="#details-@order.Id">View Details</button>
+                                                </div>
+                                                <!-- Order Tracking -->
+                                                <div class="collapse tracking-info" id="Track-@order.Id">
+                                                    <div class="tracking-timeline">
+                                                        @foreach (OrderStatus status in Enum.GetValues(typeof(OrderStatus)))
+                                                        {
+                                                            if (status == OrderStatus.Cancelled) continue; // لو مش عايز تعرض Cancelled في الـ timeline
+
+                                                            var isCompleted = (int)status < (int)order.Status;
+                                                            var isActive = status == order.Status;
+
+                                                            <div class="timeline-item @(isCompleted ? "completed" : "") @(isActive ? "active" : "")">
+                                                                <div class="timeline-icon">
+                                                                    @if (isCompleted)
+                                                                    {
+                                                                        <i class="bi bi-check-circle-fill"></i>
+                                                                    }
+                                                                    else if (isActive)
+                                                                    {
+                                                                        <i class="bi bi-box-seam"></i>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <i class="bi bi-circle"></i>
+                                                                    }
+                                                                </div>
+                                                                <div class="timeline-content">
+                                                                    <h5>@status</h5>
+                                                                    <p>@GetStatusMessage(status)</p>
+                                                                </div>
+                                                            </div>
+                                                        }
+                                                    </div>
                                                 </div>
 
                                                 <!-- Order Details -->
@@ -424,6 +459,22 @@
           </div>       
         </div>
     </div>
+    @functions {
+        string GetStatusMessage(OrderStatus state)
+        {
+            return state switch
+            {
+                OrderStatus.Order_Confirmed=> "Your order has been received and confirmed",
+                OrderStatus.Processing => "Your order is being prepared for shipment",
+                OrderStatus.Packaging=> "Your items are on the way",
+                OrderStatus.In_Transit => "Your order has been delivered",
+                OrderStatus.Delivered => "Your order has been delivered",
+                OrderStatus.Cancelled=> "Your order was cancelled",
+                _ => ""
+            };
+        }
+    }
+
 </section>
 @section Scripts {
     <script>

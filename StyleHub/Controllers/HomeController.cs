@@ -14,7 +14,7 @@ namespace StyleHub.Controllers
         {
             _logger = logger;
             _httpClient = httpClientFactory.CreateClient();
-            _httpClient.BaseAddress = new Uri("https://localhost:7158/api/");
+            _httpClient.BaseAddress = new Uri("http://stylehubteamde.runasp.net/api/");
 
         }
         public async Task<IActionResult> Index()

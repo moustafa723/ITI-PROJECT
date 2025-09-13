@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using StyleHub.Models;
-using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
 
 namespace StyleHub.Controllers
@@ -15,39 +14,29 @@ namespace StyleHub.Controllers
         public AdminProductController(IHttpClientFactory factory)
         {
             _http = factory.CreateClient();
-            _http.BaseAddress = new Uri("https://localhost:7158/"); // API base
+            _http.BaseAddress = new Uri("http://stylehubteamde.runasp.net"); // your API URL
         }
+
         private async Task<List<Category>> GetCategoriesAsync()
         {
-            return await _http.GetFromJsonAsync<List<Category>>("api/Categories");
+            return await _http.GetFromJsonAsync<List<Category>>("api/categories");
         }
 
-
-        // GET: /AdminProduct
         public async Task<IActionResult> Index()
         {
-            var products = await _http.GetFromJsonAsync<List<Product>>("api/Products");
-            var categories = await _http.GetFromJsonAsync<List<Category>>("api/Categories");
-
-            foreach (var p in products)
-            {
-                p.Category = categories.FirstOrDefault(c => c.Id == p.CategoryId);
-            }
-
-
+            var products = await _http.GetFromJsonAsync<List<Product>>("api/products");
+            var categories = await GetCategoriesAsync();
+            foreach (var product in products)
+                product.Category = categories.FirstOrDefault(c => c.Id == product.CategoryId);
             return View(products);
         }
 
-        // GET: /AdminProduct/Create
-        [HttpGet]
         public async Task<IActionResult> Create()
         {
             ViewBag.Categories = await GetCategoriesAsync();
             return View();
         }
 
-        // POST: /AdminProduct/Create
-        // POST: /AdminProduct/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ProductVmAdmin vm)
@@ -68,12 +57,13 @@ namespace StyleHub.Controllers
 
             if (vm.Images != null)
             {
+                int index = 0;
                 foreach (var image in vm.Images)
                 {
                     var stream = image.OpenReadStream();
                     var fileContent = new StreamContent(stream);
-                    fileContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue(image.ContentType);
-                    content.Add(fileContent, "Images", image.FileName);
+                    fileContent.Headers.ContentType = new MediaTypeHeaderValue(image.ContentType);
+                    content.Add(fileContent, "Images", $"img_{index++}_{image.FileName}");
                 }
             }
 
@@ -87,14 +77,32 @@ namespace StyleHub.Controllers
             return View(vm);
         }
 
-        // GET: /AdminProduct/Edit/5
-        [HttpGet]
         public async Task<IActionResult> Edit(int id)
-        {            var product = await _http.GetFromJsonAsync<Product>($"api/Products/{id}");
-
+        {
+            var product = await _http.GetFromJsonAsync<Product>($"api/products/{id}");
             ViewBag.Categories = await GetCategoriesAsync();
-            return View(product);
+
+            // تحويل الـ Product إلى ProductVmAdmin
+            var vm = new ProductVmAdmin
+            {
+                Id = product.Id,
+                Name = product.Name,
+                Price = product.Price,
+                Size = product.Size,
+                Review = product.Review,
+                InStock = product.InStock,
+                Badge = product.Badge,
+                OldPrice = product.OldPrice,
+                Rating = product.Rating,
+                Color = product.Color,
+                Alts = product.Alts,
+                CategoryId = product.CategoryId,
+                Category = product.Category
+            };
+
+            return View(vm);
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -116,12 +124,13 @@ namespace StyleHub.Controllers
 
             if (vm.Images != null)
             {
+                int index = 0;
                 foreach (var image in vm.Images)
                 {
                     var stream = image.OpenReadStream();
                     var fileContent = new StreamContent(stream);
-                    fileContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue(image.ContentType);
-                    content.Add(fileContent, "Images", image.FileName);
+                    fileContent.Headers.ContentType = new MediaTypeHeaderValue(image.ContentType);
+                    content.Add(fileContent, "Images", $"img_{index++}_{image.FileName}");
                 }
             }
 
@@ -135,20 +144,20 @@ namespace StyleHub.Controllers
             return View(vm);
         }
 
-        // GET: /AdminProduct/Delete/5
-        [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
-            var product = await _http.GetFromJsonAsync<Product>($"api/Products/{id}");
-            return View(product);
+            var product = await _http.GetFromJsonAsync<Product>($"api/products/{id}");
+            var categories = await GetCategoriesAsync();
 
+            product.Category = categories.FirstOrDefault(c => c.Id == product.CategoryId);
+            return View(product);
         }
 
-        // POST: /AdminProduct/Delete/5
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var response = await _http.DeleteAsync($"api/Products/{id}");
+            var response = await _http.DeleteAsync($"api/products/{id}");
+
             return RedirectToAction(nameof(Index));
         }
     }

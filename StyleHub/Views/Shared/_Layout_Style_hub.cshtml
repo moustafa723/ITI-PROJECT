@@ -159,11 +159,7 @@
                             </div>
                         </div>
 
-                        <!-- Wishlist -->
-                        <a asp-controller="Account" asp-action="Index" asp-fragment="wishlist" class="header-action-btn d-none d-md-block">
-                            <i class="bi bi-heart"></i>
-                            <span class="badge">0</span>
-                        </a>
+                      
 
                         <!-- Cart -->
                         <a asp-controller="Cart" asp-action="Index" class="header-action-btn">
@@ -210,6 +206,9 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" asp-controller="AdminProduct" asp-action="Index">Manage Products</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="AdminOrders" asp-action="Index">Manage Products</a>
                             </li>
                         }
                        
