@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using NuGet.Configuration;
 using StyleHub.Data;
+using StyleHubApi;
 using System;
 using System.Text.Json.Serialization;
 
@@ -9,6 +12,12 @@ var connectionString = builder.Configuration.GetConnectionString("StyleHubContex
 
 builder.Services.AddDbContext<StyleHubContext>(options =>
           options.UseSqlServer(builder.Configuration.GetConnectionString("StyleHubContextConnection")));
+builder.Services.Configure<ApiSettings>(builder.Configuration.GetSection("ApiSettings"));
+builder.Services.AddHttpClient("StyleHubClient", (sp, client) =>
+{
+    var settings = sp.GetRequiredService<IOptions<ApiSettings>>().Value;
+    client.BaseAddress = new Uri(settings.BaseUrl);
+});
 
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 {
@@ -18,7 +27,6 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 .AddDefaultTokenProviders()
 .AddDefaultUI();
 
-builder.Services.AddHttpClient();
 builder.Services.AddControllersWithViews();
 var app = builder.Build();
 

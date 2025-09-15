@@ -150,7 +150,6 @@
                                 {
                                     <div class="order-item" id="order-item-@item.Id">
                                         <div class="order-item-image">
-                                            <!-- شيل الـ ; وخلي في حالة عدم وجود صورة يركّب Placeholder -->
                                             <img src="@(item.Product.Images?.FirstOrDefault() ?? Url.Content("~/images/placeholder.png"))"
                                                  alt="@item.Product.Name" class="img-fluid" />
                                         </div>
@@ -168,7 +167,6 @@
                                                 <span class="line-total">= $@((item.Quantity * item.Product.Price).ToString("0.00"))</span>
                                             </div>
 
-                                            <!-- زرار الحذف: بيبعت DELETE على /api/CartItem/{id} -->
                                             <button type="button"
                                                     class="btn btn-danger btn-sm js-remove"
                                                     data-id="@item.Id">
@@ -182,31 +180,6 @@
 
 
 
-                        @* <div class="promo-code">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Promo Code" aria-label="Promo Code">
-                                <button class="btn btn-outline-primary" type="button">Apply</button>
-                            </div>
-                        </div> *@
-
-                        @* <div class="order-totals">
-                            <div class="order-subtotal d-flex justify-content-between">
-                                <span>Subtotal</span>
-                                <span>$209.97</span>
-                            </div>
-                            <div class="order-shipping d-flex justify-content-between">
-                                <span>Shipping</span>
-                                <span>$9.99</span>
-                            </div>
-                            <div class="order-tax d-flex justify-content-between">
-                                <span>Tax</span>
-                                <span>$21.00</span>
-                            </div>
-                            <div class="order-total d-flex justify-content-between">
-                                <span>Total</span>
-                                <span>$240.96</span>
-                            </div>
-                        </div> *@
                         <div class="order-totals">
                             <div class="order-subtotal d-flex justify-content-between">
                                 <span>Subtotal</span>

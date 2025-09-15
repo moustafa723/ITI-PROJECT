@@ -12,7 +12,7 @@
         public decimal? OldPrice { get; set; }
         public double Rating { get; set; }
         public string? Color { get; set; }
-        public List<IFormFile>? Images { get; set; } // رفع الصور
+        public List<IFormFile>? Images { get; set; } 
         public string? Alts { get; set; }
         public int CategoryId { get; set; }
         public Category Category { get; set; }

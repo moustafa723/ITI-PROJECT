@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout_Style_hub.cshtml";
 
 }
-<h2>طلبات العملاء</h2>
+<h2>Customer Orders</h2>
 
 @if (TempData["Success"] != null)
 {
@@ -18,12 +18,13 @@
 <table class="table">
     <thead>
         <tr>
-            <th>العميل</th>
-            <th>البريد الإلكتروني</th>
-            <th>تاريخ الإنشاء</th>
-            <th>الحالة</th>
-            <th>تعديل الحالة</th>
+            <th>Customer</th>
+            <th>Email</th>
+            <th>Created Date</th>
+            <th>Status</th>
+            <th>Edit Status</th>
         </tr>
+
     </thead>
     <tbody>
         @foreach (var order in Model)

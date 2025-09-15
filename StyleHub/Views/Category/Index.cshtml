@@ -100,15 +100,7 @@
                             <div class="col-12 col-md-6 col-lg-2">
                                 <div class="filter-item">
                                     <label for="priceRange" class="form-label">Price Range</label>
-                                  @*   <select class="form-select" id="priceRange" name="priceRange" onchange="this.form.submit()">
-                                        <option selected="">All Prices</option>
-                                        <option value="Under $25">Under $25</option>
-                                        <option value="$25 to $50">$25 to $50</option>
-                                        <option value="$50 to $100">$50 to $100</option>
-                                        <option value="$100 to $200">$100 to $200</option>
-                                        <option value="$200 & Above">$200 & Above</option>
-
-                                    </select> *@
+                               
                                     <select class="form-select" id="priceRange">
                                         <option value="all">All Prices</option>
                                         <option value="0-25">Under $25</option>
@@ -261,11 +253,9 @@
     const maxRange = document.querySelector(".max-range");
     const applyBtn = document.querySelector(".filter-actions button");
 
-    // القيم الافتراضية
     let defaultMin = 0;
     let defaultMax = 1000;
 
-    // تعيين القيم من الـ URL لو موجودة
     const urlParams = new URLSearchParams(window.location.search);
     const minPrice = urlParams.has("minPrice") ? urlParams.get("minPrice") : defaultMin;
     const maxPrice = urlParams.has("maxPrice") ? urlParams.get("maxPrice") : defaultMax;
@@ -275,7 +265,6 @@
     maxInput.value = maxPrice;
     maxRange.value = maxPrice;
 
-    // تحديث شريط السلايدر لما المستخدم يغير الأرقام
     minInput.addEventListener("input", function() {
         minRange.value = minInput.value;
     });
@@ -283,7 +272,6 @@
         maxRange.value = maxInput.value;
     });
 
-    // تحديث الأرقام لما المستخدم يحرك السلايدر
     minRange.addEventListener("input", function() {
         minInput.value = minRange.value;
     });
@@ -291,7 +279,6 @@
         maxInput.value = maxRange.value;
     });
 
-    // عند الضغط على Apply Filter
     applyBtn.addEventListener("click", function() {
         const minPrice = minInput.value;
         const maxPrice = maxInput.value;
@@ -324,16 +311,14 @@
         const minPrice = urlParams.get("minPrice");
         const maxPrice = urlParams.get("maxPrice");
 
-        // تعيين الخيار المناسب بناءً على minPrice و maxPrice
         if(minPrice && maxPrice){
             priceSelect.value = `${minPrice}-${maxPrice}`;
         } else if(minPrice && !maxPrice){
-            priceSelect.value = "200-1000"; // أعلى فئة
+            priceSelect.value = "200-1000"; 
         } else {
-            priceSelect.value = "all"; // افتراضي
+            priceSelect.value = "all"; 
         }
 
-        // عند تغيير الاختيار
         priceSelect.addEventListener("change", function() {
             const selected = priceSelect.value;
             const currentUrl = new URL(window.location.href);
@@ -382,13 +367,12 @@
         btn.addEventListener("click", function() {
             const view = btn.getAttribute("data-view");
             localStorage.setItem("viewMode", view);
-            document.body.setAttribute("data-view", view); // تستخدمها في CSS لتغيير العرض
+            document.body.setAttribute("data-view", view)
             viewButtons.forEach(b => b.classList.remove("active"));
             btn.classList.add("active");
         });
     });
 
-    // عند تحميل الصفحة
     document.addEventListener("DOMContentLoaded", () => {
         const savedView = localStorage.getItem("viewMode") || "grid";
         document.body.setAttribute("data-view", savedView);

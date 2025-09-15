@@ -14,21 +14,19 @@ namespace StyleHub.Controllers
 
         public CartController(IHttpClientFactory httpClientFactory)
         {
-            _httpClient = httpClientFactory.CreateClient();
-            _httpClient.BaseAddress = new Uri("http://stylehubteamde.runasp.net");
+            _httpClient = httpClientFactory.CreateClient("StyleHubClient");
         }
 
         private void AttachUserHeader()
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            Console.WriteLine("➡️ X-User-Id = " + userId); 
+            Console.WriteLine("➡️ X-User-Id = " + userId);
             _httpClient.DefaultRequestHeaders.Remove("X-User-Id");
 
             if (!string.IsNullOrWhiteSpace(userId))
                 _httpClient.DefaultRequestHeaders.Add("X-User-Id", userId);
         }
 
-       
         public async Task<IActionResult> Index()
         {
             AttachUserHeader();
@@ -68,7 +66,6 @@ namespace StyleHub.Controllers
             return BadRequest("❌ Failed to add item: " + error);
         }
 
-        // حذف منتج
         [HttpPost]
         public async Task<IActionResult> RemoveItem(int productId)
         {
@@ -82,7 +79,6 @@ namespace StyleHub.Controllers
             return RedirectToAction("Index");
         }
 
-        // مسح كل السلة
         [HttpPost]
         public async Task<IActionResult> ClearCart()
         {

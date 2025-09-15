@@ -4,8 +4,8 @@ using StyleHub.Models;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Security.Claims;
-[Authorize]
 
+[Authorize]
 public class AddressesMvcController : Controller
 {
     private readonly string _apiBase;
@@ -16,18 +16,15 @@ public class AddressesMvcController : Controller
                      .TrimEnd('/') + "/";
     }
 
-
     private HttpClient NewClientWithUser()
     {
         var c = new HttpClient { BaseAddress = new Uri(_apiBase) };
-        var uid = User?.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value
+        var uid = User?.FindFirst(ClaimTypes.NameIdentifier)?.Value
                   ?? User?.FindFirst("sub")?.Value;
         if (!string.IsNullOrWhiteSpace(uid))
             c.DefaultRequestHeaders.Add("X-User-Id", uid);
         return c;
-
     }
-
 
     [HttpGet]
     public async Task<IActionResult> Index()
@@ -42,29 +39,27 @@ public class AddressesMvcController : Controller
     {
         return PartialView("_CreateForm", new AddressDto());
     }
-   [HttpPost]
-[ValidateAntiForgeryToken]
-public async Task<IActionResult> Create(AddressDto dto)
-{
-    if (!ModelState.IsValid)
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Create(AddressDto dto)
     {
-        // عشان الأخطاء تبان في الفورم، حط ValidationSummary في الـ Partial (البند 3)
-        return PartialView("_CreateForm", dto);
+        if (!ModelState.IsValid)
+        {
+            return PartialView("_CreateForm", dto);
+        }
+
+        using var http = NewClientWithUser();
+        var res = await http.PostAsJsonAsync("api/addresses/mine", dto);
+
+        if (!res.IsSuccessStatusCode)
+        {
+            var err = await res.Content.ReadAsStringAsync();
+            return StatusCode((int)res.StatusCode, err);
+        }
+
+        return await ListPartial();
     }
-
-    using var http = NewClientWithUser();
-    var res = await http.PostAsJsonAsync("api/addresses/mine", dto);
-
-    if (!res.IsSuccessStatusCode)
-    {
-        var err = await res.Content.ReadAsStringAsync();
-        // رجّع كود الحالة ونص الخطأ — الجافاسكريبت عندك هيطلع alert
-        return StatusCode((int)res.StatusCode, err);
-    }
-
-    // نجاح → رجّع الجريد
-    return await ListPartial();
-}
 
     [HttpGet]
     public async Task<IActionResult> ListPartial()
@@ -79,16 +74,12 @@ public async Task<IActionResult> Create(AddressDto dto)
     {
         using var http = NewClientWithUser();
 
-        // لو عندك endpoint منفصل هاته مباشرة
-        // var dto = await http.GetFromJsonAsync<AddressDto>($"api/addresses/mine/{id}");
-
         var all = await http.GetFromJsonAsync<List<AddressDto>>("api/addresses/mine") ?? new();
         var dto = all.FirstOrDefault(a => a.Id == id);
         if (dto == null) return NotFound();
 
         return PartialView("_EditForm", dto);
     }
-
 
     [HttpPost]
     [ValidateAntiForgeryToken]

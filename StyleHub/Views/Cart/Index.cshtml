@@ -2,10 +2,7 @@
 
 @{
     Layout = "~/Views/Shared/_Layout_Style_hub.cshtml";
-    // var subtotal = Model?.Sum(x => x.Product.Price * x.Quantity) ?? 0;
-    // var tax = subtotal * 0.1M; // Example: 10% tax
-    //  var shipping = subtotal > 300 ? 0 : 4.99M;
-    // var total = subtotal + tax + shipping;
+
 }
 
 <section id="cart" class="cart section">
@@ -47,9 +44,7 @@
                                         </div>
                                         <div class="product-details">
                                             <h6 class="product-title">@item.Product.Name</h6>
-                                            @* <button class="remove-item" type="button">
-                                        <i class="bi bi-trash"></i> Remove
-                                        </button> *@
+                                            
                                             <form asp-action="RemoveItem" method="post">
                                                 <input type="hidden" name="cartId" value="@Model.Id" />
                                                 <input type="hidden" name="productId" value="@item.ProductId" />
@@ -109,9 +104,6 @@
                                 </div>
                             </div>
                             <div class="col-lg-6 text-md-end">
-                                <button type="submit" class="btn btn-outline-heading me-2">
-                                    <i class="bi bi-arrow-clockwise"></i> Update Cart
-                                </button>
                                 <form asp-controller="Cart" asp-action="ClearCart" asp-route-id="@Model.Id" method="post">
                                     <button type="submit" class="btn btn-outline-remove">
                                         <i class="bi bi-trash"></i> Clear Cart

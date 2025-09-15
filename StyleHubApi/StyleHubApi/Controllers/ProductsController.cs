@@ -16,6 +16,47 @@ namespace StyleHubApi.Controllers
         {
             _context = context;
         }
+        [HttpGet("search")]
+        public async Task<ActionResult<IEnumerable<Product>>> SearchProducts(
+    [FromQuery] string? keyword,
+    [FromQuery] string? sortBy,
+    [FromQuery] string? sortDir = "asc")
+        {
+            var query = _context.Products.Include(p => p.Category).AsQueryable();
+
+            // البحث بالاسم
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                query = query.Where(p => p.Name.Contains(keyword));
+            }
+
+            // الفرز
+            if (!string.IsNullOrEmpty(sortBy))
+            {
+                switch (sortBy.ToLower())
+                {
+                    case "price":
+                        query = sortDir == "desc"
+                            ? query.OrderByDescending(p => p.Price)
+                            : query.OrderBy(p => p.Price);
+                        break;
+
+                    case "rating":
+                        query = sortDir == "desc"
+                            ? query.OrderByDescending(p => p.Rating)
+                            : query.OrderBy(p => p.Rating);
+                        break;
+
+                    case "name":
+                        query = sortDir == "desc"
+                            ? query.OrderByDescending(p => p.Name)
+                            : query.OrderBy(p => p.Name);
+                        break;
+                }
+            }
+
+            return await query.ToListAsync();
+        }
 
         // GET: api/products?categoryId=3
         [HttpGet]
@@ -87,7 +128,12 @@ namespace StyleHubApi.Controllers
                 Color = productVm.Color,
                 Images = imagePaths,
                 Alts = productVm.Alts,
-                CategoryId = productVm.CategoryId
+                CategoryId = productVm.CategoryId,
+                IsBestSeller = productVm.IsBestSeller,
+                SalesCount = productVm.SalesCount,
+                Description = productVm.Description,
+                CreatedAt = DateTime.UtcNow,  // يمكن تحديده تلقائيًا
+                UpdatedAt = null
             };
 
             _context.Products.Add(product);
@@ -114,6 +160,10 @@ namespace StyleHubApi.Controllers
             product.Color = productVm.Color;
             product.Alts = productVm.Alts;
             product.CategoryId = productVm.CategoryId;
+            product.IsBestSeller = productVm.IsBestSeller;
+            product.SalesCount = productVm.SalesCount;
+            product.Description = productVm.Description;
+            product.UpdatedAt = DateTime.UtcNow;
 
             // تحديث الصور لو فيه صور جديدة
             if (productVm.Images != null && productVm.Images.Any())

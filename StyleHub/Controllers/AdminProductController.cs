@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using StyleHub.Models;
 using System.Net.Http.Headers;
-using System.Net.Http.Json;
 
 namespace StyleHub.Controllers
 {
@@ -11,10 +10,9 @@ namespace StyleHub.Controllers
     {
         private readonly HttpClient _http;
 
-        public AdminProductController(IHttpClientFactory factory)
+        public AdminProductController(IHttpClientFactory httpClientFactory)
         {
-            _http = factory.CreateClient();
-            _http.BaseAddress = new Uri("http://stylehubteamde.runasp.net"); // your API URL
+            _http = httpClientFactory.CreateClient("StyleHubClient");
         }
 
         private async Task<List<Category>> GetCategoriesAsync()
@@ -82,7 +80,6 @@ namespace StyleHub.Controllers
             var product = await _http.GetFromJsonAsync<Product>($"api/products/{id}");
             ViewBag.Categories = await GetCategoriesAsync();
 
-            // تحويل الـ Product إلى ProductVmAdmin
             var vm = new ProductVmAdmin
             {
                 Id = product.Id,
@@ -102,7 +99,6 @@ namespace StyleHub.Controllers
 
             return View(vm);
         }
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]

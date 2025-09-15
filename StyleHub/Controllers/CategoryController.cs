@@ -7,24 +7,21 @@ namespace StyleHub.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly IHttpClientFactory _clientFactory;
-        private HttpClient client = new HttpClient();
+        private readonly HttpClient client;
 
-        public CategoryController(IHttpClientFactory clientFactory)
+        public CategoryController(IHttpClientFactory httpClientFactory)
         {
-            _clientFactory = clientFactory;
+            client = httpClientFactory.CreateClient("StyleHubClient");
         }
 
         public async Task<IActionResult> Index(int? id, decimal? minPrice, decimal? maxPrice, string search, string priceRange)
         {
-            var client = _clientFactory.CreateClient();
-
             var url = id.HasValue
-                ? $"http://stylehubteamde.runasp.net/api/Products?categoryId={id.Value}"
-                : "http://stylehubteamde.runasp.net/api/Products";
+                ? $"/api/Products?categoryId={id.Value}"
+                : "/api/Products";
 
             var productsFromApi = await client.GetFromJsonAsync<List<Product>>(url);
-            var categoriesFromApi = await client.GetFromJsonAsync<List<Category>>("http://stylehubteamde.runasp.net/api/Categories");
+            var categoriesFromApi = await client.GetFromJsonAsync<List<Category>>("/api/Categories");
 
             var products = productsFromApi?.Select(p =>
             {
@@ -32,18 +29,15 @@ namespace StyleHub.Controllers
                 return p;
             }).ToList();
 
-            // فلترة حسب البحث
             if (!string.IsNullOrEmpty(search))
                 products = products.Where(p => p.Name.Contains(search, StringComparison.OrdinalIgnoreCase)).ToList();
 
-            // فلترة حسب السعر من min/max
             if (minPrice.HasValue)
                 products = products.Where(p => (decimal)p.Price >= minPrice.Value).ToList();
 
             if (maxPrice.HasValue)
                 products = products.Where(p => (decimal)p.Price <= maxPrice.Value).ToList();
 
-            // فلترة حسب dropdown PriceRange
             if (!string.IsNullOrEmpty(priceRange))
             {
                 var parts = priceRange.Split('-');
@@ -63,14 +57,9 @@ namespace StyleHub.Controllers
             return View(products);
         }
 
-
-
-
-
         public async Task<IActionResult> Product_detailsAsync(int id)
         {
-            HttpResponseMessage response = await client.GetAsync($"http://stylehubteamde.runasp.net/api/Products/{id}");
-
+            HttpResponseMessage response = await client.GetAsync($"/api/Products/{id}");
             if (!response.IsSuccessStatusCode)
             {
                 return NotFound();
@@ -78,8 +67,8 @@ namespace StyleHub.Controllers
 
             var json = await response.Content.ReadAsStringAsync();
             var product = JsonConvert.DeserializeObject<Product>(json);
-
-            return View(product);
+            var categoriesFromApi = await client.GetFromJsonAsync<List<Category>>("/api/Categories");
+            ViewBag.CategoryName = categoriesFromApi?.FirstOrDefault(c => c.Id == product.CategoryId)?.Name; return View(product);
         }
     }
 }

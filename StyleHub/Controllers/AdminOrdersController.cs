@@ -6,21 +6,19 @@ using System.Text.Json;
 
 namespace StyleHub.Controllers
 {
-
     public class AdminOrdersController : Controller
     {
         private readonly HttpClient _http;
 
         public AdminOrdersController(IHttpClientFactory httpClientFactory)
         {
-            _http = httpClientFactory.CreateClient();
-            _http.BaseAddress = new Uri("https://stylehubteamde.runasp.net/api/");
-            _http.DefaultRequestHeaders.Add("X-User-Role", "Admin"); // كأنك أدمن
+            _http = httpClientFactory.CreateClient("StyleHubClient");
+            _http.DefaultRequestHeaders.Add("X-User-Role", "Admin");
         }
 
         public async Task<IActionResult> Index()
         {
-            var response = await _http.GetAsync("orders/all");
+            var response = await _http.GetAsync("/api/orders/all");
             if (!response.IsSuccessStatusCode)
                 return View("Error");
 
@@ -39,7 +37,7 @@ namespace StyleHub.Controllers
             var payload = new { status = newStatus };
             var content = new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json");
 
-            var response = await _http.PatchAsync($"orders/{id}/status", content);
+            var response = await _http.PatchAsync($"/api/orders/{id}/status", content);
 
             if (response.IsSuccessStatusCode)
                 TempData["Success"] = "Status updated successfully.";

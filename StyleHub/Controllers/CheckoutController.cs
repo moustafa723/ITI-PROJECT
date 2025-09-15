@@ -6,16 +6,20 @@ using System.Security.Claims;
 
 namespace StyleHub.Controllers
 {
-    [Authorize]  
+    [Authorize]
     [Route("[controller]/[action]")]
     public class CheckoutController : Controller
     {
+        private readonly ILogger<CheckoutController> _logger;
         private readonly HttpClient _httpClient;
 
-        public CheckoutController(IHttpClientFactory httpClientFactory)
+        public CheckoutController(
+            ILogger<CheckoutController> logger,
+            IHttpClientFactory httpClientFactory
+        )
         {
-            _httpClient = httpClientFactory.CreateClient();
-            _httpClient.BaseAddress = new Uri("http://stylehubteamde.runasp.net"); // Your API URL
+            _logger = logger;
+            _httpClient = httpClientFactory.CreateClient("StyleHubClient");
         }
 
         private void AttachUserHeader()
@@ -44,17 +48,16 @@ namespace StyleHub.Controllers
             var vm = new CheckoutVm { Cart = cart, DefaultAddress = def };
             return View(vm);
         }
+
         [HttpPost]
         public async Task<IActionResult> PlaceOrder()
         {
             AttachUserHeader();
 
-            // 1. هات السلة
             var cart = await _httpClient.GetFromJsonAsync<Cart>("api/cart/mine");
             if (cart == null || cart.CartItems.Count == 0)
                 return BadRequest("Cart is empty");
 
-            // 2. هات العناوين واختر الديفولت
             var addresses = await _httpClient.GetFromJsonAsync<List<AddressDto>>("api/addresses/mine");
             var defaultAddress = addresses?.FirstOrDefault(a => a.IsDefault) ?? addresses?.FirstOrDefault();
 
@@ -64,15 +67,14 @@ namespace StyleHub.Controllers
                 return RedirectToAction("Index", "Account");
             }
 
-            // 3. أنشئ الطلب واربط كل عنصر بالعنوان
             var userName = User.FindFirst("given_name")?.Value ?? "Customer";
             var userEmail = User.FindFirst(ClaimTypes.Email)?.Value ?? "unknown@example.com";
 
             var order = new Order
             {
                 CustomerName = userName,
-                Email = userEmail,            
-                AddressId = defaultAddress.Id, // ✅ ربط مباشر
+                Email = userEmail,
+                AddressId = defaultAddress.Id,
 
                 OrderItems = cart.CartItems.Select(ci => new OrderItem
                 {
@@ -82,7 +84,6 @@ namespace StyleHub.Controllers
                 }).ToList()
             };
 
-            // 4. إرسال الطلب
             var response = await _httpClient.PostAsJsonAsync("api/orders", order);
             if (!response.IsSuccessStatusCode)
             {
@@ -90,14 +91,11 @@ namespace StyleHub.Controllers
                 return RedirectToAction("Checkout");
             }
 
-            // 5. مسح السلة
             foreach (var item in cart.CartItems)
             {
                 await _httpClient.DeleteAsync($"api/cart/mine/items/{item.ProductId}");
             }
             return RedirectToAction("Index", "Account", new { fragment = "orders" });
         }
-
-      
     }
 }

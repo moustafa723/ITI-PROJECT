@@ -87,7 +87,7 @@
             </div>
 
             <!-- Content Area -->
-            <div class="col-lg-9">
+          <div class="col-lg-9">
             <div class="content-area">
               <div class="tab-content">
                 <!-- Orders Tab -->
@@ -167,7 +167,7 @@
                                                     <div class="tracking-timeline">
                                                         @foreach (OrderStatus status in Enum.GetValues(typeof(OrderStatus)))
                                                         {
-                                                            if (status == OrderStatus.Cancelled) continue; // لو مش عايز تعرض Cancelled في الـ timeline
+                                                            if (status == OrderStatus.Cancelled) continue; 
 
                                                             var isCompleted = (int)status < (int)order.Status;
                                                             var isActive = status == order.Status;
@@ -294,7 +294,7 @@
                                         <p class="text-muted">You have no orders yet.</p>
                                     }
 
-                        </div>
+                    </div>
                     
 
                   </div>
@@ -317,8 +317,6 @@
                   </div>
                 </div>
 
-
-               
                 <!-- Addresses Tab -->
                 <div class="tab-pane fade" id="addresses">
                   <div class="section-header" data-aos="fade-up">
@@ -329,9 +327,9 @@
                                     </button>
                                 </div>
 
-                                <div id="addFormContainer"></div> <!-- الفورم هيتحقن هنا -->
+                                <div id="addFormContainer"></div> 
 
-                    </div>
+                  </div>
                  
                             @if (TempData["Msg"] is string msge && !string.IsNullOrWhiteSpace(msge))
                             {
@@ -339,7 +337,7 @@
                             }
 @*                             addresses-grid
  *@                    <div id="addressesGrid">
-                                @await Html.PartialAsync("~/Views/AddressesMvc/_List.cshtml", Model /* لو الصفحة Strongly typed */)
+                                @await Html.PartialAsync("~/Views/AddressesMvc/_List.cshtml", Model )
                             </div>
                 </div>
 
@@ -428,7 +426,6 @@
                                         </div>
                                     </form>
 
-                                    @* (اختياري) عرض رسالة نجاح/خطأ *@
                                     @if (TempData["PwdMsg"] is string msgg && !string.IsNullOrWhiteSpace(msgg))
                                     {
                                         <div class="alert alert-info mt-3">@msgg</div>
@@ -491,21 +488,19 @@
         (() => {
           const btnAdd = document.getElementById("btnAddAddress");
           const host   = document.getElementById("addFormContainer");
-          const grid   = document.getElementById("addressesGrid"); // خلي الـ div ده يلفّ كل cards
+          const grid   = document.getElementById("addressesGrid"); 
 
           if (!host || !grid) {
             console.warn("addressesGrid/addFormContainer not found");
           }
 
-          /* ========================
-             1) Load CREATE form
-             ======================== */
+          
           if (btnAdd && host) {
             btnAdd.addEventListener("click", async () => {
               try {
                 const r = await fetch("/AddressesMvc/CreateInline", { credentials: "same-origin" });
                 host.innerHTML = await r.text();
-                wireUpCreateForm(); // اربط الايفنتات
+                wireUpCreateForm(); 
                 host.scrollIntoView({behavior:"smooth", block:"center"});
               } catch (e) {
                 console.error(e);
@@ -527,7 +522,7 @@
 
               const res = await fetch(form.action, {
                 method: "POST",
-                body: new FormData(form), // التوكن ضمن الـ FormData
+                body: new FormData(form), 
                 headers: token ? { "RequestVerificationToken": token } : {},
                 credentials: "same-origin"
               });
@@ -537,7 +532,7 @@
 
               if (!res.ok) {
                 if (ct.includes("text/html")) {
-                  host.innerHTML = txt;   // عرض أخطاء الفاليديشن
+                  host.innerHTML = txt;   
                   wireUpCreateForm();
                 } else {
                   alert("Failed: " + res.status + "\n" + txt);
@@ -545,10 +540,9 @@
                 return;
               }
 
-              // بعد النجاح الكنترولر بيرجع _List
               if (ct.includes("text/html")) {
-                grid.innerHTML = txt;     // تحديث الجريد
-                host.innerHTML = "";      // إغلاق الفورم
+                grid.innerHTML = txt;     
+                host.innerHTML = "";      
               } else if (ct.includes("application/json")) {
                 try { const data = JSON.parse(txt); if (data?.success) location.reload(); } catch {}
               } else {
@@ -557,9 +551,7 @@
             });
           }
 
-          /* ========================
-             2) Open EDIT form (delegation)
-             ======================== */
+          
           document.addEventListener("click", async (e) => {
             const a = e.target.closest(".btn-edit[data-edit-id]");
             if (!a) return;
@@ -601,7 +593,7 @@
 
               if (!res.ok) {
                 if (ct.includes("text/html")) {
-                  host.innerHTML = txt; // اخطاء فاليديشن
+                  host.innerHTML = txt; 
                   wireUpEditForm();
                 } else {
                   alert("Save failed: " + res.status);
@@ -609,7 +601,6 @@
                 return;
               }
 
-              // رجّع _List بعد النجاح
               if (ct.includes("text/html")) {
                 grid.innerHTML = txt;
                 host.innerHTML = "";
@@ -619,17 +610,15 @@
             });
           }
 
-          /* =========================================
-             3) Delete / MakeDefault via ajax (delegation)
-             ========================================= */
+        
           grid?.addEventListener("submit", async (e) => {
             const form = e.target;
             if (!(form instanceof HTMLFormElement)) return;
-            if (!form.dataset.ajax) return; // حط data-ajax="true" على فورم الحذف/الديفولت
+            if (!form.dataset.ajax) return; 
 
             e.preventDefault();
             const token = form.querySelector('input[name="__RequestVerificationToken"]')?.value;
-            const action = form.dataset.action; // "Delete" or "MakeDefault"
+            const action = form.dataset.action; 
 
             const res = await fetch(`/AddressesMvc/${action}`, {
               method: "POST",
@@ -644,7 +633,6 @@
               return;
             }
 
-            // الكنترولر بيرجع _List
             grid.innerHTML = txt;
           });
         })();

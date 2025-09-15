@@ -12,7 +12,7 @@
         public string Country { get; set; }
         public string ContactName { get; set; }
         public string Phone { get; set; }
-        public bool IsDefault { get; set; } // للعرض فقط (بيجي من الـ API)
+        public bool IsDefault { get; set; } 
     }
 
 }

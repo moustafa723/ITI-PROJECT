@@ -13,8 +13,7 @@ namespace StyleHub.Controllers
 
         public AdminCategoryController(IHttpClientFactory factory)
         {
-            _http = factory.CreateClient();
-            _http.BaseAddress = new Uri("http://stylehubteamde.runasp.net"); // 🔁 API Base URL
+            _http = factory.CreateClient("StyleHubClient");
         }
 
         public async Task<IActionResult> Index()
@@ -111,7 +110,5 @@ namespace StyleHub.Controllers
             ModelState.AddModelError("", "Failed to delete category");
             return RedirectToAction(nameof(Index));
         }
-
-     
     }
 }

@@ -6,7 +6,6 @@
 
         public string Name { get; set; } = string.Empty;
 
-        // هنا هنستقبل الصورة من الفورم
         public IFormFile? Photo { get; set; }
 
         public List<Product> Products { get; set; } = new List<Product>();

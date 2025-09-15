@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Category>
+﻿@using StyleHub.Models.HomeViewModel
+@model HomeViewModel
 
 @{
     Layout = "~/Views/Shared/_Layout_Style_hub.cshtml";
@@ -99,7 +100,7 @@
                 <div class="row gy-4">
 
 
-                    @foreach (var cat in Model)
+                    @foreach (var cat in Model.Categories)
                     {
                         <div class="col-xl-6">
                             <div class="category-card @cat.Back_Color" data-aos="fade-up" data-aos-delay="300">
@@ -129,63 +130,7 @@
 <!-- Best Sellers Section -->
 <section id="best-sellers" class="best-sellers section">
 
-    <!-- Section Title -->
-    <div class="container section-title" data-aos="fade-up">
-        <h2>Best Sellers</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-    </div><!-- End Section Title -->
-
-    <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="row g-5">
-            <!-- Product  -->
-            <div class="col-lg-3 col-md-6">
-                <div class="product-item">
-                    <div class="product-image">
-                        <div class="product-badge">Limited</div>
-                        <img src="~/assets/img/product/product-1.webp" alt="Product Image" class="img-fluid" loading="lazy">
-                        <div class="product-actions">
-                            <button class="action-btn wishlist-btn">
-                                <i class="bi bi-heart"></i>
-                            </button>
-                            <button class="action-btn compare-btn">
-                                <i class="bi bi-arrow-left-right"></i>
-                            </button>
-                            <button class="action-btn quickview-btn">
-                                <i class="bi bi-zoom-in"></i>
-                            </button>
-                        </div>
-                        <button class="cart-btn">Select Options</button>
-                    </div>
-                    <div class="product-info">
-                        <div class="product-category">Premium Collection</div>
-                        <h4 class="product-name"><a href="product-details.html">Mauris blandit aliquet elit</a></h4>
-                        <div class="product-rating">
-                            <div class="stars">
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star-fill"></i>
-                                <i class="bi bi-star"></i>
-                            </div>
-                            <span class="rating-count">(24)</span>
-                        </div>
-                        <div class="product-price">$189.00</div>
-                        <div class="color-swatches">
-                            <span class="swatch active" style="background-color: #2563eb;"></span>
-                            <span class="swatch" style="background-color: #059669;"></span>
-                            <span class="swatch" style="background-color: #dc2626;"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-              
-            <!-- End Product  -->
-
-
-        </div>
-
-    </div>
+    @await Html.PartialAsync("_BestSellersPartial", Model.BestSellers)
 
 
 </section>
@@ -465,32 +410,7 @@
                 </div>
             </div>
         </div>
-        <div class="row featured-products-row" data-aos="fade-up" data-aos-delay="500">
-            
-                <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="100">
-                <div class="product-showcase">
-                    <div class="product-image">
-                        <img src="~/assets/img/product/product-5.webp" alt="Featured Product" class="img-fluid">
-                        <div class="discount-badge">-45%</div>
-                    </div>
-                    <div class="product-details">
-                        <h6>Premium Wireless Headphones</h6>
-                        <div class="price-section">
-                            <span class="original-price">$129</span>
-                            <span class="sale-price">$71</span>
-                        </div>
-                        <div class="rating-stars">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <span class="rating-count">(324)</span>
-                        </div>
-                    </div>
-                </div>
-               </div>
-        </div>
+        @await Html.PartialAsync("_BestSellersPartial", Model.BestSellers)
     </div>
 
 </section><!-- /Call To Action Section -->

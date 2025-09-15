@@ -24,30 +24,18 @@
             <th>
                 @Html.DisplayNameFor(model => model.Size)
             </th>
-            @* <th>
-                @Html.DisplayNameFor(model => model.Review)
-            </th> *@
+          
             <th>
                 @Html.DisplayNameFor(model => model.InStock)
             </th>
-            @* <th>
-                @Html.DisplayNameFor(model => model.Badge)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OldPrice)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Rating)
-            </th> *@
+        
             <th>
                 @Html.DisplayNameFor(model => model.Color)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Images)
             </th>
-            @* <th>
-                @Html.DisplayNameFor(model => model.Alts)
-            </th> *@
+     
             <th>
                 @Html.DisplayNameFor(model => model.Category)
             </th>
@@ -66,21 +54,11 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Size)
             </td>
-            @* <td>
-                @Html.DisplayFor(modelItem => item.Review)
-            </td> *@
+          
             <td>
                 @Html.DisplayFor(modelItem => item.InStock)
             </td>
-            @* <td>
-                @Html.DisplayFor(modelItem => item.Badge)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OldPrice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rating)
-            </td> *@
+         
             <td>
                 @Html.DisplayFor(modelItem => item.Color)
             </td>
@@ -94,9 +72,7 @@
                         <span class="text-muted">No image</span>
                     }
                 </td>
-            @* <td>
-                @Html.DisplayFor(modelItem => item.Alts)
-            </td> *@
+           
             <td>
                     @item.Category?.Name
                 </td>

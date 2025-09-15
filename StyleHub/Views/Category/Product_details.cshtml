@@ -1,7 +1,11 @@
-﻿@model StyleHub.Models.Product
+﻿
+@model StyleHub.Models.Product
 @{
     Layout = "~/Views/Shared/_Layout_Style_hub.cshtml";
 }
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
+@inject SignInManager<IdentityUser> SignInManager
 @* @await Html.PartialAsync("_PageHeader", ("Product Details", "Product Details"))
  *@<!-- Product Details Section -->
 <section id="product-details" class="product-details section">
@@ -53,7 +57,9 @@
             <div class="col-lg-5" data-aos="fade-left" data-aos-delay="200">
                 <div class="product-details">
                     <div class="product-badge-container">
-                        <span class="badge-category">@Model.Category</span>
+                        <span class="badge-category">
+                            @ViewBag.CategoryName
+                        </span>
                         <div class="rating-group">
                             <div class="stars">
                                 @{
@@ -153,20 +159,27 @@
                             <input type="hidden" name="id" value="@Model.Id" />
 
                             <div class="action-buttons">
-
-                                <form asp-controller="Cart" asp-action="AddToCart" method="post">
-                                    <input type="hidden" name="cartId" value="@Model.Id" /> <!-- hardcoded for now -->
-                                    <input type="hidden" name="productId" value="@Model.Id" />
-                                    <input type="hidden" name="quantity" value="1" min="1" />
-                                    <button type="submit" class="btn primary-action">
-                                        <i class="bi bi-bag-plus"></i>
-                                        Add to Cart
-                                    </button>
-                                </form>
-                                <button type="button" class="btn secondary-action">
-                                    <i class="bi bi-lightning"></i>
-                                    Buy Now
-                                </button>
+                                @if (SignInManager.IsSignedIn(User))
+                                {
+                                    <form asp-controller="Cart" asp-action="AddToCart" method="post">
+                                        <input type="hidden" name="cartId" value="@Model.Id" /> <!-- hardcoded for now -->
+                                        <input type="hidden" name="productId" value="@Model.Id" />
+                                        <input type="hidden" name="quantity" value="1" />
+                                        <button type="submit" class="btn primary-action">Add to Cart</button>
+                                    </form>
+                                }
+                                else
+                                {
+                                    <a asp-area="Identity"
+                                       asp-page="/Account/Login"
+                                       asp-route-returnUrl="@Url.Action("Product_details", "Category", new { id = Model.Id })"
+                                       class="btn btn-warning">
+                                        <i class="bi bi-box-arrow-in-right"></i> Login to Add to Cart
+                                    </a>
+                                 
+                                }
+                               
+                          
                                 <button type="button" class="btn icon-action" title="Add to Wishlist">
                                     <i class="bi bi-heart"></i>
                                 </button>
